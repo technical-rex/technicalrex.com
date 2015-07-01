@@ -1,0 +1,21 @@
+baseurl: ""
+url: http://technicalrex.com
+
+theme:
+  # Meta
+  title: Technical Rex, Inc.
+  logo:
+  # used by search engines
+  description: RAWR
+
+  google_analytics: UA-62666024-3
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+highlighter: pygments
+
+sass:
+  sass_dir: _sass
+  style: :compressed
