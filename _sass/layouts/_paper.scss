@@ -1,0 +1,22 @@
+.box {
+    color: #333;
+    border-radius: .1em;
+}
+
+.underlay {
+    @extend .box;
+    margin: 2em;
+    background-image: $dark-texture;
+    background-color: #2ca05a;
+    box-shadow: 0 0 .05em .05em rgba(0,0,0,.5);
+    padding: 0.5em;
+    transform: rotate(-1deg);
+}
+
+.content {
+    @extend .box;
+    background-image: $light-texture;
+    background-color: #fff;
+    box-shadow: 0 0 .05em .05em rgba(0,0,0,.1);
+    padding: 0.5em;
+}

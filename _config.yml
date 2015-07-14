@@ -1,14 +1,10 @@
 baseurl: ""
 url: http://technicalrex.com
 
-theme:
-  # Meta
-  title: Technical Rex, Inc.
-  logo:
-  # used by search engines
-  description: RAWR
+title: Technical Rex, Inc.
+description: RAWR
 
-  google_analytics: UA-62666024-3
+google_analytics: UA-62666024-3
 
 markdown: kramdown
 kramdown:
