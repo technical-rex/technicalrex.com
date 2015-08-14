@@ -1,3 +1,30 @@
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    padding: 0.5em;
+    background-image: $dark-texture;
+    background-color: green;
+    box-shadow: 0 .05em .05em .05em rgba(0,0,0,.5);
+    a {
+        text-decoration: none;
+        color: #fefefa;
+    }
+    .branding {
+        .site-title {
+            font-size: 1em;
+            margin: 0;
+        }
+    }
+    .flow-nav {
+        display: inline-block;
+        margin: 0;
+    }
+}
+
 .box {
     color: #333;
     border-radius: .1em;
@@ -10,7 +37,6 @@
     background-color: #2ca05a;
     box-shadow: 0 0 .05em .05em rgba(0,0,0,.5);
     padding: 0.5em;
-    transform: rotate(-1deg);
 }
 
 .content {

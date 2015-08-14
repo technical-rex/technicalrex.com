@@ -1,26 +1,19 @@
 <header class="site-header">
-	<div class="branding">
-		{% if site.logo %}
-		<a href="{{ site.baseurl }}/">
-			<img class="logo" src="/img/{{ site.logo }}" alt=""/>
-		</a>
-		{% endif %}
+	<div class="branding flow-nav">
 		<h1 class="site-title">
 			<a href="{{ site.baseurl }}/">{{ site.title }}</a>
 		</h1>
 	</div>
-	<nav class="site-nav">
-		<ul>
+	<nav class="site-nav flow-nav">
+		<ul class="flow-nav">
 			{% for page in site.pages %}
 			{% if page.title and page.hide != true %}
-			<li>
-				<a class="page-link" href="{{ page.url | prepend: site.baseurl }}">
-					{{ page.title }}
-				</a>
+			<li class="flow-nav">
+				<a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
 			</li>
 			{% endif %}
 			{% endfor %}
-			<li>
+			<li class="flow-nav">
 				<a href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" title="{{ site.str_rss_follow }}">
 					<i class="fa fa-fw fa-rss"></i>
 				</a>
