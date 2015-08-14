@@ -21,10 +21,17 @@
             margin: 0;
         }
     }
+    .site-nav {
+        float: right;
+    }
     .flow-nav {
         display: inline-block;
         margin: 0;
     }
+}
+
+#page-container {
+    padding: 1em 15em 1em 5em;
 }
 
 .box {
