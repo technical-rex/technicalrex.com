@@ -10,8 +10,10 @@
     background-color: green;
     box-shadow: 0 .05em .05em .05em rgba(0,0,0,.5);
     a {
+        color: $header-link-color;
+    }
+    a:hover {
         text-decoration: none;
-        color: #fefefa;
     }
     .branding {
         .site-title {
@@ -42,7 +44,7 @@
 .content {
     @extend .box;
     background-image: $light-texture;
-    background-color: #fff;
+    background-color: #f5f5f5;
     box-shadow: 0 0 .05em .05em rgba(0,0,0,.1);
     padding: 0.5em;
 }
