@@ -34,24 +34,31 @@
     padding: 1em 15em 1em 5em;
 }
 
-.box {
-    color: #333;
+@mixin box($background-color, $texture, $shadow-alpha) {
     border-radius: .1em;
+    background-image: $texture;
+    background-color: $background-color;
+    padding: 0.5em;
+    box-shadow: 0 0 .05em .05em rgba(0,0,0,$shadow-alpha);
+}
+
+@mixin dark-box($background-color) {
+    @include box($background-color, $dark-texture, .5);
+}
+
+@mixin light-box($background-color) {
+    @include box($background-color, $light-texture, .1);
+}
+
+@mixin lighter-box($background-color) {
+    @include box($background-color, $lighter-texture, .1);
 }
 
 .underlay {
-    @extend .box;
+    @include dark-box(#2ca05a);
     margin: 2em;
-    background-image: $dark-texture;
-    background-color: #2ca05a;
-    box-shadow: 0 0 .05em .05em rgba(0,0,0,.5);
-    padding: 0.5em;
 }
 
 .content {
-    @extend .box;
-    background-image: $light-texture;
-    background-color: #f5f5f5;
-    box-shadow: 0 0 .05em .05em rgba(0,0,0,.1);
-    padding: 0.5em;
+    @include lighter-box(#f8f8ff);
 }
