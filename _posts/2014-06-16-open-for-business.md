@@ -4,7 +4,7 @@ title: Open for Business!
 author: erik
 category: business
 tags: []
-permalink: /open-for-business
+permalink: /2014/06/16/open-for-business
 ---
 
 Don't let the title throw you off. Technical Rex is not a new business. It has been around since 2007 and I started it with two goals in mind:
