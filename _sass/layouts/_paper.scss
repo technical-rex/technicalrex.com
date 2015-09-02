@@ -31,7 +31,7 @@
 
 #landscape {
     height: 100%;
-    background-image: url(/img/landscapes/jungle-and-mtn.png);
+    background-image: $landscape-image;
     background-attachment: fixed;
     background-repeat: repeat-x;
     background-position: left bottom;
