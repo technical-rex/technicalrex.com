@@ -6,6 +6,34 @@ description: RAWR
 
 google_analytics: UA-62666024-3
 
+authors:
+  erik:
+    name: Erik Gillespie
+    # Icons
+    email_address: erik.gillespie@gmail.com
+    behance:
+    bitbucket:
+    dribbble:
+    facebook:
+    flickr:
+    github: egillespie
+    google_plus: +ErikGillespie
+    gravatar_hash: 77e0d1571ed8fd1f9249a01e7569db05
+    instagram:
+    linkedin: https://www.linkedin.com/in/eriklgillespie
+    pinterest: erikgillespie
+    reddit: elgillespie
+    soundcloud:
+    stack_exchange: http://stackoverflow.com/users/1696044/erik-gillespie
+    steam: 76561198029980002
+    tumblr: elgillespie
+    twitter: eriklgillespie
+    wordpress:
+    youtube: ErikGillespie
+
+paginate: 5
+paginate_path: "blog/page:num"
+
 markdown: kramdown
 kramdown:
   input: GFM

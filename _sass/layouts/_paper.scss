@@ -38,6 +38,7 @@
 }
 #page-container {
     padding: 1em 15em 1em 5em;
+    height: 100%;
 }
 
 @mixin box($background-color, $texture, $shadow-alpha) {

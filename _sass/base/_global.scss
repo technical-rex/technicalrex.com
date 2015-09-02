@@ -7,6 +7,7 @@ html {
     background-image: $lighter-texture;
     background-color: #bfefff;
     background-attachment: fixed;
+    height: 100%;
 }
 
 // Typography
@@ -22,6 +23,7 @@ body {
   font-size: $font-size;
   word-wrap: break-word;
   padding-top: 1em;
+  height: 100%;
 }
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
