@@ -4,11 +4,10 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    width: 100%;
     padding: 0.5em;
     background-image: $light-texture;
     background-color: #525C65;
-    box-shadow: 0 .05em .05em .05em rgba(0,0,0,.5);
+    box-shadow: 0 .05em .1em .1em rgba(128,128,128,.5);
     a {
         color: $header-link-color;
     }
@@ -31,12 +30,7 @@
 }
 
 #landscape {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     height: 100%;
-    overflow: auto;
     background-image: url(/img/landscapes/jungle-and-mtn.png);
     background-attachment: fixed;
     background-repeat: repeat-x;
@@ -51,7 +45,7 @@
     background-image: $texture;
     background-color: $background-color;
     padding: 0.5em;
-    box-shadow: 0 0 .05em .05em rgba(0,0,0,$shadow-alpha);
+    box-shadow: 0 0 .1em .1em rgba(128,128,128,$shadow-alpha);
 }
 
 @mixin dark-box($background-color) {
