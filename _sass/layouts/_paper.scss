@@ -7,7 +7,7 @@
     padding: 0.5em;
     background-image: $light-texture;
     background-color: #525C65;
-    box-shadow: 0 .05em .1em .1em rgba(128,128,128,.5);
+    box-shadow: 0 .05em .1em .1em rgba(0,0,0,.2);
     a {
         color: $header-link-color;
     }
@@ -49,11 +49,11 @@
     background-image: $texture;
     background-color: $background-color;
     padding: 0.5em;
-    box-shadow: 0 0 .1em .1em rgba(128,128,128,$shadow-alpha);
+    box-shadow: 0 0 .1em .1em rgba(0,0,0,$shadow-alpha);
 }
 
 @mixin dark-box($background-color) {
-    @include box($background-color, $dark-texture, .5);
+    @include box($background-color, $dark-texture, .2);
 }
 
 @mixin light-box($background-color) {
