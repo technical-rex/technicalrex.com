@@ -1,0 +1,21 @@
+.title {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.datestamp {
+    font-style: italic;
+    text-align: center;
+    color: lighten($text-color, 20%);
+}
+
+.signature {
+    font-style: italic;
+    text-align: right;
+    color: lighten($text-color, 20%);
+    margin-bottom: 0;
+}
+
+.post-content {
+    margin: 0 0.5em;
+}
