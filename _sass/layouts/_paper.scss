@@ -78,3 +78,11 @@
     bottom: 0;
     right: 0;
 }
+
+.indent-left {
+    float: left;
+    padding-right: 1em;
+    img {
+        box-shadow: 0 .05em .1em .1em rgba(0,0,0,.1);
+    }
+}
