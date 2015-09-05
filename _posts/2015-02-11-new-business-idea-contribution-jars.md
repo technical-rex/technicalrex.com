@@ -1,6 +1,6 @@
 ---
 layout: post
-title: New Business Idea: Contribution Jars
+title: "New Business Idea: Contribution Jars"
 author: erik
 category: business
 tags: [contribution-jar]
