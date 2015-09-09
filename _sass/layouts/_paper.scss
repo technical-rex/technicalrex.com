@@ -73,6 +73,24 @@
     @include lighter-box(#f8f8ff);
 }
 
+.pagination {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.nav-button {
+    display: inline-block;
+    width: 45%;
+    text-align: center;
+}
+
+.no-nav {
+    display: inline-block;
+    color: grey;
+    margin: 0;
+}
+
 #rex {
     position: fixed;
     bottom: 0;
