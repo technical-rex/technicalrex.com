@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Giving Jar Unveiled at the Hatching
+title: Timecards Can Be Easy
 author: erik
 category: business
 tags: [adp,chrome]
