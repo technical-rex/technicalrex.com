@@ -4,7 +4,23 @@ layout: default
 {% for post in paginator.posts %}
 <div class="underlay">
     <div class="content">
-        {{ post.excerpt }}
+        <div class="teaser">
+            <header>
+                <h1>
+                    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                </h1>
+                <p class="meta">
+                    Posted on {{ post.date | date: "%B %-d, %Y" }}
+                    {% if post.author %} by {{ site.authors[post.author].name }}{% endif %}
+                </p>
+            </header>
+            <main>
+                {{ post.excerpt | strip_html }}
+            </main>
+            <footer>
+                <a class="button" href="{{ post.url | prepend: site.baseurl }}">Read Moar!</a>
+            </footer>
+        </div>
     </div>
 </div>
 {% endfor %}
