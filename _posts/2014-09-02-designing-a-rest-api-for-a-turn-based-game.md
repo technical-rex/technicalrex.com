@@ -5,6 +5,8 @@ author: erik
 category: programming
 tags: [pegger,tutorial]
 permalink: /2014/09/02/designing-a-rest-api-for-a-turn-based-game
+excerpt: >
+    Previously, we created a JSON model for Pegger. Now it's time to come up with an API that HTTP clients can use to interact with our game. In this tutorial we'll be designing an API "on paper". No coding for, just thinking things through.
 ---
 
 Previously, we created a [JSON model](http://technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json/) for Pegger. Now it's time to come up with an API that HTTP clients can use to interact with our game.

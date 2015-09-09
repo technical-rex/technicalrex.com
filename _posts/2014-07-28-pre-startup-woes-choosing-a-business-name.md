@@ -5,6 +5,8 @@ author: erik
 category: business
 tags: []
 permalink: /2014/07/28/pre-startup-woes-choosing-a-business-name
+excerpt: >
+    I didn't know it at the time, but picking a name for my business and mustering the courage to submit the appropriate paperwork would end up being two of the more difficult parts of starting my business. In this article I explain some things I considered when coming up with a name.
 ---
 
 I started Technical Rex on September 10, 2007. The weather was excellent: sunny and right around 70 degrees. It was a good day to start a business. I knew that the first step toward making my business official was to file my Articles of Incorporation, but beyond that I had no idea what I was doing. I remember driving the one mile from where I worked to the local Bureau of Commercial Services. I found the office where I could submit a paper version of [my articles](http://www.dleg.state.mi.us/bcs_corp/results.asp?ID=00937F&amp;page_name=corp), filled out the form, and filed it. I paid $60 to establish my business with 50,000 shares and was given a very handy list of phone numbers that would make up my next steps. I was in and out in less than half an hour.

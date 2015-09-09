@@ -5,6 +5,8 @@ author: erik
 category: programming
 tags: [pegger,tutorial]
 permalink: /2014/10/17/pegger-is-live
+excerpt: >
+    The finishing touches have been made and I think it's time to call Pegger "good enough". Read on for some changes I made to the code to put that last bit of polish on this wittle web app.
 ---
 
 The finishing touches have been made and I think it's time to call Pegger ["good enough"](http://en.wikipedia.org/wiki/Principle_of_good_enough).

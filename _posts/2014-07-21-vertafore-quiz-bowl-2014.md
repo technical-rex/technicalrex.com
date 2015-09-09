@@ -5,6 +5,8 @@ author: erik
 category: dinosaurs
 tags: []
 permalink: /2014/07/21/vertafore-quiz-bowl-2014
+excerpt: >
+    We just finished up a release at Vertafore and before kicking off the next release I wanted to do something fun with the dev teams so I picked up some lockout buzzers and organized a quiz bowl. NERD ALERT: I wrote a web app for score keeping and open sourced it too!
 ---
 
 We've been winding down a release in PLM at Vertafore and before the next release starts up we're spending a week doing some educational activities. The first couple of days will all be internal activities. We call them Developer Advancement Working Group days or DAWG days for short. The final three days of the week will be [AngularJS](https://angularjs.org) training sessions instructed by [egghead.io](https://egghead.io).

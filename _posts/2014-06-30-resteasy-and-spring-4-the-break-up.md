@@ -5,6 +5,8 @@ author: erik
 category: programming
 tags: []
 permalink: /2014/06/30/resteasy-and-spring-4-the-break-up
+excerpt: >
+    I have created enough projects from scratch that use Spring and RestEasy that I can crank out all of the code and XML by hand. That's what I thought anyway, until I decided to try out Spring 4 in one of these new projects.
 ---
 
 **Edit:** *The bug discussed in this article has been addressed in spring-resteasy 3.0.9.Final. Read through though! The intent of this article is to demonstrate why it is important to use `@Override` to avoid such bugs.*

@@ -5,6 +5,8 @@ author: erik
 category: programming
 tags: [pegger,tutorial]
 permalink: /2014/10/01/using-bootstrap-and-angularjs-for-a-simple-turn-based-game
+excerpt: >
+    Having an HTTP API for a game is great but until players can visually interact with the game it really won't be much fun to play. Now I will demonstrate how Bootstrap and AngularJS can be used to quickly make a simple (but pretty) interactive user interface for the game. To keep things simple, the game will be played in hot-seat style where both players will take turns in the game using the same computer and browser session.
 ---
 
 Having an HTTP API for a game is great but until players can visually interact with the game it really won't be much fun to play. Below I will demonstrate how [Bootstrap](http://getbootstrap.com) and [AngularJS](https://angularjs.org) can be used to quickly make a simple (but pretty) interactive user interface for the game. To keep things simple, the game will be played in hot-seat style (both players will take turns in the game using the same computer and browser session).

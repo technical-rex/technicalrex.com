@@ -5,6 +5,8 @@ author: erik
 category: business
 tags: []
 permalink: /2014/08/04/pre-startup-woes-the-fears-that-hold-you-back
+excerpt: >
+    <p>In my previous post I offered up a couple of tips to help choose a business name. For me, that was one of the two most difficult parts about starting a business. The other was overcoming my own fears. Those fears held me back from branching out on my own and it took a long time for me to muster the courage to push past them and actually start a business.</p>In this post I point out some things that helped me take the plunge and start my first business.
 ---
 
 In my [previous post](http://technicalrex.com/2014/07/28/pre-startup-woes-choosing-a-business-name/) I offered up a couple of tips to help choose a business name. For me, that was one of the two most difficult parts about starting a business. The other was overcoming my own fears. Those fears held me back from branching out on my own and it took a long time for me to muster the courage to push past them and actually start a business.

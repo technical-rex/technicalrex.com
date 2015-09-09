@@ -5,6 +5,8 @@ author: erik
 category: programming
 tags: [pegger,tutorial]
 permalink: /2014/09/09/peggers-turn-based-api-in-java
+excerpt: >
+    At the end of my last article I came to the conclusion that a turn-based API would probably best suit the game Pegger. This week I decided to implement that API in Java to see how everything would unfold. Let's see how the turn-based API ended up looking as code.
 ---
 
 At the end of my [last article](http://technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game/) I came to the conclusion that a turn-based API would probably best suit the game Pegger. This week I decided to implement that API in Java to see how everything would unfold.

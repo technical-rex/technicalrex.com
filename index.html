@@ -15,7 +15,7 @@ layout: default
                 </p>
             </header>
             <main>
-                {{ post.excerpt | strip_html }}
+                {{ post.excerpt }}
             </main>
             <footer>
                 <a class="button" href="{{ post.url | prepend: site.baseurl }}">Read Moar...</a>

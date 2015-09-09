@@ -5,6 +5,9 @@ author: erik
 category: business
 tags: []
 permalink: /2014/06/16/open-for-business
+excerpt: >
+    Technical Rex is undergoing a transformation to better focus on building great software.
+    Part of that change involves sharing more about how things get done!
 ---
 
 Don't let the title throw you off. Technical Rex is not a new business. It has been around since 2007 and I started it with two goals in mind:

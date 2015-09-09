@@ -5,6 +5,8 @@ author: erik
 category: programming
 tags: [pegger,tutorial]
 permalink: /2014/08/26/modeling-a-turn-based-game-with-json
+excerpt: >
+    Since my first tutorial for building out my turn-based game, Pegger, I have been thinking a lot about how to design a REST API around it. In this particular article my focus will be on creating a data model for Pegger and representing that model using JSON so don't worry if you're not intimately familiar with REST and HTTP yet.
 ---
 
 Since my [first tutorial](http://technicalrex.com/2014/08/11/creating-a-jersey-app-on-google-app-engine/) for building out my turn-based game, Pegger, I have been thinking a lot about how to design a REST API around it. But before I get too far into this article, let me first clear one thing up. When I say REST API I mean a Level 2 REST API according to the [Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html#level2). My goal is to create an API that uses URIs as resources and HTTP verbs to interact with those resources. We will make use of other aspects of HTTP as well as use JSON to structure our payloads, but I have no intention to go full blown [HATEOAS](http://timelessrepo.com/haters-gonna-hateoas) on this thing.

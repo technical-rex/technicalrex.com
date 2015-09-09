@@ -5,6 +5,8 @@ author: erik
 category: programming
 tags: []
 permalink: /2014/07/14/30-days-of-answers-on-stack-overflow
+excerpt: >
+    For years I could summarize my usage of Stack Overflow as "open a browser tab, search the web for my problem, click on the Stack Overflow result, follow the answer's advice, close the browser tab." I decided to change this by spending 30 days answering questions on Stack Overflow. It was educational to say the least. Here are some thoughts about my experience.
 ---
 
 # The Build Up

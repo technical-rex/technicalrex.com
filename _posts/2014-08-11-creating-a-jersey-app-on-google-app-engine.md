@@ -5,6 +5,8 @@ author: erik
 category: programming
 tags: [pegger,tutorial]
 permalink: /2014/08/11/creating-a-jersey-app-on-google-app-engine
+excerpt: >
+    <p>Today I started writing a web app that I hope will become a web-based version of a 2-player peg jumping game that I devised a few weeks ago. Inspiration for this game goes to my 18 month old daughter and her desire to play with her peg-hammering toy at 2 o'clock in the morning. I've settled on calling the game Pegger.</p>I'm turning the process of building the app into a tutorial series. This will be the first in the series, where we'll go through the process of creating a Jersey web app that runs on Google App Engine.
 ---
 
 # Background

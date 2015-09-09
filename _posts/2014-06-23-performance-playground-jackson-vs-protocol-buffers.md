@@ -5,6 +5,9 @@ author: erik
 category: programming
 tags: []
 permalink: /2014/06/23/performance-playground-jackson-vs-protocol-buffers
+excerpt: >
+    I've been benchmarking the Google Protocol Buffers and Jackson JSON serialization frameworks to compare data size and serialization/deserialization performance. The results are interesting, and in an effort to share more, the source
+    code has been made available too!
 ---
 
 **Update 2:** *[Part 3](http://technicalrex.com/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3/) is available and the tides have turned! Actually it turns out I had a bug in my benchmark that was skewing the Protocol Buffer results in a pretty major way.*

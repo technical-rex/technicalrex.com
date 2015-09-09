@@ -5,6 +5,8 @@ author: erik
 category: programming
 tags: [pegger,tutorial]
 permalink: /2014/09/15/pegger-as-a-component-based-api
+excerpt: >
+    Previously I implemented Pegger as a turn-based API using Java. After I finished the API I felt as if there were a few things about the implementation and overall data model that were a little clunky. The alternative API that we had discussed was a component-based API. Let's see how *that* looks as code.
 ---
 
 [Previously](http://technicalrex.com/2014/09/09/peggers-turn-based-api-in-java/) I implemented Pegger as a [turn-based](http://technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game/) API using Java. After I finished the API I felt as if there were a few things about the implementation and overall data model that were a little clunky.
