@@ -33,33 +33,33 @@ Eventually I came across [RESTEASY-1012](https://issues.jboss.org/browse/RESTEAS
 
 You see this guy?
 
-```xml
-    <listener>
-      <listener-class>
-        org.jboss.resteasy.plugins.spring.SpringContextLoaderListener
-      </listener-class>
-    </listener>
-```
+{% highlight xml linenos %}
+<listener>
+  <listener-class>
+    org.jboss.resteasy.plugins.spring.SpringContextLoaderListener
+  </listener-class>
+</listener>
+{% endhighlight %}
 
 Yeah... so... that guy doesn't work any more... but it compiles, links, and runs without throwing any exceptions. RestEasy and Spring 4 just stopped talking to each other one day without even bothering with an official divorce.
 
 Fortunately, the JIRA issue provides workaround code. You need to write your own listener and use it in place of `SpringContextLoaderListener`. It'll look something like this:
 
-```java
-    public class SpringRestEasyContextLoaderListener
-            extends ContextLoaderListener {
+{% highlight java linenos %}
+public class SpringRestEasyContextLoaderListener
+        extends ContextLoaderListener {
 
-        private SpringContextLoaderSupport springLoader
-            = new SpringContextLoaderSupport();
+    private SpringContextLoaderSupport springLoader
+        = new SpringContextLoaderSupport();
 
-        @Override
-        protected void customizeContext(ServletContext sc,
-                ConfigurableWebApplicationContext ctxt) {
-            super.customizeContext(sc, ctxt);
-            this.springLoader.customizeContext(sc, ctxt);
-        }
+    @Override
+    protected void customizeContext(ServletContext sc,
+            ConfigurableWebApplicationContext ctxt) {
+        super.customizeContext(sc, ctxt);
+        this.springLoader.customizeContext(sc, ctxt);
     }
-```
+}
+{% endhighlight %}
 
 The JIRA also explains that the RestEasy-Spring link is severed because Spring 4 removed the deprecated `createContextLoader` method on `ContextLoaderListener`. A comparison of the source code for this class in Spring 3.0.5 and Spring 4.0.5 confirmed that Spring did indeed remove the method. So why didn't RestEasy's `SpringContextLoaderListener` just break outright?
 

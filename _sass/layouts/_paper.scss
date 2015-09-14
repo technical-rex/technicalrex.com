@@ -97,3 +97,9 @@
     bottom: 0;
     right: 0;
 }
+
+.highlight {
+    @include dark-box(#525C65);
+    margin-bottom: 1em;
+    color: #f8f8ff;
+}
