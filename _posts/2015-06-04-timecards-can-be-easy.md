@@ -5,6 +5,8 @@ author: erik
 category: business
 tags: [adp,chrome]
 permalink: /2015/06/04/timecards-can-be-easy
+excerpt: >
+    Today I submitted an extension to the Chrome web store. It helps employees who track time in ADP eTIME such as myself and my coworkers quickly find the projects they care about while avoiding the ones they don't.
 ---
 
 Today I submitted an extension to the Chrome web store. It helps employees who track time in ADP eTIME such as myself and my coworkers quickly find the projects they care about while avoiding the ones they don't.
@@ -17,15 +19,15 @@ If you have used ADP's eTime system before, you'll know that this is a huge time
 
 I thought I'd take some screenshots and annotate the difference between using ADP eTIME with and without the Easy ADP Timecards extension.
 
-<strong>Before the Easy ADP Timecards extension:</strong>
+**Before the Easy ADP Timecards extension:**
 
 <img class="aligncenter wp-image-610 size-large" src="https://technicalrex.files.wordpress.com/2015/06/normaladpinaction.png?w=584" alt="Normal ADP Inaction" width="584" height="330" />
 
-<strong>After the Easy ADP Timecards extension:</strong>
+**After the Easy ADP Timecards extension:**
 
 <img class="aligncenter size-large wp-image-611" src="https://technicalrex.files.wordpress.com/2015/06/easyadpinaction.png?w=584" alt="Easy ADP In Action" width="584" height="330" />
 
-# Try Me
+## Try Me
 
 If you have to use ADP eTIME and still aren't convinced, [try it out](https://chrome.google.com/webstore/detail/easy-adp-timecards/obpjlfoampdbdnmpbhaclmldkeebhnfd)!
 

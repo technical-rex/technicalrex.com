@@ -5,6 +5,8 @@ author: erik
 category: dinosaurs
 tags: []
 permalink: /2015/06/10/this-dino-is-getting-a-makeover
+excerpt: >
+    Just a quick heads-up, the site will be getting a facelift over the next few weeks!
 ---
 
 Just a quick heads-up, the site will be getting a facelift over the next few weeks!

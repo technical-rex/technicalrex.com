@@ -5,6 +5,8 @@ author: erik
 category: dinosaurs
 tags: [gimp,inkscape,svg,tutorial]
 permalink: /2015/06/17/making-paper-rockets
+excerpt: >
+    <p>Today I spent a few hours learning how to create a simple graphic that looks like it was made from little pieces of construction paper.</p>I'm happy enough with the results that I thought I should share.
 ---
 
 Today I spent a few hours learning how to create a simple graphic that looks like it was made from little pieces of construction paper.

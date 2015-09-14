@@ -5,6 +5,8 @@ author: erik
 category: business
 tags: [contribution-jar]
 permalink: /2015/02/11/new-business-idea-contribution-jars
+excerpt: >
+    <p>You have probably heard of a swear jar. If you're a software developer then maybe you've worked somewhere that you put a buck in a box each time you break the nightly build. In either situation, when the jar or box is full you take that money and do something good with it like go on a vacation or buy your team donuts.</p>I'm considering building an app that offers up a virtual swear jar so you can gain all the benefits of the coin jar without having to carry around a bunch of coins.
 ---
 
 You have probably heard of a swear jar. If you're a software developer then maybe you've worked somewhere that you put a buck in a box each time you break the nightly build. In either situation, when the jar or box is full you take that money and do something good with it like go on a vacation or buy your team donuts.

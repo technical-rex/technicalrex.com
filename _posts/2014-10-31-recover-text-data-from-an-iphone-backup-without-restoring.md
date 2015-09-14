@@ -5,6 +5,11 @@ author: erik
 category: programming
 tags: [hacks]
 permalink: /2014/10/31/recover-text-data-from-an-iphone-backup-without-restoring
+excerpt: >
+    <p>If you've ever been in a situation where you need to recover data from an old iPhone backup
+    but you don't want to restore the backup over top of your current data, then you've come to
+    the right place!</p>Let's dive into some tips and tricks for locating and retrieving lost text
+    data from an old iPhone backup without having to restore it.
 ---
 
 When I upgraded to the [iPhone 6 Plus](http://www.apple.com/iphone-6/) I had this brilliant idea to start from a blank slate on the phone and add apps one by one as I needed them instead of restoring from a backup. In theory this was a good idea but I have since discovered that practically all of my settings and data for the various third-party apps that I had installed would no longer be available to me!

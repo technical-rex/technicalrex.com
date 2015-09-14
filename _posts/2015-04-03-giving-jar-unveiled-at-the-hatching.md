@@ -5,6 +5,8 @@ author: erik
 category: business
 tags: []
 permalink: /2015/04/03/giving-jar-unveiled-at-the-hatching
+excerpt: >
+    <p>Last week I pitched Giving Jar at the Hatching, a local startup contest to encourage entrepreneurship in the Lansing area. I didn't win the judge vote but I got a ton of applause and support from the audience.</p>I walked away feeling like Giving Jar needs to happen and I'm determined to give it my all to see that it does.
 ---
 
 Last week I pitched Giving Jar at [the Hatching](http://www.thehatching.org), a local startup contest to encourage entrepreneurship in the Lansing area. I didn't win the judge vote but I got a ton of applause and support from the audience.

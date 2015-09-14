@@ -5,6 +5,8 @@ author: erik
 category: business
 tags: []
 permalink: /2015/01/20/the-new-digs
+excerpt: >
+    Last week I signed a coworking agreement at the NEO Center in Lansing, Michigan. Check out these new digs!
 ---
 
 Last week I signed a coworking agreement at the [NEO Center](http://www.neocenter.org) in Lansing, Michigan!

@@ -5,6 +5,10 @@ author: erik
 category: programming
 tags: []
 permalink: /2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3
+excerpt: >
+    <p>Writing an apples-to-apples benchmark comparison of two very different serialization frameworks is apparently hard.</p>
+    <p>In my first attempt to compare serialization performance of Jackson JSON and Google Protocol Buffers, there wasn't a huge difference. After some suggestions, I made some revisions and found Jackson to be much faster than Protocol Buffers.</p>
+    A bug was recently found in the benchmarks and the effect of this bug gave Jackson a pretty unfair advantage. As you'll see, fixing the bug leads to a complete 180º in the results of these benchmarks.
 ---
 
 Writing an apples-to-apples benchmark comparison of two very different serialization frameworks is apparently hard.
