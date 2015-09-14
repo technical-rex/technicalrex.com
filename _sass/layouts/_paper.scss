@@ -39,6 +39,7 @@
     background-repeat: repeat-x;
     background-position: left bottom;
 }
+
 #page-container {
     padding: 1em 15em 1em 5em;
     height: 100%;
@@ -95,24 +96,4 @@
     position: fixed;
     bottom: 0;
     right: 0;
-}
-
-.indent-left {
-    float: left;
-    padding-right: 1em;
-    img {
-        box-shadow: 0 .05em .1em .1em rgba(0,0,0,.1);
-    }
-}
-
-table {
-    width: 100%;
-    margin: 0 0 1em 0;
-    th {
-        padding: 0.3em;
-    }
-    td {
-        padding: 0.3em;
-        border-top: 1px solid #bbb;
-    }
 }
