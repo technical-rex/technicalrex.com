@@ -13,7 +13,7 @@ In my [previous post](http://technicalrex.com/2014/07/28/pre-startup-woes-choosi
 
 *This article is a two-parter. In this part, I will enumerate the fears that prevented me from starting a business sooner and provide some advice that might help others overcome their own fears and realize that starting a business is not as difficult or as scary as your conscience might have you believe.*
 
-# Your First Opponent
+## Your First Opponent
 
 Before you start your business you will already have one opponent: your own head. In your head is where that fear lives and it is also where the psychological battles will take place that will either lead you to or prevent you from starting your own business.
 
@@ -25,7 +25,7 @@ That's when I learned that overcoming fear isn't a tactical effort, it's strateg
 
 I have a recommendation for anyone who might be holding back from starting a business because they are afraid of the risks and unknowns. Introspect. Ask yourself what you are afraid of and then ask yourself why you are afraid of that thing. Eventually you will get to the root of your fears. For example, you might discover that you aren't so much afraid of quitting your job as you are of losing touch with friends or not being able to pay your mortgage. These fears are a lot more specific and easier to address.
 
-# Leave Your Comfort Zone. A Lot.
+## Leave Your Comfort Zone. A Lot.
 
 An introspection of my own pre-startup fears helped me realize that most of my fears were based on my resistance to change. I had held the same job for several years, had a handle on taking care of myself, and had plenty of free time to hang out with friends and family. I was comfortable with my life but the constant thought of changing a major part of it made me uncomfortable.
 
@@ -35,7 +35,7 @@ Find a subject or habit that you don't deviate from and purposefully branch out.
 
 By the time you go to fill out the paperwork for your new business it won't be any more uncomfortable than your first time jumping off the high dive into a swimming pool.
 
-# Find Support From Everyone
+## Find Support From Everyone
 
 Before you think about putting your product on [Kickstarter](https://www.kickstarter.com) or pitching to investors, toss your idea out to anyone and everyone you find yourself in a conversation with day-to-day. There are two goals here: refine your business idea and gather some plain old encouragement.
 
@@ -49,7 +49,7 @@ After you have refined your idea and can explain it well then you should be able
 
 Once you've established that you are not crazy, that you have a well-thought out idea for a business, and people are excited about your endeavor then it's time to follow through. Hop in your car or go online and fill out the appropriate forms. Taking that first step towards starting a business will only take a few minutes and when you finish you can relax and start letting go of those fears once and for all.
 
-# Final Thoughts
+## Final Thoughts
 
 Starting a new business, especially your first one, is challenging. I would wager that the reason most people never embark on that entrepreneurial adventure is fear of some kind. A fear of taking big risks, a fear of leaving a steady paycheck for debt and unknown or unpredictable income, a fear that you aren't good enough to succeed, and so on and so on. These fears are simply your mind gone wild with exaggerations and anxiety but the mental hurdles they present are very real.
 

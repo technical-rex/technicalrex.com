@@ -15,13 +15,13 @@ The difficult part of starting my business was over. I didn't know it at the tim
 
 *This article is a two-parter. In this part, I will focus on how I picked the name "Technical Rex" for my business and provide some advice that might help you narrow down your choices and arrive at that perfect name for your own business sooner.*
 
-# Choosing a Name for Your Baby
+## Choosing a Name for Your Baby
 
 Choosing a name for your business is not unlike naming a child. The name you choose will give meaning and identity to your baby. A name that is easy to say, spell, and remember will go a long way. You also don't want to make it easy for bullies to poke fun of your name. But as we all know, that last condition is impossible, so just do the best you can (point in case: Technical Rex easily degrades to Tech Wrecks).
 
 There is one aspect of choosing a business name that makes it especially difficult when compared to naming a child: it has to be unique.
 
-# What Will Your Logo Look Like?
+## What Will Your Logo Look Like?
 
 I spent an absurd number of nights brainstorming ideas for my business name. Some names were very serious, some tried to incorporate my family name, I tried puns based on the types of technology I had experience with, and there were a lot of names that offered a tip of the hat to pop culture and history. I kept coming up with decent names but they just weren't "the one". Eventually I started thinking about what kind of logo I would want for my business and that's when coming up with names started to get much easier.
 
@@ -33,7 +33,7 @@ Some businesses choose to go the opposite direction. These companies have chosen
 
 In my case I intended to provide software consulting services instead of a physical product so business name/logo recognition was not especially important early on. By choosing to have a logo separate from my business name I gave myself the luxury of waiting to decide on a logo.
 
-# What Else is Important to You?
+## What Else is Important to You?
 
 Having a sense of which style of logo you may want will only get you so far. It can help you refine the structure or length of your business name but even that leaves an overwhelming range of possibilities.
 
@@ -49,7 +49,7 @@ It's also not uncommon for business names to have hidden references to its found
 
 Applying one of your interests to your business will also give your business an added splash of character. If you ever need to name products or services for your business you will have an immediate supply of options since your business name gives you a built-in theme to work with!
 
-# Summary
+## Summary
 
 Coming up with a name that perfectly fits your business can be very difficult. For me it was one of the most challenging aspects of starting my business. My brainstorming sessions became more productive once I started thinking about the style of logo I wanted for the business. After I started dabbling with names that were influenced by my other interests, I started having fun coming up with names again.
 
