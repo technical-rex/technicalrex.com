@@ -9,11 +9,11 @@ excerpt: >
     <p>Today I started writing a web app that I hope will become a web-based version of a 2-player peg jumping game that I devised a few weeks ago. Inspiration for this game goes to my 18 month old daughter and her desire to play with her peg-hammering toy at 2 o'clock in the morning. I've settled on calling the game Pegger.</p>I'm turning the process of building the app into a tutorial series. This will be the first in the series, where we'll go through the process of creating a Jersey web app that runs on Google App Engine.
 ---
 
-# Background
+## Background
 
 Today I started writing a web app that I hope will become a web-based version of a 2-player peg jumping game that I devised a few weeks ago. Inspiration for this game goes to my 18 month old daughter and her desire to play with her peg-hammering toy at 2 o'clock in the morning. I've settled on calling the game Pegger.
 
-[caption id="attachment_286" align="aligncenter" width="400"]<a href="http://technicalrex.files.wordpress.com/2014/08/peggerinspiration-e1407532853805.jpg"><img src="http://technicalrex.files.wordpress.com/2014/08/peggerinspiration-e1407532853805.jpg" alt="Inspiration comes at a dark hour" width="400" height="300" class="size-full wp-image-286" /></a> Inspiration comes at a dark hour[/caption]
+{% include image.html src="/img/posts/peggerinspiration.jpg" caption="Inspiration comes at a dark hour" %}
 
 I have only dabbled with deploying to the cloud so I made it a goal to stand up a bare-bones web app and deploy it to [Google App Engine](https://appengine.google.com). And I do mean bare-bones, there won't be any user interface for this exercise besides typing a URL into your address bar and hitting Enter.
 
@@ -21,7 +21,7 @@ Besides deploying to the cloud, I also decided to create a [RESTish API](http://
 
 *Warning! In the steps below I have provided values specific to my project that must be unique in order to deploy successfully to Google App Engine. You will need to supply different values in order to follow this tutorial successfully.*
 
-# Prereqs
+## Prereqs
 
 Java is my strongest programming language so it was the obvious choice for creating a web app. Not only that but Google App Engine provides a nice [tutorial](https://developers.google.com/appengine/docs/java/gettingstarted/introduction) for creating a basic project using Java and Maven. I deviate enough from their tutorial that I will repeat any important steps below so you don't have to follow the link unless you want to learn more about Java on GAE.
 
@@ -34,12 +34,12 @@ Install the JDK and make sure your `JAVA_HOME` environment variable is properly 
 
 When this is all done you should be able to run the following commands to see that both programs are runnable and of the correct versions.
 
-```
-    $ mvn --version
-    $ java -version
-```
+{% highlight bash %}
+$ mvn --version
+$ java -version
+{% endhighlight %}
 
-# Create a GAE Project
+## Create a GAE Project
 
 In order to use Google App Engine you need a Google account. If that account is tied to a Google Apps domain (which is the case for me), then you also need to make sure that your Google account has access to Google App Engine.
 
@@ -59,7 +59,7 @@ If you don't have a Google Apps account or have completed the steps above then f
 
 You now have a GAE project that you can deploy to!
 
-# Create a Java Project
+## Create a Java Project
 
 The recommended way to create a new GAE Java project is to use a Maven archetype. Follow the steps below to create a new project located in `~/projects/pegger`.
 
@@ -78,22 +78,22 @@ All of the steps above are standard for any GAE Java project that you will creat
 
 Edit `pegger/pom.xml` and add the following plugin:
 
-```xml
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
-            <encoding>UTF-8</encoding>
-        </configuration>
-    </plugin>
-```
+{% highlight xml linenos %}
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.1</version>
+    <configuration>
+        <source>1.7</source>
+        <target>1.7</target>
+        <encoding>UTF-8</encoding>
+    </configuration>
+</plugin>
+{% endhighlight %}
 
 That's it for the project creation. You can verify that all is well by running `mvn clean install` and confirming that the command completes successfully.
 
-# Maven Dependencies
+## Maven Dependencies
 
 Spring and Jersey have started providing [BOMs](http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management) (Bill of Materials) to reduce the number of Maven dependencies that have to be maintained in your POM file. Instead of having to introduce half a dozen or more dependencies, you simply specify the BOM artifact then add in additional dependencies that the BOM does not provide. In our case we will specify BOMs for Spring and Jersey. Then we will add one additional dependency for Spring and three additional dependencies for Jersey.
 
@@ -102,105 +102,108 @@ Jackson does not provide a BOM that I am aware of, so it still requires a handfu
 To introduce these dependencies, edit `pegger/pom.xml` and make the following additions.
 
 Define properties for each framework version:
-```xml
-        <spring.version>4.0.6.RELEASE</spring.version>
-        <jersey.version>2.11</jersey.version>
-        <jackson.version>2.4.1</jackson.version>
-```
+
+{% highlight xml linenos %}
+<spring.version>4.0.6.RELEASE</spring.version>
+<jersey.version>2.11</jersey.version>
+<jackson.version>2.4.1</jackson.version>
+{% endhighlight %}
 
 Import the Spring and Jersey BOMs:
-```xml
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-framework-bom</artifactId>
-                <version>${spring.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.jersey</groupId>
-                <artifactId>jersey-bom</artifactId>
-                <version>${jersey.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-```
 
-Finally, add the remaining dependencies that aren't covered by the BOMs. Put these in the top level dependencies block and not inside the dependency management block!
-```xml
+{% highlight xml linenos %}
+<dependencyManagement>
+    <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
+            <artifactId>spring-framework-bom</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-servlet</artifactId>
+            <type>pom</type>
+            <scope>import</scope>
         </dependency>
         <dependency>
-            <groupId>org.glassfish.jersey.ext</groupId>
-            <artifactId>jersey-spring3</artifactId>
+            <groupId>org.glassfish.jersey</groupId>
+            <artifactId>jersey-bom</artifactId>
             <version>${jersey.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-json-jackson</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
+    </dependencies>
+</dependencyManagement>
+{% endhighlight %}
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-```
+Finally, add the remaining dependencies that aren't covered by the BOMs. Put these in the top level dependencies block and not inside the dependency management block!
 
-# Spring Configuration
+{% highlight xml linenos %}
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-web</artifactId>
+    <version>${spring.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>org.glassfish.jersey.containers</groupId>
+    <artifactId>jersey-container-servlet</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.glassfish.jersey.ext</groupId>
+    <artifactId>jersey-spring3</artifactId>
+    <version>${jersey.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.glassfish.jersey.media</groupId>
+    <artifactId>jersey-media-json-jackson</artifactId>
+    <version>${jersey.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-annotations</artifactId>
+    <version>${jackson.version}</version>
+</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>${jackson.version}</version>
+</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.jaxrs</groupId>
+    <artifactId>jackson-jaxrs-json-provider</artifactId>
+    <version>${jackson.version}</version>
+</dependency>
+{% endhighlight %}
+
+## Spring Configuration
 
 I have been wanting to try out Spring-sans-XML for a while so I decided to give it a shot today. I'm sticking with using annotations for most of the bean definitions, primarily for the convenience but also because I don't really intend to write any code that might discourage me from coupling Spring to my classes.
 
 The `web.xml` configuration is almost as simple as defining an XML file to configure Spring:
 
-```xml
-    <context-param>
-        <param-name>contextClass</param-name>
-        <param-value>
-            org.springframework.web.context.support.AnnotationConfigWebApplicationContext
-        </param-value>
-    </context-param>
-       
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            com.technicalrex.webapp.pegger.internal.SpringConfig
-        </param-value>
-    </context-param>
-       
-    <listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-    </listener>
-```
+{% highlight xml linenos %}
+<context-param>
+    <param-name>contextClass</param-name>
+    <param-value>
+        org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+    </param-value>
+</context-param>
+   
+<context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+        com.technicalrex.webapp.pegger.internal.SpringConfig
+    </param-value>
+</context-param>
+   
+<listener>
+    <listener-class>
+        org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+</listener>
+{% endhighlight %}
 
 You will see that the `contextConfigLocation` points to a class instead of an XML file. Go ahead and create that class. Here's what it looks like:
 
-```java
+{% highlight java linenos %}
 package com.technicalrex.webapp.pegger.internal;
 
 import org.springframework.context.annotation.ComponentScan;
@@ -210,39 +213,39 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "com.technicalrex.webapp.pegger")
 public class SpringConfig {
 }
-```
+{% endhighlight %}
 
 Even with the package and import statements that class is way smaller than the equivalent XML. Furthermore, that's all of the Spring config that we will need right now!
 
-# Jersey Configuration
+## Jersey Configuration
 
 Jersey's configuration is similar to Spring's in that we need to add some config to `web.xml` and then define a class to provide the rest.
 
 First, add the following lines to `web.xml`:
 
-```xml
-    <servlet>
-        <servlet-name>jerseyServlet</servlet-name>
-        <servlet-class>
-            org.glassfish.jersey.servlet.ServletContainer
-        </servlet-class>
-        <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>
-                com.technicalrex.webapp.pegger.internal.JerseyConfig
-            </param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>jerseyServlet</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-```
+{% highlight xml linenos %}
+<servlet>
+    <servlet-name>jerseyServlet</servlet-name>
+    <servlet-class>
+        org.glassfish.jersey.servlet.ServletContainer
+    </servlet-class>
+    <init-param>
+        <param-name>javax.ws.rs.Application</param-name>
+        <param-value>
+            com.technicalrex.webapp.pegger.internal.JerseyConfig
+        </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+    <servlet-name>jerseyServlet</servlet-name>
+    <url-pattern>/*</url-pattern>
+</servlet-mapping>
+{% endhighlight %}
 
 Second, create the class `JerseyConfig` and register `RequestContextFilter.class` so our JAX-RS resources can be injected with Spring beans:
 
-```java
+{% highlight java linenos %}
 package com.technicalrex.webapp.pegger.internal;
 
 import com.technicalrex.webapp.pegger.greetings.Greetings;
@@ -255,15 +258,15 @@ public class JerseyConfig extends ResourceConfig {
         register(RequestContextFilter.class);
     }
 }
-```
+{% endhighlight %}
 
-# Jackson Configuration
+## Jackson Configuration
 
 As mentioned earlier in this article, Jackson doesn't technically need any additional configuration but there are a couple of features enabled by default that I am not a huge fan of. In particular, `CAN_OVERRIDE_ACCESS_MODIFIERS` is nasty because it will allow incoming JSON to write to private fields regardless of whether there are public setters for them. This seems a little dangerous to me so let's make sure it's disabled.
 
 Eventually I will want to configure some third-party serializers and deserializers. That configuration would also go in this class but for now let's keep it simple. Here's what the Jackson configuration provider looks like:
 
-```java
+{% highlight java linenos %}
 package com.technicalrex.webapp.pegger.internal;
 
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -286,11 +289,11 @@ public class JacksonObjectMapperConfig
         return OBJECT_MAPPER;
     }
 }
-```
+{% endhighlight %}
 
 Once you have written the `JacksonObjectMapperConfig` you will need to register it with Jersey:
 
-```java
+{% highlight java linenos %}
 package com.technicalrex.webapp.pegger.internal;
 
 import org.glassfish.jersey.server.ResourceConfig;
@@ -303,15 +306,15 @@ public class JerseyConfig extends ResourceConfig {
         register(JacksonObjectMapperConfig.class);
     }
 }
-```
+{% endhighlight %}
 
-# Kick the Tires
+## Kick the Tires
 
 Now that all of the configuration is in place we should make sure the three frameworks are all playing nicely with each other. I do this by defining a `/greetings` resource that calls a service injected by Spring that returns a list of greetings that Jackson will serialize into JSON.
 
 First, create a "domain object" class named `Greeting` and slap a Jackson annotation on it:
 
-```java
+{% highlight java linenos %}
 package com.technicalrex.webapp.pegger.greetings;
 
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -328,11 +331,11 @@ public class Greeting {
         return text;
     }
 }
-```
+{% endhighlight %}
 
 Second, write a service that will return a list of `Greeting`s and wire it up in Spring:
 
-```java
+{% highlight java linenos %}
 package com.technicalrex.webapp.pegger.greetings;
 
 import org.springframework.stereotype.Service;
@@ -348,11 +351,11 @@ public class GreetingService {
             new Greeting("Yo"));
     }
 }
-```
+{% endhighlight %}
 
 Finally, define a JAX-RS resource that will allow us to view those greetings in a web browser:
 
-```java
+{% highlight java linenos %}
 package com.technicalrex.webapp.pegger.greetings;
 
 import javax.inject.Inject;
@@ -379,11 +382,11 @@ public class Greetings {
             .build();
     }
 }
-```
+{% endhighlight %}
 
 Then make sure to register the new resource in the Jersey config:
 
-```java
+{% highlight java linenos %}
 package com.technicalrex.webapp.pegger.internal;
 
 import com.technicalrex.webapp.pegger.greetings.Greetings;
@@ -400,41 +403,43 @@ public class JerseyConfig extends ResourceConfig {
         register(Greetings.class);
     }
 }
-```
+{% endhighlight %}
 
 In order to test it all out you will have to build the project and run it on a local app engine server. Run these commands to do just that:
 
-```
+{% highlight bash %}
 $ cd ~/projects/pegger
 $ mvn clean install
 $ cd pegger-ear
 $ mvn appengine:devserver
-```
+{% endhighlight %}
 
 Once the server is running (you will see the message "Dev App Server is now running"), navigate to `http://localhost:8080/greetings` in your browser. You should see the following text:
 
-    [
-      "Hi",
-      "Hello",
-      "Yo"
-    ]
+{% highlight js %}
+[
+    "Hi",
+    "Hello",
+    "Yo"
+]
+{% endhighlight %}
 
-# Deploy to Google App Engine
+## Deploy to Google App Engine
 
 If everything up to this point has worked then the next steps will be a piece of cake. We will build the project, upload it to Google App Engine, and then test that it is running correctly on Google's servers.
 
 Build the project and upload it to Google using the following commands. The first time you run the `mvn` command you will be kicked over to a web browser window where Google will present a token to you. Copy that token and paste it into your terminal window (there will be a prompt) and then press Enter to finish the upload.
 
-```
+{% highlight bash %}
 $ cd ~/projects/pegger/pegger-ear
 $ mvn appengine:update
-```
+{% endhighlight %}
 
 To test the app out on Google's servers you will need to navigate to `https://technicalrex-pegger-1.appspot.com/greetings`. You should see the same JSON array of greetings that you were presented with when you ran the project locally.
 
 That's it, our initial setup is done!
 
-# What's Next?
+## What's Next?
 
 Standing up a brand new project can be time consuming and tedious but hopefully this example can help save you some time and effort. With Spring, Jersey, and Jackson playing nicely together it will also be very easy to start introducing new resources and services.
 
