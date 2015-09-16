@@ -1,0 +1,9 @@
+{% if include.align == "left" %}
+{% assign styleClass = "image-left" %}
+{% else %}
+{% assign styleClass = "image-center" %}
+{% endif %}
+<div class="{{ styleClass }}">
+    <img src="{{ include.src | prepend: site.baseurl }}"/>
+    {{ include.caption }}
+</div>

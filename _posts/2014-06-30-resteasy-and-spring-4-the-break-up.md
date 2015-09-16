@@ -23,9 +23,7 @@ The typical steps I go through to create a new project with Spring and RestEasy 
 
 Weeeeeeell, if I had simply upgraded an old project from Spring 3 to Spring 4 I would have quickly discovered that RestEasy would stop registering all resources defined in Spring beans. I didn't do that though. Instead, I created a new project coding totally blind [thinking it would be safe and fun](http://www.theserverside.com/feature/Rod-Johnson-Speaks-of-Method-Deprecation-and-Backwards-Compatability) to use Spring 4. When I got a 404 Not Found on my test resource I assumed that I had made a mistake somewhere.
 
-<span class="image-left">
-    ![Things didn't get quite so messy in my case.]({{ "/img/posts/keyboardsmash.gif" | prepend: site.baseurl }})
-</span>
+{% include image.html src="/img/posts/keyboardsmash.gif" align="left" %}
 
 I spent the next few hours banging my face on my keyboard trying to figure out which important detail I had left out. I swapped out RestEasy's filter for a servlet, I replaced Spring's `@Component` stereotype annotation with Java's `@Resource`, I put a dummy JSP in the application to make sure Jetty wasn't issuing 404 responses to everything. I changed the log level for all RestEasy packages to DEBUG, wrote a servlet that would dump out every end point that RestEasy knew about, and when I got really desperate, I downloaded the source code for RestEasy and started stepping through line by line to figure out why it wasn't picking up my resource.
 
