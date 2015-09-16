@@ -9,8 +9,6 @@ excerpt: >
     For years I could summarize my usage of Stack Overflow as "open a browser tab, search the web for my problem, click on the Stack Overflow result, follow the answer's advice, close the browser tab." I decided to change this by spending 30 days answering questions on Stack Overflow. It was educational to say the least. Here are some thoughts about my experience.
 ---
 
-# The Build Up
-
 For years I could summarize my usage of [Stack Overflow](http://www.stackoverflow.com) as "open a browser tab, search the web for my problem, click on the Stack Overflow result, follow the answer's advice, close the browser tab."
 
 I was a Stack Overflow leech. I never gave any feedback to the useful answers I came across and I certainly never provided any questions or answers of my own.
@@ -21,19 +19,22 @@ I had been using this site for years without contributing in the slightest. Ther
 
 It was time for me to start giving back.
 
-# The Goal
+## The Goal
 
 One day, while reading through the [list of badges](http://stackoverflow.com/help/badges), I saw that I could earn a silver badge by visiting the site for 30 consecutive days. I decided this would be the basis of my goal. I would use the site for 30 straight days and try to reach 1,000 rep. But I wouldn't ask any questions, I would only answer them.
 
-# The Execution
+## The Execution
 
 As you can see from the chart below, I just barely [reached my goal](http://stackoverflow.com/users/1696044/erik-gillespie).
 
 I discovered there's an [association bonus](http://blog.stackoverflow.com/2009/07/cross-site-account-associations/) of 100 rep that you get when you hit 200, but I also had over a week's worth of days where I didn't score any rep at all. It was basically a slow, methodical process of reading and answering enough questions to average the 30 or so rep I would need each day to meet my goal.
 
-[caption id="attachment_161" align="aligncenter" width="519"]<img src="http://technicalrex.files.wordpress.com/2014/07/30daysofanswerschart1.png" alt="Progress: Slow but Cumulative" width="519" height="331" class="size-full wp-image-161" /> Progress: Slow but Cumulative[/caption]
+<div class="image-center">
+    <img src="{{ "/img/posts/30daysofanswerschart.png" | prepend: site.baseurl }}"/>
+    Progress: Slow but Cumulative
+</div>
 
-# The Experience
+## The Experience
 
 Stack Overflow seems like a fairly straight forward Q&amp;A service but spending thirty days immersed in answering questions helped me learn some of the more subtle aspects of the site and its community. Here are some highlights about what I learned:
 
@@ -84,7 +85,7 @@ If you are feeling courteous when you downvote, though, I recommend you respond 
 1. If a comment already exists that explains why you are downvoting, upvote that comment to draw further attention to it.
 2. If no such comment exists, provide one that constructively explains how the question or answer could be improved.
 
-# The Conclusion
+## The Conclusion
 
 If you are a developer or user of Stack Overflow (or any Stack Exchange site for that matter), create an account and stay logged in. You're probably gaining a lot of benefit from the site so why not use some of its built-in feedback capabilities to improve its overall quality?
 
