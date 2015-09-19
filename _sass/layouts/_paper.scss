@@ -41,8 +41,10 @@
 }
 
 #page-container {
-    padding: 1em 15em 1em 5em;
     height: 100%;
+    margin-left: 4em;
+    margin-top: 4em;
+    width: 73%;
 }
 
 @mixin box($background-color, $texture, $shadow-alpha) {
