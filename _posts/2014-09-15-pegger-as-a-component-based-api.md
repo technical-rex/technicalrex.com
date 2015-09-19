@@ -21,13 +21,13 @@ This week I'm taking the time to clean some of this up. Since the last turn does
 
 Let's take a look at how well the code cleans up with these changes!
 
-# Version Control, I Am Ready for You!
+## Version Control, I Am Ready for You!
 
 Before doing this big refactor it would be wise if I had a way to revert my changes in case I don't like them. For that reason, I have created a [Pegger GitHub repository](https://github.com/egillespie/pegger).
 
 If you want to browse the turn-based API then click this [shortcut](https://github.com/egillespie/pegger/tree/2c68a679ccbc5c897f23adf51507d4c60405e984).
 
-# Repackaging
+## Repackaging
 
 Another change I'd like to make before refactoring the API is to repackage the project a little bit. One thing that bugged me by dumping basically all of the code in a single `games` package was that most of my classes started with *Game-* or *Turn-*. Normally I'm a fan of packaging by feature but I want to try moving the whole model into its own package to separate data holders from the game logic.
 
@@ -37,7 +37,7 @@ I moved everything else in `com.technicalrex.webapp.pegger.games` into `com.tech
 
 The last thing I did was to rename the `Status` class to `Reason` and nest it within `InvalidMoveException`, which itself was a rename of `InvalidTurnException`. I was never instantiating this class outside of the exception and was only passing strings to the constructor so it seemed to make sense to encapsulate everything in a single class.
 
-# Cleaning Up *equals*, *hashCode*, and *toString*
+## Cleaning Up *equals*, *hashCode*, and *toString*
 
 Till now I haven't really mentioned that I'm using [IntelliJ IDEA](http://www.jetbrains.com/idea/) to develop this project. IntelliJ will generate `equals`, `hashCode`, and `toString` for you but I like [Guava](https://code.google.com/p/guava-libraries/)'s `Objects` and `MoreObjects` helper classes for filling in these methods. The Guava helpers have a much cleaner syntax and make adding new fields to `equals`/`hashCode`/`toString` very easy.
 
@@ -47,7 +47,7 @@ Since I'm revisiting all of these methods I am going to use a hack that I discov
 
 I will explain the hack in a future post but if you are curious, you can look at the [IntelliJ toString Velocity templates](https://github.com/berrysa/computerscience/tree/master/src/org/computerscience/egillespie/intellij/tostring) that I've written for this hack on GitHub.
 
-# Refactoring the Model
+## Refactoring the Model
 
 Delete `Board` and `Turn`. Once that's done we only have three classes in our model: `Game`, `Peg`, and `Position`. Besides the `toString` refactor I mentioned in the previous section, `Position` doesn't change at all.
 
@@ -55,7 +55,7 @@ Delete `Board` and `Turn`. Once that's done we only have three classes in our mo
 
 **Peg.java**
 
-```java
+{% highlight java linenos %}
 public class Peg {
     private final int pegId;
     private final Type type;
@@ -93,7 +93,7 @@ public class Peg {
         // other getters...
     }
 }
-```
+{% endhighlight %}
 
 You'll see that I threw a `@JsonCreator` annotation on `Peg` and `Peg.Type`. I also put a `@JsonValue` annotation on `Peg.Type.getName()`.
 
@@ -103,7 +103,7 @@ The `Game` class had lots of changes though. It referenced both the `Board` and 
 
 **Game.java**
 
-```java
+{% highlight java linenos %}
 public class Game {
     public static final int ROWS = 2;
     public static final int COLUMNS = 4;
@@ -244,11 +244,11 @@ public class Game {
                 .toString();
     }
 }
-```
+{% endhighlight %}
 
 I moved much of the board logic directly into the game and replaced `lastTurn` with `lastPegMoved`. I also calculate `gameOver` upon construction to reduce the CPU required if a game is retrieved many times in a row.
 
-# Adding the Peg Resource
+## Adding the Peg Resource
 
 Eventually I'll have to figure out the logic that needs to change in `GameOperator` to facilitate making Pegger a component-based API instead of a turn-based API. To get us to the point where those changes become clear, let's stub out what the `PegResource` would would look like.
 
@@ -256,7 +256,7 @@ Recall from my an earlier article that in a component-based Pegger game we would
 
 **PegResource.java**
 
-```java
+{% highlight java linenos %}
 @Path("/games/{gameId}/pegs")
 @Produces(MediaType.APPLICATION_JSON)
 public class PegResource {
@@ -299,14 +299,15 @@ public class PegResource {
         }
     }
 }
-```
+{% endhighlight %}
 
 The logic here is a bit more lengthy than anything in `GameResource` but overall it's pretty straight forward. Besides a few sanity checks that need to be made up front it's very similar to the `POST /turns` resource in the original API. So far it seems that the main difference is a semantic one: we're restating "take a turn" as "move a peg".
 
 Let's go ahead and stub out the `GameOperator.movePeg` method to see what it might look like.
 
 **GameOperator.java**
-```java
+
+{% highlight java linenos %}
 public class GameOperator
     // other methods...
 
@@ -317,7 +318,7 @@ public class GameOperator
         return newGame;
     }
 }
-```
+{% endhighlight %}
 
 The steps are almost methodical now:
 
@@ -328,7 +329,7 @@ The steps are almost methodical now:
 
 All of the validation has been moved into its own method, moving the peg is facilitated by a method on the game itself (this method used to exist on the `Board` class), and everything else is the same.
 
-# Simplifying Validation
+## Simplifying Validation
 
 There are a handful of other small changes that have been made to Pegger but none have them have much substance to them besides the changes to validation. The previous section showed that all of the validation was consolidated down into a single method. That means we should be doing more validation now, right?
 
@@ -338,7 +339,7 @@ Here's what the validation looks like now:
 
 **GameOperator.java**
 
-```java
+{% highlight java linenos %}
 public class GameOperator {
     // other methods...
 
@@ -377,13 +378,13 @@ public class GameOperator {
         }
     }
 }
-```
+{% endhighlight %}
 
 And here's the handy in-memory `PegRepository`:
 
 **PegRepository.java**
 
-```java
+{% highlight java linenos %}
 @Repository
 public class PegRepository {
     private final GameRepository gameRepository;
@@ -398,11 +399,11 @@ public class PegRepository {
         return game == null ? Optional.<Peg>absent() : game.getPeg(pegId);
     }
 }
-```
+{% endhighlight %}
 
 By making the pegs on our game a map we not only eliminated the possibility of two pegs with the same ID from being used in a game, we also made it very quick and easy to look up individual pegs within a game.
 
-# Final Thoughts
+## Final Thoughts
 
 I'm pleasantly surprised to report that even in as simple of a game as Pegger, the component-based API has a couple of benefits over an equivalent turn-based API. We saw both the model for the game and the validation became even simpler. As I develop more games I am going to use a component-base API even if it seems that a turn-based API may fit the game better.
 
