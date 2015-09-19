@@ -24,7 +24,7 @@ Before I dive into the code let me review what the API looks like. Pegger is a s
 
 Like I said, it's really simple. I hope it makes for a good basic intro to the basic features of AngularJS and to a lesser extent, Bootstrap.
 
-# Client Requirements
+## Client Requirements
 
 What does the client need to do? Obviously there needs to be a way to start a game and then move pegs around, but let me go through the exercise of enumerating some of the more specific tasks that the client should do:
 
@@ -37,7 +37,7 @@ These criteria are still straight forward but they provide a good starting point
 
 Now it's time to create that home page.
 
-# Introducing Bootstrap
+## Introducing Bootstrap
 
 Among other things, Bootstrap is a suite of CSS styles that take a lot of the grunt work out of creating a consistent looking web site. For developers it helps free us up to write code and content instead of having to mess around with styles and browser compatibility. For the most part I lack that web design knack so a framework such as Bootstrap is very appealing to me.
 
@@ -55,7 +55,8 @@ I got creative with the title and made it look like it was written over the top 
 The resulting `index.html` and styles (located in `css/app.css`) will look like the text below. Notice that for now I'm pulling in Bootstrap using an external CDN instead of including it directly in the project.
 
 **index.html**
-```html
+
+{% highlight html linenos %}
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -108,10 +109,11 @@ The resulting `index.html` and styles (located in `css/app.css`) will look like 
 </div>
 </body>
 </html>
-```
+{% endhighlight %}
 
 **css/app.css (partial)**
-```css
+
+{% highlight css linenos %}
 /* --- Narrow Jumbotron Styles Go Here --- */
 
 .peg {
@@ -136,13 +138,13 @@ The resulting `index.html` and styles (located in `css/app.css`) will look like 
     background-color: #fef049;
     border-color: #ffd663;
 }
-```
+{% endhighlight %}
 
 The resulting page will look like this:
 
-[caption id="attachment_431" align="aligncenter" width="584"]<img src="http://technicalrex.files.wordpress.com/2014/09/screenshot-2014-09-28-22-42-42.png?w=584" alt="Pegger Home Page" width="584" height="515" class="size-large wp-image-431" /> Pegger Home Page[/caption]
+{% include image.html src="/img/posts/peggerfrontpage.png" caption="Pegger Home Page" %}
 
-# Introducing AngularJS
+## Introducing AngularJS
 
 AngularJS is a JavaScript framework developed by some of the folks at Google. It offers a lot of functionality that makes creating a rich, interactive web site a pleasure, even for someone who doesn't tend to call himself a UI developer.  I'll use a number of popular AngularJS features for Pegger such as view templates, event handling, dependency management, AJAX requests, navigation/routing, and scope management.
 
@@ -153,7 +155,8 @@ In order to properly introduce Angular to the web app I also supply `ng-app` and
 Here's what the pertinent parts of `index.html` look like now:
 
 **index.html (partial)**
-```html
+
+{% highlight html linenos %}
 <html lang="en" xmlns="http://www.w3.org/1999/html" ng-app="peggerApp">
 <head>
   <!-- meta, title, css, etc. -->
@@ -166,12 +169,13 @@ Here's what the pertinent parts of `index.html` look like now:
 <body ng-controller="PeggerCtrl">
 <div class="container">
   <div class="jumbotron" ng-view></div>
-```
+{% endhighlight %}
 
 The default content of the jumbotron got moved into `partials/home.html`:
 
 **partials/home.html**
-```html
+
+{% highlight html linenos %}
 <h1>
     <span class="peg r">P</span>
     <span class="peg g">E</span>
@@ -182,16 +186,17 @@ The default content of the jumbotron got moved into `partials/home.html`:
 </h1>
 <p class="lead">Welcome to the home of Pegger, a simple little peg jumping strategy game for two! If you're a curious developer there is also source code and a tutorial series that you can peruse.</p>
 <p><a class="btn btn-lg btn-primary" href="#/play" role="button">Play Pegger</a></p>
-```
+{% endhighlight %}
 
-# The App, Controller, and Service
+## The App, Controller, and Service
 
 At the highest level of the client portion of the web app I need to define an Angular module that will collect all of the other services, controllers, and configuration into a central location. Typically this module is called the application or app.
 
 The Pegger app will be relatively small since it will only need to group up the controller and service as well as define a default template for our view and the alternate "board" view for when a user is actually playing a game of Pegger.
 
 **js/app.js**
-```javascript
+
+{% highlight js linenos %}
 var peggerApp = angular.module('peggerApp', ['ngRoute', 'peggerControllers', 'peggerServices']);
 
 peggerApp.config(['$routeProvider', function ($routeProvider) {
@@ -204,7 +209,7 @@ peggerApp.config(['$routeProvider', function ($routeProvider) {
                 templateUrl: 'partials/home.html'
             });
 }]);
-```
+{% endhighlight %}
 
 The "/play" route that I have defined corresponds to the anchor tag in `home.html` that links to "#/play". When a user clicks the button the content of the jumbotron will be replaced with the content of `partials/board.html` and the functionality for that view will be managed by the Pegger controller. I will show you the content of `board.html` after the controller is defined, since it relies heavily on the attributes and functions made available in that controller's scope.
 
@@ -213,7 +218,8 @@ The service is the next easiest piece to construct. This service parameterizes a
 I chose to use `$http` instead of `$resource` to demonstrate the hierarchical structure of the API. I will probably switch to `$resource` at some point in the future since it is easier to read and offers some nice higher level conveniences such as parameterized URLs.
 
 **js/services.js**
-```javascript
+
+{% highlight js linenos %}
 var peggerServices = angular.module('peggerServices', []);
 
 peggerServices.factory('games', ['$http', function($http) {
@@ -244,7 +250,7 @@ peggerServices.factory('games', ['$http', function($http) {
     }
   }
 }]);
-```
+{% endhighlight %}
 
 This defines a service that has the following accessible functions:
 
@@ -254,7 +260,8 @@ This defines a service that has the following accessible functions:
 The last piece of JavaScript that I need to put in place is the controller. Controllers are where all of the hard work gets done in an Angular app. In the case of Pegger (a single controller app) the controller is responsible for maintaining the state of the game board, managing interactions with the game, calling the server, and translating the server responses to something  that can be presented to the user. Even for a small app such as Pegger this results in a decent amount of code.
 
 **js/controllers.js**
-```javascript
+
+{% highlight js linenos %}
 var peggerControllers = angular.module('peggerControllers', []);
 
 peggerControllers.controller('PeggerCtrl', ['$scope', 'games', function ($scope, games) {
@@ -330,7 +337,7 @@ peggerControllers.controller('PeggerCtrl', ['$scope', 'games', function ($scope,
     }
   };
 }]);
-```
+{% endhighlight %}
 
 Here are the starting line numbers and descriptions of some of the more important pieces of this controller:
 
@@ -340,7 +347,7 @@ Here are the starting line numbers and descriptions of some of the more importan
 - **41** - If a peg is clicked/tapped and another peg is already selected then instruct the server to move the peg. Update the game state if the move was successful (including the display of a "Game Over" message) or print an error message to the user if not.
 - **71** - If a peg is clicked/tapped and another peg is not already selected then select that peg.
 
-# Draw the Board
+## Draw the Board
 
 The final piece of this puzzle is the rendering of the game board. Now that I have a controller with some functionality exposed, this becomes very easy.
 
@@ -349,7 +356,8 @@ Basically all I have to do is display two rows of four pegs and associate each o
 The larger portion of this template is dedicated to interpreting errors and displaying user-friendly messages for all of the different "bad move" scenarios that must be supported.
 
 **partials/board.html**
-```html
+
+{% highlight html linenos %}
 <div class="board">
   <div>
     <span class="peg {{pegStyle(1,1)}}" ng-click="pegClicked(1,1)"></span>
@@ -385,23 +393,24 @@ The larger portion of this template is dedicated to interpreting errors and disp
 <div class="alert alert-info" role="alert" ng-show="game.gameOver">
   Game Over! <a href="javascript:location.reload()">Try again?</a>
 </div>
-```
+{% endhighlight %}
 
-# Server Side Changes
+## Server Side Changes
 
 Before I can call the first iteration of the Pegger UI complete there are a couple of server side changes that must be made.
 
 The first is expected and easy to fix. I have to add `index.html` to the welcome file list in the project's `web.xml` so users can leave off the "/index.html" from the path in their address bar when typing the URL.
 
 **web.xml (partial)**
-```xml
-<web-app ...>
+
+{% highlight xml linenos %}
+<web-app>
   ...
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 </web-app>
-```
+{% endhighlight %}
 
 The other change was *not* to expected but fortunately has a [ridiculously easy fix](http://stackoverflow.com/questions/25875505/gae-j-changes-content-type-from-json-to-html-when-the-status-code-is-4xx).
 
@@ -412,8 +421,9 @@ In dev, the server uses Jersey's response. In production though, the response is
 The solution is to [enable a feature in Jersey](https://jersey.java.net/documentation/latest/appendix-properties.html#appendix-properties-server) that post-processes the response and leads to the response entity always being retained. This setting can be enabled in `web.xml` like so:
 
 **web.xml (partial)**
-```xml
-<web-app ...>
+
+{% highlight xml linenos %}
+<web-app>
   ...
   <servlet>
     <servlet-name>jerseyServlet</servlet-name>
@@ -430,9 +440,9 @@ The solution is to [enable a feature in Jersey](https://jersey.java.net/document
   </servlet>
   ...
 </web-app>
-```
+{% endhighlight %}
 
-# What's Next?
+## What's Next?
 
 I'm not really a UI developer but I was able to implement all of the client side changes detailed above in six or so hours. I'm pretty pleased with the results but I think there are still a few tweaks to be made.
 
