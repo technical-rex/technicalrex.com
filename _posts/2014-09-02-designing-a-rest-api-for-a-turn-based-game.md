@@ -22,13 +22,13 @@ In other words, we can try to create an API that is turn-based or we can craft a
 
 **Edit:** I have received feedback about my use of the term "REST" and the broader REST community seems to agree that the term has become conflated. One of the fundamental aspects of REST that I have been overlooking is the use of hypermedia. Since I am not intending to use hypermedia (yet) for Pegger, I think it is better that I start referring to my API as HTTP instead of REST to avoid confusion and unrest. Within this article please assume that any time I use the term REST I effectively mean REST-sans-hypermedia (which isn't REST at all!) or just plain HTTP.
 
-# Game State Revisited
+## Game State Revisited
 
 Thinking of these APIs as HTTP endpoints, both of these approaches share a common root: `/games/{gameId}`. Beneath the game resource is where the two techniques diverge and their respective strengths and weaknesses become apparent.
 
 Before we explore each approach in more depth, let's review a snippet of the JSON model that was developed in the [previous article](http://technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json/). We should be able to use this model regardless of which API technique is chosen.
 
-```javascript
+{% highlight js %}
 {
     "gameId": 8623847623,
     "player1": 12345,
@@ -62,9 +62,9 @@ Before we explore each approach in more depth, let's review a snippet of the JSO
         ]
     }
 }
-```
+{% endhighlight %}
 
-# Turn-Based API
+## Turn-Based API
 
 A turn-based API would have an endpoint such as `/games/{gameId}/turns` to which a player could POST a representation of their turn. For Pegger that representation would look like the `lastTurn` attribute of our game model.
 
@@ -84,7 +84,7 @@ Fortunately coordinating game state on a central server allows us to work around
 
 Furthermore, after a turn is taken it would be useful if the new game state appeared in the response. This is primarily a helpful efficiency to avoid a subsequent GET of the game state after performing a POST to `/games/{gameId}/turns`. Responding with only the new game state seems awkward though. To get the best of both worlds, let's embed the game state as a `parent` attribute of the new turn. The example below is abbreviated to make it easier to read.
 
-```javascript
+{% highlight js %}
 {
     "takenByPlayer": "player1",
     "pegId": 1,
@@ -104,7 +104,7 @@ Furthermore, after a turn is taken it would be useful if the new game state appe
         ...
     }
 }
-```
+{% endhighlight %}
 
 Using a turn-based API would work well for simple, strategic 2-player games. For Pegger it looks like at a minimum the following resources would be required:
 
@@ -115,7 +115,7 @@ If we wanted to show a history of the turns we could also implement `GET /games/
 
 But how does this compare to a component-based API? Let's take a closer look at that approach.
 
-# Component-Based API
+## Component-Based API
 
 One of the fundamental differences between a turn-based API and a component-based API is that components are tangible whereas turns are not. REST, as an architectural style, does not concern itself with this distinction but as humans and as programmers it seems more natural from an object-oriented point of view to model the API after the components of the game.
 
@@ -123,7 +123,7 @@ Using components as the resources in our API means we would have resources benea
 
 Since the only action to be taken on a turn is to move a peg, we would expect the API to allow a peg to be updated with either a PUT or a PATCH containing the new location of the affected peg. The full request to move peg 1 would look something like this:
 
-```javascript
+{% highlight js %}
 PUT /games/{gameId}/pegs/1
 {
     "pegId": 1,
@@ -133,16 +133,16 @@ PUT /games/{gameId}/pegs/1
         "column": 3
     }
 }
-```
+{% endhighlight %}
 
 After the PUT is successful the software could conceptually know that the turn should then be advanced to the next player. However, if we consider more complicated games, how would the turn be advanced if the game permitted an indeterminate number of actions and the player could end their turn at any time? Using our existing model as an example, a PATCH on the game's `currentPlayer` attribute using the special value "next" would cover this situation:
 
-```javascript
+{% highlight js %}
 PATCH /games/{gameId}
 {
     "currentPlayer": "next"
 }
-```
+{% endhighlight %}
 
 I chose PATCH here because a PUT should be idempotent whereas a PATCH is not required to be idempotent according to [RFC5789](http://tools.ietf.org/html/rfc5789#page-3). Aliases such as "next" or "previous" are also convenient for games that allow turns to be skipped or the turn order to be reversed.
 
@@ -159,7 +159,7 @@ The way that a turn is organized in a component-based API introduces two potenti
 
 Now that we have explored both techniques let's finish up by recapping and picking which one would best suit Pegger.
 
-# Choosing a Technique
+## Choosing a Technique
 
 Turn-based APIs work very well for any game that could be easily played by mail. Games such as [Chess](http://en.wikipedia.org/wiki/Chess), [Go](http://en.wikipedia.org/wiki/Go_(game)), and [Connect Four](http://en.wikipedia.org/wiki/Connect_Four) are probably all games for which I would consider using a turn-based API because they are two-player games with a very easy turn structure and no random or hidden components.
 

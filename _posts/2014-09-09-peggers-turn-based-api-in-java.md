@@ -11,7 +11,7 @@ excerpt: >
 
 At the end of my [last article](http://technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game/) I came to the conclusion that a turn-based API would probably best suit the game Pegger. This week I decided to implement that API in Java to see how everything would unfold.
 
-# Design and Coding Conventions
+## Design and Coding Conventions
 
 Before I dive into the code let me state some of the design choices and coding conventions that I have chosen:
 
@@ -22,7 +22,7 @@ Before I dive into the code let me state some of the design choices and coding c
 5. **Use Guava**. [Guava](https://code.google.com/p/guava-libraries/) provides a whole swath of libraries that make building immutable entities in Java a cinch. Google rolls their own Optional too, which is useful since I won't be using Java 8 for Pegger.
 6. **Crank It Out**. I'm not going for pretty code, just something that adheres to the above principles and gets the job done. If you're looking for unit tests you'll have to sit tight. I'm also coupling the code to Spring by using stereotype annotations for registering and autowiring dependencies.
 
-# Create the Entities
+## Create the Entities
 
 Now that I have some general coding guidelines it's time to start implementing the entities that will reflect the [game model](http://technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json/) that I'm aiming for.
 
@@ -33,7 +33,8 @@ For each entity I have only included the bare minimum amount of code to demonstr
 I will be putting this code up on GitHub soon too so if you have trouble following along just keep your eyes peeled for a link to the complete source code.
 
 **Position.java**
-```java
+
+{% highlight java linenos %}
 public class Position {
     private final int row;
     private final int column;
@@ -58,12 +59,13 @@ public class Position {
 
     // ...
 }
-```
+{% endhighlight %}
 
 The `isAdjacentTo` method on *Position* is a convenience method we will need in order to determine if victory has been achieved in the game. More on that below.
 
 **Peg.java**
-```java
+
+{% highlight java linenos %}
 public class Peg {
     private final int pegId;
     private final Type type;
@@ -118,12 +120,13 @@ public class Peg {
 
     // ...
 }
-```
+{% endhighlight %}
 
 The *Peg Type* defines the three types of pegs in Pegger: red and green (valid victory-condition pegs) and yellow neutral pegs. It takes a lot of code in Java to serialize and deserialize enums using custom names.
 
 **Board.java**
-```java
+
+{% highlight java linenos %}
 public class Board {
     public static Board START = new Board(
             new Peg(1, Peg.Type.RED, new Position(1, 1)),
@@ -189,7 +192,7 @@ public class Board {
 
     // ...
 }
-```
+{% endhighlight %}
 
 The *Board* makes sure that it is constructed in a valid state and throws an `IllegalStateException` (probably not the most appropriate exception but the name sort of fits). if a peg is placed somewhere incorrectly in the hard-coded 2x4 board.
 
@@ -198,7 +201,8 @@ The `movePeg` method is a convenience method for constructing a new *Board* inst
 There is also a static instance of the starting *Board* configuration that will be handing when creating new games (an added perk of using immutable entities).
 
 **Turn.java**
-```java
+
+{% highlight java linenos %}
 public class Turn {
     private final int pegId;
     private final Position fromPosition;
@@ -215,10 +219,11 @@ public class Turn {
 
     // ...
 }
-```
+{% endhighlight %}
 
 **Game.java**
-```java
+
+{% highlight java linenos %}
 public class Game {
     private final UUID gameId;
     private final Optional<Turn> lastTurn;
@@ -252,13 +257,13 @@ public class Game {
 
     // ...
 }
-```
+{% endhighlight %}
 
 You'll see on the *Game* entity I added an `isGameOver` method to identify whether victory has been achieved given the current configuration of pegs on the board. This method will get serialized to JSON. It also required that I add an `isAdjacentTo` method on *Position*.
 
 I also switched the type for the *Game*'s `gameId` field from a number to a string. This is because I have no database-driven sequence to control the generation of this value so I picked random UUIDs presented as strings to manage uniqueness of this field.
 
-# Stub Out the API
+## Stub Out the API
 
 After creating entities that match the model that was designed I implemented the resources that would be needed. Going the turn-based API route, the following would be needed:
 
@@ -269,7 +274,8 @@ After creating entities that match the model that was designed I implemented the
 Splitting this functionality up led to two classes: GameResource and TurnResource.
 
 **GameResource.java**
-```java
+
+{% highlight java linenos %}
 @Path("/games")
 @Produces(MediaType.APPLICATION_JSON)
 public class GameResource {
@@ -297,14 +303,15 @@ public class GameResource {
         return Response.ok(gameResult.get()).build();
     }
 }
-```
+{% endhighlight %}
 
 Creating a new game currently does not require any input. Simply POSTing to `/games` will create a new game and make it accessible at `/games/{gameId}`. This location is returned in the Location header of the response and we send back a status of 201 (Created). As a nicety I also send the game state back in the response body so the client does not have to perform an immediate GET to retrieve the state of the newly created game.
 
 A request to retrieve a specific game can yield one of two results: the game is found or it isn't. If the game is found then we will return it in the response body with an HTTP status of 200 (Okay). If the game is not found then a 404 (Not Found) status with no body is sufficient.
 
 **TurnResource.java**
-```java
+
+{% highlight java linenos %}
 @Path("/games/{gameId}/turns")
 @Produces(MediaType.APPLICATION_JSON)
 public class TurnResource {
@@ -331,7 +338,7 @@ public class TurnResource {
         }
     }
 }
-```
+{% endhighlight %}
 
 Adding a turn to a game is a bit more complicated than creating or retrieving a game. First, we ensure that the game exists by looking it up and if not, we respond with a 404 (Not Found) status.
 
@@ -344,7 +351,8 @@ If a bad turn is played then a status code of 403 (Forbidden) and a message expl
 Here's what the `InvalidTurnException` and `Status` classes look like:
 
 **Status.java**
-```java
+
+{% highlight java linenos %}
 public class Status {
     private final String message;
 
@@ -356,10 +364,11 @@ public class Status {
         return message;
     }
 }
-```
+{% endhighlight %}
 
 **InvalidTurnException.java**
-```java
+
+{% highlight java linenos %}
 public class InvalidTurnException extends RuntimeException {
     private final Status status;
 
@@ -376,9 +385,9 @@ public class InvalidTurnException extends RuntimeException {
         return status;
     }
 }
-```
+{% endhighlight %}
 
-# Storing the Games
+## Storing the Games
 
 Before getting to the fun part I wanted to quickly point out how I would be storing games for the first iteration of Pegger. For now all games are stored in memory in a map that associates the game ID with the current game state.
 
@@ -387,7 +396,8 @@ This means that Pegger won't really work in a clustered environment. It also mea
 Since our *Game* entity is immutable it also means that we need to be able to replace a game in the map with a new instance once a turn is applied. To cover our use cases of creating a game, adding turns, and retrieving the state of the game this means the repository needs save, update, and find methods.
 
 **GameRepository.java**
-```java
+
+{% highlight java linenos %}
 @Repository
 public class GameRepository {
     private static final Map<UUID, Game> REPO = Maps.newConcurrentMap();
@@ -414,16 +424,17 @@ public class GameRepository {
         return Optional.fromNullable(REPO.get(gameId));
     }
 }
-```
+{% endhighlight %}
 
-# Finally, the Game Logic!
+## Finally, the Game Logic!
 
 Everything up to this point has been pretty boring code. When creating a game the two fun parts are the UI and the game logic. Since we're not quite ready to implement a UI, we can at least be satisfied that we're finally writing the meat of our game.
 
 Instead of creating a service class that has plain-sounding create, update, and retrieve methods, I decided to treat this class as a moderator of all game operations and gave them names more befitting our turn-based game domain.
 
 **GameOperator.java**
-```java
+
+{% highlight java linenos %}
 @Service
 public class GameOperator {
     private final GameRepository gameRepository;
@@ -495,7 +506,7 @@ public class GameOperator {
         return new Game(game.getGameId(), turn, game.getBoard().movePeg(turn.getPegId(), turn.getToPosition()));
     }
 }
-```
+{% endhighlight %}
 
 Starting a new game and looking for a specific game are pretty straight forward and hardly worth discussion.
 
@@ -503,16 +514,16 @@ Playing a turn has some heft to it though. Before doing anything with a turn we 
 
 Once we've verified that the turn is valid then we can lookup the appropriate peg on the game board and move it to its new location and then update the game in the in-memory repository.
 
-# Testing It Out
+## Testing It Out
 
 With all of the pieces in place I installed the app and ran my local App Engine server with a couple of Maven commands:
 
-```
+{% highlight bash %}
 $ cd ~/projects/pegger
 $ mvn clean install
 $ cd pegger-ear
 $ mvn appengine:devserver
-```
+{% endhighlight %}
 
 With the server running I launched [Postman](http://www.getpostman.com/) from within Chrome and created a collection named "Pegger". Then I added the three requests that needed to be tested and sent them away.
 
@@ -520,7 +531,7 @@ I could have saved some time troubleshooting issues by writing unit tests. Most 
 
 Eventually the kinks were all worked out though and I had a nice hot-seat game of Pegger that could be played via Postman.
 
-# Final Thoughts
+## Final Thoughts
 
 After writing the code there were a few things that I discovered I liked and a few things that I didn't like about the implementation and design choices.
 

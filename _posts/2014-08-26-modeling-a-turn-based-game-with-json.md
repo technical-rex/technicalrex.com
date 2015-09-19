@@ -17,11 +17,11 @@ In this particular article my focus will be on creating a data model for Pegger 
 
 **Edit:** I have received feedback about my use of the term "REST" and the broader REST community seems to agree that the term has become conflated. One of the fundamental aspects of REST that I have been overlooking is the use of hypermedia. Since I am not intending to use hypermedia (yet) for Pegger, I think it is better that I start referring to my API as HTTP instead of REST to avoid confusion and unrest. Within this article please assume that any time I use the term REST I effectively mean REST-sans-hypermedia (which isn't REST at all!) or just plain HTTP.
 
-# The Rules for Pegger
+## The Rules for Pegger
 
 Pegger is a two-player turn-based strategy game that is played on a [2x4 pound-a-peg toy](http://amzn.com/B00005LOXV). The game setup is easy: take one pair of colored pegs and the hammer and give them to the nearest toddler but we will need all of the remaining pieces. Arrange the remaining pegs (green, red, and yellow in my case) into the starting positions as shown below. The white circles indicate empty holes, all other colored circles indicate where a colored peg should be placed in the board.
 
-[caption id="attachment_312" align="aligncenter" width="172"]<img class="size-full wp-image-312" src="http://technicalrex.files.wordpress.com/2014/08/peggerinitialstate1.png" alt="The starting peg arrangement." width="172" height="96" /> The starting peg arrangement.[/caption]
+{% include image.html src="/img/posts/peggerinitialstate.png" caption="The starting peg arrangement." %}
 
 The goal of Pegger is to be the first player to move a red or green peg into a hole adjacent to the other peg of the same color. Yellow pegs do not count towards the victory condition, they are considered neutral.
 
@@ -31,7 +31,7 @@ The only other constraint when taking a turn is that you cannot undo your oppone
 
 That's it for the rules. It's a pretty simple game and that's exactly why I'm using it for my first attempt at creating a REST API that models a game.
 
-# Modeling Game State
+## Modeling Game State
 
 The way that we will be accessing game state will be via HTTP using the typical set of [verbs](http://en.wikipedia.org/wiki/HTTP_Verbs#Request_methods) and [status codes](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes). For now we are trying to show, using JSON, what the state of the game may be at any given time. In future articles we will discuss at further length how to establish an API to alter the game state.
 
@@ -39,7 +39,7 @@ So what do we know about the state of a game of Pegger? We know the game is play
 
 Component-wise, that gives us a board, the pegs, and a couple of players (let's not put too much thought into whether players are actually game components). All of these things will exist at any given time over the course of a game of Pegger. Let's see what these items might look like if we present them as JSON:
 
-```javascript
+{% highlight js %}
 {
   "gameId": 8623847623,
   "player1": 12345,
@@ -106,7 +106,7 @@ Component-wise, that gives us a board, the pegs, and a couple of players (let's 
     ]
   }
 }
-```
+{% endhighlight %}
 
 You'll see that I included an identifier attribute on the game and each peg. My rationale for doing this is that we will have more than one of either of these entities and it will be important to be able to uniquely identify any one of them once we start interacting with game.
 
@@ -119,7 +119,7 @@ When I type something like this out I like to review it to see how it "feels". T
 
 To address these concerns let's see what a representation of the game might look like after the first player's turn. This will at least help define what the `lastTurn` attribute should look like. To address the other concerns let's add another attribute to indicate whose turn it is and consolidate the `color` and `neutral` peg attributes into a single attribute named `type`.
 
-```javascript
+{% highlight js %}
 {
   "gameId": 8623847623,
   "player1": 12345,
@@ -192,13 +192,13 @@ To address these concerns let's see what a representation of the game might look
     ]
   }
 }
-```
+{% endhighlight %}
 
 After making the aforementioned changes the model feels much improved. The `toPosition` attribute of the last turn seems a little redundant since we have the current position of the peg but I think that keeping both positions near each other in the data model will prevent unnecessary searching when we eventually have to validate the "you cannot undo the last turn" rule. Consolidating the `color` and `neutral` attributes into a single `type` attribute seems better but I will continue using color names as the values to make it easy for humans to interpret the game. This makes the switch from a `color` attribute to `type` seem mostly semantic but for now let's keep the attribute named `type`.
 
 At this point it seems like the data model is well enough defined that we can move on. We have already iterated over the data model once and discovered a handful of minor issues so I think for now we can call the model a first draft. As we dive into the API we will probably realize that something was missed. Perhaps the decisions we have made will lead to complications in the game logic. We have to start somewhere though, and there is nothing wrong with making changes later. For now we will move forward with the assumption that the data model and API will evolve as we dive deeper into the details.
 
-# Summary
+## Summary
 
 In order to model a turn-based game you will need to know both the components that make up the game and the rules. It is also important to keep track of each player that is part of the game and to which of those players the current turn belongs.
 
