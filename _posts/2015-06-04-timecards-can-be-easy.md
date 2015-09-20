@@ -21,11 +21,11 @@ I thought I'd take some screenshots and annotate the difference between using AD
 
 **Before the Easy ADP Timecards extension:**
 
-<img class="aligncenter wp-image-610 size-large" src="https://technicalrex.files.wordpress.com/2015/06/normaladpinaction.png?w=584" alt="Normal ADP Inaction" width="584" height="330" />
+{% include image.html src="/img/posts/easyadp/normaladpinaction.png" caption="Normal ADP Inaction" %}
 
 **After the Easy ADP Timecards extension:**
 
-<img class="aligncenter size-large wp-image-611" src="https://technicalrex.files.wordpress.com/2015/06/easyadpinaction.png?w=584" alt="Easy ADP In Action" width="584" height="330" />
+{% include image.html src="/img/posts/easyadp/easyadpinaction.png" caption="Easy ADP In Action" %}
 
 ## Try Me
 

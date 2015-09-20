@@ -27,9 +27,7 @@ To install the patterns, we need to figure out where they need to be placed on y
 
 Extract the downloaded paper patterns to one of the locations listed or add a new location and point it to wherever the patterns are located.
 
-
-![](https://technicalrex.files.wordpress.com/2015/06/gimp-pattern-folders.png)
-
+{% include image.html src="/img/posts/rockets/gimp-pattern-folders.png" shadow="none" %}
 
 I'm using Mac OS X so I copied all of the .png files into `~/Library/Application Support/Gimp/patterns` and made sure that folder was listed in the pattern folders.
 
@@ -39,9 +37,7 @@ Restart Gimp to pick up the new patterns. We'll be using them in a little bit.
 
 Now that we have all of the necessary tools installed, let's get started. The first thing we need to do is create a rocket.
 
-<div style="float:right;clear:left;">
-<img src="https://technicalrex.files.wordpress.com/2015/06/svg-rocket1.png">
-</div>
+{% include image.html align="right" src="/img/posts/rockets/svg-rocket.png" %}
 
 Start Inkscape and open the [Cartoon Rocketship with Inkscape](http://design.tutsplus.com/tutorials/quick-tip-how-to-create-a-cartoon-rocketship-with-inkscape--vector-5300) tutorial. This is where I started to learn how to use Inkscape. The tool is a little intimidating and awkward to use on a Mac but if you have a little bit of experience using other graphics programs you should be able to find your way around.
 
@@ -57,15 +53,13 @@ At this point we're all done with Inkscape. Time to open up Gimp and give the ro
 
 When you open the SVG in Gimp you will be presented with the following window:
 
-![](https://technicalrex.files.wordpress.com/2015/06/gimpimportsvg.png)
+{% include image.html src="/img/posts/rockets/gimpimportsvg.png" shadow="none" %}
 
 The only change I made here was on the Resolution. 100 pixels/inch should look nice on most displays so I used that.
 
 When the rocket appears in Gimp, you'll notice that the canvas size is probably way larger than the image. Easy fix: select Image &gt; Autocrop Image.
 
-<div style="float:right;clear:left;">
-<img src="https://technicalrex.files.wordpress.com/2015/06/gimppaperfilloptions2.png">
-</div>
+{% include image.html align="right" src="/img/posts/rockets/gimppaperfilloptions.png" %}
 
 The paper effect is actually crazy-easy in Gimp. Do all of the following:
 
@@ -82,6 +76,4 @@ The paper effect is actually crazy-easy in Gimp. Do all of the following:
 
 Export your work into a PNG and show all of your friends!
 
-<div style="text-align:center;">
-<img src="https://technicalrex.files.wordpress.com/2015/06/paper_rocket.png">
-</div>
+{% include image.html src="/img/posts/rockets/paper_rocket.png" shadow="none" %}

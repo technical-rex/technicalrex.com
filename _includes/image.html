@@ -1,11 +1,18 @@
 {% if include.align == "left" %}
-{% assign styleClass = "image-left" %}
+{% assign divStyle = "image-left" %}
 {% elsif include.align == "right" %}
-{% assign styleClass = "image-right" %}
+{% assign divStyle = "image-right" %}
 {% else %}
-{% assign styleClass = "image-center" %}
+{% assign divStyle = "image-center" %}
 {% endif %}
-<div class="{{ styleClass }}">
-    <img src="{{ include.src | prepend: site.baseurl }}"/>
+
+{% if include.shadow == "none" %}
+{% assign imgStyle = "no-shadow" %}
+{% else %}
+{% assign imgStyle = "shadow" %}
+{% endif %}
+
+<div class="{{ divStyle }}">
+    <img src="{{ include.src | prepend: site.baseurl }}" class="{{ imgStyle }}"/>
     {{ include.caption }}
 </div>

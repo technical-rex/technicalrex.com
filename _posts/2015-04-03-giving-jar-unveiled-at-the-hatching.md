@@ -13,7 +13,7 @@ Last week I pitched Giving Jar at [the Hatching](http://www.thehatching.org), a 
 
 I walked away feeling like Giving Jar needs to happen and I'm determined to give it my all to see that it does.
 
-# What is Giving Jar?
+## What is Giving Jar?
 
 Have you ever bought something at a store and been asked to donate to charity while checking out?
 
@@ -21,7 +21,7 @@ Take that model of charitable giving, put it online and let the consumer choose 
 
 There are millions of purchases made online every year and it just blows me away that there isn't a good way to encourage this form of donation online yet![^1]
 
-# But Wait, There's More!
+## But Wait, There's More!
 
 Giving Jar is much more than another button you see when buying something online. It is a personal charity management service.
 
@@ -29,12 +29,12 @@ Imagine being able to research charities from one place and create a jar for eac
 
 Donating online should be easy!
 
-# Media Time
+## Media Time
 
 I've embedded the slide deck that I used to present at the Hatching.
 
 I will also try to get the video of my presentation. It would be handy for me to see as well because that whole five minutes was a blur but I'm also happy to share it with all who are curious!
 
-[googleapps domain="docs" dir="presentation/d/1shvZpvz0C0KLSbQ6TBMpDt3HDL9tQYqd8gX_Qoo6UTs/embed" query="start=false&amp;loop=false&amp;delayms=3000" width="480" height="389" /]
+<iframe src="https://docs.google.com/presentation/d/1shvZpvz0C0KLSbQ6TBMpDt3HDL9tQYqd8gX_Qoo6UTs/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 [^1]: [Amazon Smile](http://smile.amazon.com) offers something similar but you have to start shopping at a specific URL and only certain items on Amazon are eligible.
