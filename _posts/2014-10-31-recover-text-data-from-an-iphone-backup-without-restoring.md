@@ -18,7 +18,7 @@ In particular, I had used a list app to keep track of some To Dos, Books, Board 
 
 Without much hope left, I decided to see what I could gleam from a very manual and visual inspection of my most recent backup. To my great relief, this effort ended up panning out for me. In case anyone may want to use some of the same tricks, I've documented my approach below.
 
-# Before We Begin
+## Before We Begin
 
 There are a couple of things that I should point out before I begin.
 
@@ -28,7 +28,7 @@ I used Terminal on Mac OS X to run some `bash` commands to help me along. You do
 
 You will need a backup saved to your computer. As far as I know, these instructions don't work for an iCloud-only backup.
 
-# Step 1 - Locate the Backup
+## Step 1 - Locate the Backup
 
 The first thing I had to figure out was where on my computer my iPhone backup was located. I found [this](http://osxdaily.com/2009/09/11/iphone-backup-location/) article that pointed me in the right direction.
 
@@ -42,27 +42,27 @@ On Windows 7 the backups are kept here:
 
 This directory will contain one or more other directories with cryptic names. Choose the most recently modified directory for you search. From a `bash` terminal (launch Terminal in Mac OS X or CygWin in Windows), you can use `ls` to get this info:
 
-```bash
+{% highlight bash %}
 $ cd ~/Library/Application\ Support/MobileSync/Backup/
 $ ls -l
 total 0
 drwxr-xr-x  1789 user  staff   60826 Dec  7  2011 cc75651774e7d33aa0b2c41daddd5e71c434911a
 drwxr-xr-x  6251 user  staff  212534 Sep 14 12:22 ce821a918c7df7e1141b13e1a27951f0fe1c0609
-```
+{% endhighlight %}
 
 In my case I chose the backup "ce821a918c7df7e1141b13e1a27951f0fe1c0609" for my search and then changed to that directory in my open terminal:
 
-```bash
+{% highlight bash %}
 $ cd ce821a918c7df7e1141b13e1a27951f0fe1c0609/
-```
+{% endhighlight %}
 
-# Step 2 - Locate Likely Candidates
+## Step 2 - Locate Likely Candidates
 
 The backup will likely contain hundreds of files that are as cryptically named as the backup itself. These files are also binary with little bits of text littered throughout, so searching through these files would be very difficult to do one at a time. This is where the hack starts to get technical.
 
 Use the following command to search through all of the files located in the backup for a string that you suspect would be included within the data you want to recover. In my case I was looking for a book list and searched for an author I thought might be in the list: [Brandon Sanderson](http://brandonsanderson.com/).
 
-```bash
+{% highlight bash %}
 $ find . -type f | xargs fgrep -i 'brandon sanderson'
 Binary file ./176ad246fb5b1db1276b1a593b405f77aeef7454 matches
 Binary file ./3d0d7e5fb2ce288813306e4d4636395e047a3d28 matches
@@ -70,11 +70,11 @@ Binary file ./3f911eaba3ed2d1657bc98cc5386ef2b998f7e0e matches
 Binary file ./43dd6c5ec8890e6d431ef1e1f94b055c8a3da4ff matches
 Binary file ./972be36ca964b5a22c5bc748202886d46e4fa963 matches
 Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches
-```
+{% endhighlight %}
 
 The search may take several minutes to finish. While it's running though, you should start getting a list of files that contain the search string that you supplied. Once the search completes, you will hopefully have a small handful of files to inspect to find the right one.
 
-# Step 3 - Find the One True File
+## Step 3 - Find the One True File
 
 The next part is tedious: inspect each resulting file by hand. I hope you only had a few files match! If not, perhaps you should try a different search string.
 
@@ -86,15 +86,15 @@ If the surrounding content doesn't fit what you're looking for then move on to t
 
 The resulting file is a database that will contain a lot of browsable data as long as we have a program that can understand the file format. Fortunately for us, there is a freely available tool named [SQLite Browser](http://sqlitebrowser.org/).
 
-# Step 4 - Install and Launch SQLite Browser
+## Step 4 - Install and Launch SQLite Browser
 
 You can download the latest version of SQLite Browser from their GitHub [release page](https://github.com/sqlitebrowser/sqlitebrowser/releases).
 
 If you're running Mac OS X you may have to jump a small hurdle to run the app. When I first tried to run the program I was told that my security preferences do not permit the application to be launched. To get around this problem i sent to Settings &gt; Security &amp; Privacy and clicked the "Open Anyway".
 
-<img src="https://technicalrex.files.wordpress.com/2014/10/openanyway-e1414781875378.png" alt="Open Anyway" width="584" height="473" class="aligncenter" />
+{% include image.html src="/img/posts/iphone-recover/openanyway.png" caption="Open Anyway" %}
 
-# Step 5 - Open the Database
+## Step 5 - Open the Database
 
 Once SQLite Browser is running, open the file that contains the data you want to inspect. This is pretty straight forward on Windows but on Mac OS X the Library directory is hidden by default so when you are prompted to select a file to open you will need to press Command+Shift+G and type in "/Users/user/Library" before you can actually drill down and find the file you are looking for.
 
@@ -102,9 +102,9 @@ Another useful tip for opening the file once you navigate to the backup director
 
 When the file opens, you will see something like this:
 
-<img src="https://technicalrex.files.wordpress.com/2014/10/dbstructure.png" alt="DB Structure" width="534" height="430" class="aligncenter" />
+{% include image.html src="/img/posts/iphone-recover/dbstructure.png" caption="DB Structure" %}
 
-# Step 6 - Explore the Structure
+## Step 6 - Explore the Structure
 
 Upon opening the database file you will be presented with a list of tables. These tables contain the data that you are looking for but it may not be obvious which tables are the right ones. You will have to explore the structure to figure out how the tables relate to each other but generally the table names will make some sort of sense and help you know where to start.
 
@@ -112,24 +112,24 @@ In my case I was looking at a database for a list manager. There happened to be 
 
 When you find a table that you want to inspect, simply click the "Browse Data" tab and choose the appropriate table from the dropdown list. In my case the "list" table looked like this:
 
-<img src="https://technicalrex.files.wordpress.com/2014/10/listdata.png" alt="List Data" width="527" height="426" class="aligncenter" />
+{% include image.html src="/img/posts/iphone-recover/listdata.png" caption="List Data" %}
 
 The list I was looking for is right there! However, I wanted to get the titles and authors of the books in the list so I wasn't quite done yet.
 
 Keeping in mind that SQLite is a relational database, I took note of the value "13" in the "list_id" cell for the "Books" list. I then picked a different table, looking for a similarly titled column. When I opened the "item" table I found what I was looking for: the values that make up each of the lists. I typed the value "13" into the "list_id" Filter box and was presented with all of the items contained in list 13.
 
-<img src="https://technicalrex.files.wordpress.com/2014/10/filterdata.png" alt="Filter Data" width="524" height="469" class="aligncenter" />
+{% include image.html src="/img/posts/iphone-recover/filterdata.png" caption="Filter Data" %}
 
 Scrolling to the right a little bit confirmed that I was in the right spot. Behold, my book list!
 
-<img src="https://technicalrex.files.wordpress.com/2014/10/founddata.png" alt="Found Data" width="526" height="469" class="aligncenter" />
+{% include image.html src="/img/posts/iphone-recover/founddata.png" caption="Found Data" %}
 
-# Step 7 - Export the Table
+## Step 7 - Export the Table
 
 Being able to see my lists felt pretty damn awesome. The next thing I wanted to do was copy that data and put it somewhere useful, such as in a spreadsheet or text file. Unfortunately, at the time of this writing, SQLite Browser does not support Copy/Paste operations. :(
 
 Fortunately, there is an export option. If you select File &gt; Export &gt; Table as CSV File you will be presented with a window that lets you choose a table to export.
 
-<img src="https://technicalrex.files.wordpress.com/2014/10/exporttable.png" alt="Export Table" width="367" height="209" class="aligncenter" />
+{% include image.html src="/img/posts/iphone-recover/exporttable.png" caption="Export Table" %}
 
 Choose the appropriate table to export ("item" in my case) and click OK. Type the name of the file and save. You now have a file you can open in Numbers or Excel and Copy/Paste and manipulate to your heart's content!

@@ -13,7 +13,7 @@ The finishing touches have been made and I think it's time to call Pegger ["good
 
 You can play Pegger at it's permanent home: [pegger.technicalrex.com](http://pegger.technicalrex.com). If you want to learn more about those finishing touches, read on!
 
-# User Experience Tweaks
+## User Experience Tweaks
 
 After the [previous tutorial](http://technicalrex.com/2014/10/01/using-bootstrap-and-angularjs-for-a-simple-turn-based-game/) Pegger was still pretty rough around the edges. The game was playable but only if you could figure out the rules by guessing or were brave enough to check out the source code or README on [GitHub](https://github.com/egillespie/pegger).
 
@@ -32,7 +32,7 @@ The game board has been touched up too. Namely,
 
 All links are now valid too. Instead of mixing the tutorial/code part of Pegger with the rules, the Tutorial and GitHub links were moved to the upper right of the page to be more prominently displayed but still out of the way from the game play.
 
-# Cleaning Up Old Games
+## Cleaning Up Old Games
 
 Since Pegger does not use any permanent storage it is important to keep the in-memory repository small as it will inevitably grow in size over time. This was handled by tracking the time that each game was last updated and introducing a scheduled task in the Pegger web app.
 
@@ -40,7 +40,7 @@ To track the time that each game changed, first I added Joda Time and a Jackson 
 
 **pegger-war/pom.xml**
 
-```xml
+{% highlight xml linenos %}
 <dependencies>
     <dependency>
         <groupId>joda-time</groupId>
@@ -55,13 +55,13 @@ To track the time that each game changed, first I added Joda Time and a Jackson 
 
     ...
 </dependencies>
-```
+{% endhighlight %}
 
 Then, the Joda Time module needed to be included in the Jackson ObjectMapper configuration:
 
 **JacksonObjectMapperConfig.java**
 
-```java
+{% highlight java linenos %}
 public class JacksonObjectMapperConfig implements ContextResolver<ObjectMapper> {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
             .disable(MapperFeature.AUTO_DETECT_CREATORS)
@@ -69,17 +69,17 @@ public class JacksonObjectMapperConfig implements ContextResolver<ObjectMapper> 
             .registerModule(new GuavaModule())
             .registerModule(new JodaModule());
 
-    ...
+    // ...
 }
-```
+{% endhighlight %}
 
 Finally, I added the field to the Game class. Here are the relevant changes:
 
 **Game.java**
 
-```java
+{% highlight java linenos %}
 public class Game {
-    ...
+    // ...
 
     private final Instant lastChangeTimestamp;
 
@@ -92,13 +92,13 @@ public class Game {
         validateGameState();
     }
 
-    ...
+    // ...
 
     public Instant getLastChangeTimestamp() {
         return lastChangeTimestamp;
     }
 
-    ...
+    // ...
 
     @Override
     public String toString() {
@@ -111,7 +111,7 @@ public class Game {
                 .toString();
     }
 }
-```
+{% endhighlight %}
 
 With the tracking of the time that each game last changed in place, the last piece (and it's a big one) is to automatically remove old games every so often. Since Pegger is hosted in Google App Engine, I decided to use their [task scheduler](https://cloud.google.com/appengine/docs/java/config/cron) to do this.
 
@@ -121,7 +121,7 @@ The first step to introduce this task is to create a new file named `cron.xml` t
 
 **pegger-war/src/main/webapp/WEB-INF/cron.xml**
 
-```xml
+{% highlight xml linenos %}
 <?xml version="1.0" encoding="UTF-8"?>
 <cronentries>
 <cron>
@@ -130,7 +130,7 @@ The first step to introduce this task is to create a new file named `cron.xml` t
 <schedule>every 12 hours</schedule>
 </cron>
 </cronentries>
-```
+{% endhighlight %}
 
 Looks weird, right? I discovered that there is a bug in Google App Engine that prevents some people from uploading their `cron.xml` file to App Engine unless all preceding whitespace is removed. Unfortunately, it happened to me so I removed the whitespace and recommend that you do the same, just in case. [More info about the bug here.](https://code.google.com/p/googleappengine/issues/detail?id=1537)
 
@@ -140,7 +140,7 @@ Next, I created the new resource and made sure Jersey knew about it:
 
 **com/technicalrex/webapp/pegger/api/ToolResource.java**
 
-```java
+{% highlight java linenos %}
 @Path("/tools")
 @Produces(MediaType.APPLICATION_JSON)
 public class ToolResource {
@@ -163,19 +163,19 @@ public class ToolResource {
         return Response.ok(ImmutableMap.of("removed", gamesRemoved)).build();
     }
 }
-```
+{% endhighlight %}
 
 **JerseyConfig.java**
 
-```java
+{% highlight java linenos %}
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
-        ...
+        // ...
 
         register(ToolResource.class);
     }
 }
-```
+{% endhighlight %}
 
 You can see that instead of simply supporting a GET request at `/tools/clean_games` I also added support for a query parameter that will allow me to override the maximum age of games that are retained on the server. I thought this would be handy in case someone spams the site and creates an obnoxious number of games. In that case I could simply pass in a value of "0" to clear out all games.
 
@@ -183,7 +183,7 @@ The resource will call into a new service named `GameTools` to do the real work 
 
 **com/technicalrex/webapp/pegger/api/games/GameTools.java**
 
-```java
+{% highlight java linenos %}
 @Service
 public class GameTools {
     private static final Logger LOGGER = Logger.getLogger(GameTools.class.getSimpleName());
@@ -219,33 +219,33 @@ public class GameTools {
         return gamesRemoved;
     }
 }
-```
+{% endhighlight %}
 
 As I filled in more of the gaps to implement this feature I discovered more changes that needed to be made. The first change is that there needed to be an additional repository method added to `GameRepository` to permanently delete a game. Fortunately this operation is pretty straight forward since our games are stored in a map:
 
 **GameRepository.java**
 
-```java
+{% highlight java linenos %}
 public class GameRepository {
-    ...
+    // ...
 
     public Optional<Game> deleteById(UUID gameId) {
         return Optional.fromNullable(REPO.remove(gameId));
     }
 }
-```
+{% endhighlight %}
 
 The other change that I had to make was the default logging level for the tool. Initially, I had configured Java Logging to only log WARNING messages. For this tool it would be useful to see the output every time the resource is requested. In order to accomplish this I added a line to `logging.properties`:
 
 **logging.properties**
 
-```
+{% highlight properties linenos %}
 # Set the default logging level for all loggers to WARNING
 .level = WARNING
 
 # Tools run at INFO by default
 GameTools.level = INFO
-```
+{% endhighlight %}
 
 Voilà! Google App Engine will now make a GET request to `/tools/clean_games` every 12 hours and any games that haven't been changed in more than 7 days will be removed. We can also manually request this resource to force the task to do clean up. This imposes a problem though: I don't want just anyone to be able to delete games!
 
@@ -253,9 +253,9 @@ Fortunately Google allows users to be granted an "admin" role and this role is e
 
 **web.xml**
 
-```xml
-<web-app ...>
-    ...
+{% highlight xml linenos %}
+<web-app>
+    // ...
 
     <security-constraint>
         <web-resource-collection>
@@ -267,11 +267,11 @@ Fortunately Google allows users to be granted an "admin" role and this role is e
         </auth-constraint>
     </security-constraint>
 </web-app>
-```
+{% endhighlight %}
 
 What this really means is that we can make a small addition to `web.xml` and any resource starting with `/tools/` will be locked down such that only Pegger admins and the task scheduler can access them.
 
-# Creating pegger.technicalrex.com
+## Creating pegger.technicalrex.com
 
 The last change I wanted to make to Pegger was the URL where people could go to play it. Ideally, it would appear to be hosted alongside this blog and easy to remember. I thought [pegger.technicalrex.com](http://pegger.technicalrex.com) would be perfect.
 
@@ -284,7 +284,7 @@ These steps can be a little daunting if you're not familiar with domain manageme
 
 Right now, WordPress is managing my technicalrex.com domain. For whatever reason, I can not seem to find a way to navigate to my DNS settings from the Technical Rex blog's dashboard. I always end up poking around for 5-10 minutes before I give up and search the Internet for the location. If you have WordPress manage your domain then I'll save you the trouble. [WordPress domain management is located here.](https://wordpress.com/my-domains).
 
-# The End
+## The End
 
 You've reached the end of the Pegger tutorial series, congratulations!
 
