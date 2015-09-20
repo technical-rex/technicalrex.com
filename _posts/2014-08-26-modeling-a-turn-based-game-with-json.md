@@ -21,7 +21,7 @@ In this particular article my focus will be on creating a data model for Pegger 
 
 Pegger is a two-player turn-based strategy game that is played on a [2x4 pound-a-peg toy](http://amzn.com/B00005LOXV). The game setup is easy: take one pair of colored pegs and the hammer and give them to the nearest toddler but we will need all of the remaining pieces. Arrange the remaining pegs (green, red, and yellow in my case) into the starting positions as shown below. The white circles indicate empty holes, all other colored circles indicate where a colored peg should be placed in the board.
 
-{% include image.html src="/img/posts/peggerinitialstate.png" caption="The starting peg arrangement." %}
+{% include image.html src="/img/posts/pegger/peggerinitialstate.png" caption="The starting peg arrangement." %}
 
 The goal of Pegger is to be the first player to move a red or green peg into a hole adjacent to the other peg of the same color. Yellow pegs do not count towards the victory condition, they are considered neutral.
 

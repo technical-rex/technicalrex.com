@@ -11,7 +11,7 @@ excerpt: >
 
 Today I started writing a web app that I hope will become a web-based version of a 2-player peg jumping game that I devised a few weeks ago. Inspiration for this game goes to my 18 month old daughter and her desire to play with her peg-hammering toy at 2 o'clock in the morning. I've settled on calling the game Pegger.
 
-{% include image.html src="/img/posts/peggerinspiration.jpg" caption="Inspiration comes at a dark hour" %}
+{% include image.html src="/img/posts/pegger/peggerinspiration.jpg" caption="Inspiration comes at a dark hour" %}
 
 I have only dabbled with deploying to the cloud so I made it a goal to stand up a bare-bones web app and deploy it to [Google App Engine](https://appengine.google.com). And I do mean bare-bones, there won't be any user interface for this exercise besides typing a URL into your address bar and hitting Enter.
 

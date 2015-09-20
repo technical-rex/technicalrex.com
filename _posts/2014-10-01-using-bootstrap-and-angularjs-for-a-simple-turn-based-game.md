@@ -142,7 +142,7 @@ The resulting `index.html` and styles (located in `css/app.css`) will look like 
 
 The resulting page will look like this:
 
-{% include image.html src="/img/posts/peggerfrontpage.png" caption="Pegger Home Page" %}
+{% include image.html src="/img/posts/pegger/peggerfrontpage.png" caption="Pegger Home Page" %}
 
 ## Introducing AngularJS
 
