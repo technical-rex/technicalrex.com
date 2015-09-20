@@ -43,10 +43,17 @@
     margin: 0 0.5em;
 }
 
-
 .image-left {
     float: left;
     padding-right: 1em;
+    img {
+        box-shadow: 0 0 .1em .1em rgba(0,0,0,.1);
+    }
+}
+
+.image-right {
+    float: right;
+    padding-left: 1em;
     img {
         box-shadow: 0 0 .1em .1em rgba(0,0,0,.1);
     }

@@ -1,5 +1,7 @@
 {% if include.align == "left" %}
 {% assign styleClass = "image-left" %}
+{% elsif include.align == "right" %}
+{% assign styleClass = "image-right" %}
 {% else %}
 {% assign styleClass = "image-center" %}
 {% endif %}

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "New Business Idea: Contribution Jars"
+title: "New Business Idea - Contribution Jars"
 author: erik
 category: business
 tags: [contribution-jar]
@@ -15,7 +15,7 @@ Now imagine a phone app that would allow you to create a jar and put money into 
 
 The swear jar app is the seed from which my latest business idea has blossomed.
 
-# But Wait, How Could This Be a Business?
+## But Wait, How Could This Be a Business?
 
 A swear jar app is not a business. It's a pet project.
 
@@ -26,7 +26,7 @@ At its heart there are two problems that swear jars try to solve:
 
 In both forms of the word, swear jars are about change. I think a business could do a lot of good trying to solve these problems!
 
-# Making Change
+## Making Change
 
 After my epiphany about the problems a swear jar tries to solve, I split the swear jar app into two different ideas: a small one and a big one.
 
@@ -34,7 +34,7 @@ The small idea is still a virtual jar that you put coins into and empty when ful
 
 The bigger idea happens when you empty one of those jars. After you sign up you create a list of charities that are important to you. When you empty a jar, that fake money is turned into real money that gets divided up and sent to the charities of your choice. If someone else contributed to the jar, the charities of their choice get included too.
 
-# One App, One Service
+## One App, One Service
 
 It's probably not clear at this point that these two ideas are also two different and independent pieces of software.
 
@@ -42,13 +42,13 @@ The collection of charities associated with your account is a service. Your choi
 
 The virtual coin jar is an app. You login and put coins in a jar. When the jar is full, you use the app to empty the jar. When that jar is emptied, the app uses the charity service to donate real money.
 
-# Next Steps
+## Next Steps
 
 Providing a way for business to let their users choose which charities receive your money is still a pretty fresh idea to me. I have been practicing how to describe the idea in the simplest way possible (my "elevator pitch") but my delivery still needs work.
 
 Over the past couple of weeks I have been focusing on creating an [MVP](http://en.wikipedia.org/wiki/Minimum_viable_product) for the more tangible coin jar app. I will likely continue down this avenue until I get a better handle on the charity service. Here's one of the mock-ups:
 
-<img src="https://technicalrex.files.wordpress.com/2015/02/yourjarsprototype.png?w=300" alt="Contribution Jar Mock-Up" width="300" height="230" class="aligncenter size-medium wp-image-545" />
+{% include image.html src="/img/posts/yourjarsprototype.png" caption="Contribution Jar Mock-Up" %}
 
 It has felt a little weird writing about this idea under the guise of my for-profit business, Technical Rex. It's not clear to me which type of business is appropriate for facilitating charitable donations but my gut is telling me a non-profit business is the way to go. That being said, I will also be researching if and when to establish a non-profit business.
 

@@ -11,7 +11,7 @@ excerpt: >
 
 Last week I signed a coworking agreement at the [NEO Center](http://www.neocenter.org) in Lansing, Michigan!
 
-[caption id="attachment_528" align="aligncenter" width="584"]<img src="https://technicalrex.files.wordpress.com/2015/01/neocentertopfloor.jpg?w=584" alt="Here&#039;s to new room to grow." width="584" height="287" class="size-large wp-image-528" /> Here's to new room to grow.[/caption]
+{% include image.html src="/img/posts/neocentertopfloor.jpg" caption="Here's to new room to grow." %}
 
 The picture above is the top floor of the NEO Center. It was -8 degrees Fahrenheit so my apologies for not taking a picture of the outside!
 

@@ -13,7 +13,7 @@ excerpt: >
 
 As part of my lifelong study of REST APIs I have been learning more about [avoiding shared state](http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3) between the client and server. This week in particular I have been learning about stateless authentication and attempting to implement it in a skeleton Java app based on my [Jersey on Google AppEngine tutorial](http://technicalrex.com/2014/08/11/creating-a-jersey-app-on-google-app-engine/).
 
-# Overview
+## Overview
 
 The REST architectural style is interesting to me, but that alone is not why I want to implement a stateless authentication mechanism. Benefits that Roy Fielding states in his dissertation include reliability and scalability. When building a web application, reliability is important no matter how many users you have. Scalability is also important for even a meager number of users.
 
@@ -23,9 +23,9 @@ One of the downsides of statelessness is that it requires some form of token or 
 
 While there may be a performance penalty to stateless authentication, I think the compactful, secure, easy-to-use JWT balances out that con quite nicely. Another benefit of JWT is that it does not require the use of cookies, which makes server-to-server authentication more convenient.
 
-<img src="https://technicalrex.files.wordpress.com/2015/02/cookiemonster-nocookiesforyou.jpg?w=300" alt="No Cookies for You!" width="300" height="225" class="aligncenter size-medium wp-image-555" />
+{% include image.html src="/img/posts/cookiemonster-nocookiesforyou.jpg" caption="No Cookies for You!" %}
 
-# Where to Begin
+## Where to Begin
 
 I set out to use [Spring Security](http://projects.spring.io/spring-security/) because it is very customizable and is usually not very invasive to the rest of your web application. I also have a lot of experience with it so it's typically a good place for me to start when looking into any new security-related solutions.
 
@@ -35,12 +35,13 @@ After choosing my tech stack for this little project I perused the Internet to s
 
 The code provided below is an adaptation of Robbert's tutorial to use JWT. I made some small changes to bootstrap the app in a Google AppEngine app instead of using Spring Boot so I'll point out those differences as well.
 
-# Code Time!
+## Code Time!
 
 First things first, let's pull in the Maven dependencies for Spring Security and JJWT.
 
 **pom.xml**
-```xml
+
+{% highlight xml linenos %}
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-web</artifactId>
@@ -58,13 +59,13 @@ First things first, let's pull in the Maven dependencies for Spring Security and
     <artifactId>jjwt</artifactId>
     <version>0.4</version>
 </dependency>
-```
+{% endhighlight %}
 
 Since I'm using a Servlet 2.5 container running in Google AppEngine, I'll have to configure the Spring Security filter in web.xml too.
 
 **web.xml**
 
-```xml
+{% highlight xml linenos %}
 <context-param>
     <param-name>contextClass</param-name>
     <param-value>
@@ -93,12 +94,13 @@ Since I'm using a Servlet 2.5 container running in Google AppEngine, I'll have t
 <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 </listener>
-```
+{% endhighlight %}
 
 Now that Spring Security is bootstrapping I need to define the SpringSecurityConfig. This class will declare any security-related Spring beans and configure the base HTTP filter to secure the web application.
 
 **SpringSecurityConfig.java**
-```java
+
+{% highlight java linenos %}
 @Configuration
 @EnableWebSecurity
 @Order(2)
@@ -162,7 +164,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return tokenAuthenticationService;
     }
 }
-```
+{% endhighlight %}
 
 There are a number of important details in this class that are worth understanding:
 
@@ -179,7 +181,7 @@ This configuration shows that there are a handful of other classes needed in ord
 
 **StatelessAuthenticationFilter.java**
 
-```java
+{% highlight java linenos %}
 public class StatelessAuthenticationFilter extends GenericFilterBean {
 
     private final TokenAuthenticationService authenticationService;
@@ -198,7 +200,7 @@ public class StatelessAuthenticationFilter extends GenericFilterBean {
         SecurityContextHolder.getContext().setAuthentication(null);
     }
 }
-```
+{% endhighlight %}
 
 There's not much here because this filter actually delegates to `TokenAuthenticationService`. All this filter really does is apply the successful authentication to Spring Security's context holder and then proceed with the request.
 
@@ -206,7 +208,7 @@ Okay, let's dig a little deeper and look at `TokenAuthenticationService`.
 
 **TokenAuthenticationService.java**
 
-```java
+{% highlight java linenos %}
 public class TokenAuthenticationService {
 
     private static final String AUTH_HEADER_NAME = "X-AUTH-TOKEN";
@@ -233,7 +235,7 @@ public class TokenAuthenticationService {
         return null;
     }
 }
-```
+{% endhighlight %}
 
 This is where things start to become more clear about how authentication will actually work! When a user successfully logs into the web application, the first public method of this class will be called to create a token for that user. That token is then added as a header with the key "X-AUTH-TOKEN" to the outbound response.
 
@@ -242,7 +244,8 @@ The authentication filter is calling `getAuthentication(...)` though, which look
 Robbert's article conveniently delegated the token generation and parsing to yet another class to isolate that logic. My implementation of `TokenHandler` uses JJWT to manage a JSON Web Token. Here's what it looks like:
 
 **TokenHandler.java**
-```java
+
+{% highlight java linenos %}
 public final class TokenHandler {
 
     private final String secret;
@@ -269,7 +272,7 @@ public final class TokenHandler {
                 .compact();
     }
 }
-```
+{% endhighlight %}
 
 This is where the magic of JJWT happens. In a single chain of calls to its fluent API, JJWT will create a token using the subject of our choosing (username) and sign it using the application's secret key. All of the other work of generating appropriately structured JSON according to the even more specific JWT specification, Base 64 encoding, and compaction are all taken care of behind the scenes.
 
@@ -279,7 +282,7 @@ The only remaining classes are nothing special (they'll be needed in many Spring
 
 **UserService.java**
 
-```java
+{% highlight java linenos %}
 public class UserService implements org.springframework.security.core.userdetails.UserDetailsService {
 
     private final AccountStatusUserDetailsChecker detailsChecker = new AccountStatusUserDetailsChecker();
@@ -299,13 +302,13 @@ public class UserService implements org.springframework.security.core.userdetail
         userMap.put(user.getUsername(), user);
     }
 }
-```
+{% endhighlight %}
 
 This implementation of Spring Security's `UserDetailsService` is for demonstration purposes only! It uses a map to maintain the set of available users and it isn't even thread safe. If you are using this tutorial you will most certainly want to replace this with a user lookup service that uses a database, LDAP, or some other more legitimate means of keeping track of users.
 
 **UserAuthentication.java**
 
-```java
+{% highlight java linenos %}
 public class UserAuthentication implements Authentication {
 
     private final User user;
@@ -350,11 +353,11 @@ public class UserAuthentication implements Authentication {
         this.authenticated = authenticated;
     }
 }
-```
+{% endhighlight %}
 
 This class implements Spring Security's `Authentication` interface, which is how Spring ties users, authorities/roles, principals, credentials, and authentication status together. The implementation above always assumes the user is authenticated and delegates the rest to Spring Security's own `User` class.
 
-# Conclusion
+## Conclusion
 
 Robbert van Waveren's article saved me from a lot of the grunt work of configuring Spring Security to handle stateless authentication. Swapping out his own HMAC signing code with the one-liners offered up by JJWT helped me cut out a lot of code and use a full-blown JWT implementation as well!
 
