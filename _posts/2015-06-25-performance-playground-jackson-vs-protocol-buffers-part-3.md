@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Performance Playground: Jackson vs. Protocol Buffers, Part 3"
+title: "Performance Playground - Jackson vs. Protocol Buffers, Part 3"
 author: erik
 category: programming
 tags: []
@@ -25,7 +25,7 @@ If I had paid better attention to the serialized JSON and compared it to the dat
 
 Before fixing the bug I profiled the Google Protocol Buffers serialization to see for my own eyes. Here's what it looks like:
 
-![](https://technicalrex.files.wordpress.com/2015/06/convert-to-string-profiler-results1.png)
+{% include image.html src="/img/posts/performance-playground/convert-to-string-profiler-results.png" %}
 
 The list of methods is sorted by Total Time and you can clearly see that most of the time spent during serialization is in a variety of Joda Time method calls.
 
@@ -39,7 +39,7 @@ The approach I took was to migrate away from LocalDate altogether in favor of In
 
 After making this change the profiler tells a much different story. All of the time spent serializing into Google Protocol Buffers is actually within the Google methods, not in other frameworks.
 
-![](https://technicalrex.files.wordpress.com/2015/06/convert-to-millis-profiler-results1.png)
+{% include image.html src="/img/posts/performance-playground/convert-to-millis-profiler-results.png" %}
 
 And the new serialization benchmark results are pretty impressive too, Google Protocol Buffers wins the race handily this time:
 

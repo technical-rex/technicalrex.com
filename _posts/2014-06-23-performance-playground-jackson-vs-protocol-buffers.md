@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Performance Playground: Jackson vs. Protocol Buffers"
+title: "Performance Playground - Jackson vs. Protocol Buffers"
 author: erik
 category: programming
 tags: []
