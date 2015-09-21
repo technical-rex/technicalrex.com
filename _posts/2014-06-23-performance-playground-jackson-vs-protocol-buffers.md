@@ -10,9 +10,9 @@ excerpt: >
     code has been made available too!
 ---
 
-**Update 2:** *[Part 3](http://technicalrex.com/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3/) is available and the tides have turned! Actually it turns out I had a bug in my benchmark that was skewing the Protocol Buffer results in a pretty major way.*
+**Update 2:** *[Part 3]({{ site.baseurl }}{% post_url 2015-06-25-performance-playground-jackson-vs-protocol-buffers-part-3 %}) is available and the tides have turned! Actually it turns out I had a bug in my benchmark that was skewing the Protocol Buffer results in a pretty major way.*
 
-**Update 1:** *I have written a [Part 2](http://technicalrex.com/2015/02/27/performance-playground-jackson-vs-protocol-buffers-part-2/) for the Jackson JSON and Protocol Buffers performance comparison. After reverting to Jackson's default configuration, Jackson became the clear winner in serialization and deserialization performance.*
+**Update 1:** *I have written a [Part 2]({{ site.baseurl }}{% post_url 2015-02-27-performance-playground-jackson-vs-protocol-buffers-part-2 %}) for the Jackson JSON and Protocol Buffers performance comparison. After reverting to Jackson's default configuration, Jackson became the clear winner in serialization and deserialization performance.*
 
 Vertafore has some pretty exciting initiatives going on right now. Part of that monumental effort has been researching technologies that will best fit our needs. My focus has revolved around a new means of app-to-app or service-to-service communication beyond our traditional [RESTish](http://goo.gl/BFDKcs) web services. We have chosen a message bus approach and are doing lots and lots of research regarding which middleware software best fits our requirements. Fortunately, comparing the performance of different middleware solutions was pretty straight forward. There are lots of benchmarks available and the vendors make it easy to install their software for evaluation.
 

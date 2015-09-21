@@ -9,7 +9,7 @@ excerpt: >
     Previously, we created a JSON model for Pegger. Now it's time to come up with an API that HTTP clients can use to interact with our game. In this tutorial we'll be designing an API "on paper". No coding for, just thinking things through.
 ---
 
-Previously, we created a [JSON model](http://technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json/) for Pegger. Now it's time to come up with an API that HTTP clients can use to interact with our game.
+Previously, we created a [JSON model]({{ site.baseurl }}{% post_url 2014-08-26-modeling-a-turn-based-game-with-json %}) for Pegger. Now it's time to come up with an API that HTTP clients can use to interact with our game.
 
 First, let's consider two of the basic facets of turn-based games:
 
@@ -26,7 +26,7 @@ In other words, we can try to create an API that is turn-based or we can craft a
 
 Thinking of these APIs as HTTP endpoints, both of these approaches share a common root: `/games/{gameId}`. Beneath the game resource is where the two techniques diverge and their respective strengths and weaknesses become apparent.
 
-Before we explore each approach in more depth, let's review a snippet of the JSON model that was developed in the [previous article](http://technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json/). We should be able to use this model regardless of which API technique is chosen.
+Before we explore each approach in more depth, let's review a snippet of the JSON model that was developed in the [previous article]({{ site.baseurl }}{% post_url 2014-08-26-modeling-a-turn-based-game-with-json %}). We should be able to use this model regardless of which API technique is chosen.
 
 {% highlight js %}
 {

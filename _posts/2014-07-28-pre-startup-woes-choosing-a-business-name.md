@@ -55,6 +55,6 @@ Coming up with a name that perfectly fits your business can be very difficult. F
 
 Hopefully these tips can help you out by improving and focusing your creative efforts. I know that creativity doesn't always come easily. If these tips don't work for you but you know of other ways to get your creative juices flowing, try them out too!
 
-In my [next article](http://technicalrex.com/2014/08/04/pre-startup-woes-the-fears-that-hold-you-back/) I'll address the other hurdle I had to overcome before I could start my business: fear!
+In my [next article]({{ site.baseurl }}{% post_url 2014-08-04-pre-startup-woes-the-fears-that-hold-you-back %}) I'll address the other hurdle I had to overcome before I could start my business: fear!
 
 *Disclaimer: I am not a lawyer or a CPA. I don't even have an MBA. So please, take my advice with a grain of salt. My advice is by no means comprehensive or authoritative. It is merely intended to offer help insofar as my own experience goes. Your mileage may vary.*

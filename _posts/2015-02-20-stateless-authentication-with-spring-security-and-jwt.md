@@ -11,7 +11,7 @@ excerpt: >
 
 *Update:* The code used for this tutorial is now [available on GitHub](https://github.com/technical-rex/spring-security-jwt)! Peruse, fork, and clone as you see fit.
 
-As part of my lifelong study of REST APIs I have been learning more about [avoiding shared state](http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3) between the client and server. This week in particular I have been learning about stateless authentication and attempting to implement it in a skeleton Java app based on my [Jersey on Google AppEngine tutorial](http://technicalrex.com/2014/08/11/creating-a-jersey-app-on-google-app-engine/).
+As part of my lifelong study of REST APIs I have been learning more about [avoiding shared state](http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3) between the client and server. This week in particular I have been learning about stateless authentication and attempting to implement it in a skeleton Java app based on my [Jersey on Google AppEngine tutorial]({{ site.baseurl }}{% post_url 2014-08-11-creating-a-jersey-app-on-google-app-engine %}).
 
 ## Overview
 

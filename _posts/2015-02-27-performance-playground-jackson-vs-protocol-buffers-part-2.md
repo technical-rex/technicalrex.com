@@ -9,9 +9,9 @@ excerpt: >
     <p>In my previous article comparing the performance of FasterXML's Jackson JSON serializer and Google's Protocol Buffers, I concluded that the difference in speed is very small.</p>Wow was I wrong!
 ---
 
-**Update:** *[Part 3](http://technicalrex.com/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3/) is available and the tides have turned! Actually it turns out I had a bug in my benchmark that was skewing the Protocol Buffer results in a pretty major way.*
+**Update:** *[Part 3]({{ site.baseurl }}{% post_url 2015-06-25-performance-playground-jackson-vs-protocol-buffers-part-3 %}) is available and the tides have turned! Actually it turns out I had a bug in my benchmark that was skewing the Protocol Buffer results in a pretty major way.*
 
-In my [previous article](http://technicalrex.com/2014/06/23/performance-playground-jackson-vs-protocol-buffers/) comparing the performance of FasterXML's Jackson JSON serializer and Google's Protocol Buffers, I concluded that the difference in speed is very small.
+In my [previous article]({{ site.baseurl }}{% post_url 2014-06-23-performance-playground-jackson-vs-protocol-buffers %}) comparing the performance of FasterXML's Jackson JSON serializer and Google's Protocol Buffers, I concluded that the difference in speed is very small.
 
 Wow was I wrong!
 

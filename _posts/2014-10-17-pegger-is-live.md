@@ -15,7 +15,7 @@ You can play Pegger at it's permanent home: [pegger.technicalrex.com](http://peg
 
 ## User Experience Tweaks
 
-After the [previous tutorial](http://technicalrex.com/2014/10/01/using-bootstrap-and-angularjs-for-a-simple-turn-based-game/) Pegger was still pretty rough around the edges. The game was playable but only if you could figure out the rules by guessing or were brave enough to check out the source code or README on [GitHub](https://github.com/egillespie/pegger).
+After the [previous tutorial]({{ site.baseurl }}{% post_url 2014-10-01-using-bootstrap-and-angularjs-for-a-simple-turn-based-game %}) Pegger was still pretty rough around the edges. The game was playable but only if you could figure out the rules by guessing or were brave enough to check out the source code or README on [GitHub](https://github.com/egillespie/pegger).
 
 Besides a lack of rules there were a few broken links and as a user on [Reddit](http://www.reddit.com/r/programming/comments/2hzoml/a_simple_turnbased_game_client_using_bootstrap/) pointed out, it was unclear that the white circles were holes and not interactive.
 
@@ -294,6 +294,6 @@ Here are some suggestions for feedback:
 
 1. If you want to request a feature or change to Pegger, [create an Issue on GitHub](https://github.com/egillespie/pegger/issues).
 2. If you want to contact me privately, <a href="mailto:erik.gillespie@technicalrex.com">email me</a>.
-3. If you want to ask general questions or provide feedback, comment on the most appropriate article in this [tutorial series](http://technicalrex.com/tag/pegger/?order=asc).
+3. If you want to ask general questions or provide feedback, comment on the most appropriate article in this [tutorial series]({{ "/tag/pegger/" | prepend: site.baseurl }}).
 
 I will still be writing articles here too, so please stop by from time to time! Who knows, maybe I will start up a second Pegger series and talk about some more advanced topics. :)

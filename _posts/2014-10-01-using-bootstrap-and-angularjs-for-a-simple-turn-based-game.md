@@ -213,7 +213,7 @@ peggerApp.config(['$routeProvider', function ($routeProvider) {
 
 The "/play" route that I have defined corresponds to the anchor tag in `home.html` that links to "#/play". When a user clicks the button the content of the jumbotron will be replaced with the content of `partials/board.html` and the functionality for that view will be managed by the Pegger controller. I will show you the content of `board.html` after the controller is defined, since it relies heavily on the attributes and functions made available in that controller's scope.
 
-The service is the next easiest piece to construct. This service parameterizes and calls the HTTP API that I created in an [earlier article](http://technicalrex.com/2014/09/15/pegger-as-a-component-based-api/) of this tutorial series. Besides the parameters to the API, the service also expects a caller to provide custom success and error handlers for the HTTP response.
+The service is the next easiest piece to construct. This service parameterizes and calls the HTTP API that I created in an [earlier article]({{ site.baseurl }}{% post_url 2014-09-15-pegger-as-a-component-based-api %}) of this tutorial series. Besides the parameters to the API, the service also expects a caller to provide custom success and error handlers for the HTTP response.
 
 I chose to use `$http` instead of `$resource` to demonstrate the hierarchical structure of the API. I will probably switch to `$resource` at some point in the future since it is easier to read and offers some nice higher level conveniences such as parameterized URLs.
 

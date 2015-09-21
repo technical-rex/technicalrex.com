@@ -9,7 +9,7 @@ excerpt: >
     At the end of my last article I came to the conclusion that a turn-based API would probably best suit the game Pegger. This week I decided to implement that API in Java to see how everything would unfold. Let's see how the turn-based API ended up looking as code.
 ---
 
-At the end of my [last article](http://technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game/) I came to the conclusion that a turn-based API would probably best suit the game Pegger. This week I decided to implement that API in Java to see how everything would unfold.
+At the end of my [last article]({{ site.baseurl }}{% post_url 2014-09-02-designing-a-rest-api-for-a-turn-based-game %}) I came to the conclusion that a turn-based API would probably best suit the game Pegger. This week I decided to implement that API in Java to see how everything would unfold.
 
 ## Design and Coding Conventions
 
@@ -24,7 +24,7 @@ Before I dive into the code let me state some of the design choices and coding c
 
 ## Create the Entities
 
-Now that I have some general coding guidelines it's time to start implementing the entities that will reflect the [game model](http://technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json/) that I'm aiming for.
+Now that I have some general coding guidelines it's time to start implementing the entities that will reflect the [game model]({{ site.baseurl }}{% post_url 2014-08-26-modeling-a-turn-based-game-with-json %}) that I'm aiming for.
 
 Pegger will require a *Game* entity that contains a representation of the last *Turn* and the state of the *Board*. The Board will have a set of *Peg*s which will each have a *Position*. To satisfy the entities' dependencies on other entities, I wrote these classes in reverse order.
 

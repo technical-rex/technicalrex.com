@@ -9,7 +9,7 @@ excerpt: >
     <p>In my previous post I offered up a couple of tips to help choose a business name. For me, that was one of the two most difficult parts about starting a business. The other was overcoming my own fears. Those fears held me back from branching out on my own and it took a long time for me to muster the courage to push past them and actually start a business.</p>In this post I point out some things that helped me take the plunge and start my first business.
 ---
 
-In my [previous post](http://technicalrex.com/2014/07/28/pre-startup-woes-choosing-a-business-name/) I offered up a couple of tips to help choose a business name. For me, that was one of the two most difficult parts about starting a business. The other was overcoming my own fears. Those fears held me back from branching out on my own and it took a long time for me to muster the courage to push past them and actually start a business.
+In my [previous post]({{ site.baseurl }}{% post_url 2014-07-28-pre-startup-woes-choosing-a-business-name %}) I offered up a couple of tips to help choose a business name. For me, that was one of the two most difficult parts about starting a business. The other was overcoming my own fears. Those fears held me back from branching out on my own and it took a long time for me to muster the courage to push past them and actually start a business.
 
 *This article is a two-parter. In this part, I will enumerate the fears that prevented me from starting a business sooner and provide some advice that might help others overcome their own fears and realize that starting a business is not as difficult or as scary as your conscience might have you believe.*
 
