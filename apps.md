@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Apps
+heading: Made by Rex
 permalink: /apps.html
 ---
 

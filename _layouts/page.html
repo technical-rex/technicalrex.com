@@ -5,7 +5,13 @@ layout: default
     <div class="content">
         <article>
             <header class="page-header">
-                <h1 class="title">{{ page.title | replace: " - ", ":<br/>" }}</h1>
+                <h1 class="title">
+                    {% if page.heading %}
+                    {{ page.heading | replace: " - ", ":<br/>" }}
+                    {% else %}
+                    {{ page.title }}
+                    {% endif %}
+                </h1>
             </header>
             <section class="page-content">{{ content }}</section>
             <p class="signature">{% if page.author %} - {{ site.authors[page.author].signature }}{% endif %}</p>
