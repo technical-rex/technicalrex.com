@@ -7,7 +7,7 @@
 	<nav class="site-nav flow-nav">
 		<ul class="flow-nav">
 			{% for page in site.pages %}
-			{% if page.title and page.hide != true %}
+			{% if page.layout == 'page' and page.hide != true %}
 			<li class="flow-nav">
 				<a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
 			</li>
