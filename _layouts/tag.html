@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+<div class="underlay">
+    <div class="content">
+        <header>
+            <h1 class="tag-title">{{ page.title }}</h1>
+            {% if site.tag_descriptions[page.tag] %}
+            <p class="tag-description">
+                {{ site.tag_descriptions[page.tag] }}
+            </p>
+            {% endif %}
+            <p class="tag-sort">
+                (Shown from oldest to newest)
+            </p>
+        </header>
+    </div>
+</div>
+{% for post in site.posts reversed %}
+    {% for tag in post.tags %}
+        {% if tag == page.tag %}
+            <div class="underlay">
+                <div class="content">
+                    <div class="teaser">
+                        <header>
+                            <h1>
+                                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                            </h1>
+                            <p class="meta">
+                                Posted on {{ post.date | date: "%B %-d, %Y" }}
+                                {% if post.author %} by {{ site.authors[post.author].name }}{% endif %}
+                            </p>
+                        </header>
+                        <main>
+                            {{ post.excerpt }}
+                        </main>
+                        <footer>
+                            <a class="button" href="{{ post.url | prepend: site.baseurl }}">Read Moar...</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
