@@ -13,6 +13,8 @@
 {% endif %}
 
 <div class="{{ divStyle }}">
+    {% if include.link %}<a href="{{ include.link }}">{% endif %}
     <img src="{{ include.src | prepend: site.baseurl }}" class="{{ imgStyle }}"/>
+    {% if include.link %}</a>{% endif %}
     {{ include.caption }}
 </div>
