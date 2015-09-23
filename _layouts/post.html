@@ -3,9 +3,9 @@ layout: default
 ---
 <div class="underlay">
     <div class="content">
-        <article {% if page.feature-img %}class="feature-image"{% endif %}>
-            <header style="background-image: url('{{ page.feature-img }}')">
-            <h1 class="title">{{ page.title | replace: " - ", ":<br/>" }}</h1>
+        <article>
+            <header>
+                <h1 class="title">{{ page.title | replace: " - ", ":<br/>" }}</h1>
                 <p class="about">
                     Posted {% if page.author %} by {{ site.authors[page.author].name }}{% endif %}
                     on {{ page.date | date: "%B %-d, %Y" }}
