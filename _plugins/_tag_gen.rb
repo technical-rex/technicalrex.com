@@ -1,3 +1,5 @@
+# Tags in Jekyll by Charlie Park
+# http://charliepark.org/tags-in-jekyll/
 module Jekyll
   class TagIndex < Page
     def initialize(site, base, dir, tag)
