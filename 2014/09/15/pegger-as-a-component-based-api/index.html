@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>Pegger as a Component-Based API | </title>
+	<meta name="description" content="Previously I implemented Pegger as a turn-based API using Java. After I finished the API I felt as if there were a few things about the implementation and ov...">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<link rel="stylesheet" href="/technicalrex.com/css/main.css">
+
+	<link rel="canonical" href="http://technical-rex.github.io/technicalrex.com/2014/09/15/pegger-as-a-component-based-api">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+
+	<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+<!--[if IE]><link rel="shortcut icon" href="/technicalrex.com/img/icons/favicon.ico"><![endif]-->
+
+<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+<link rel="apple-touch-icon" href="/technicalrex.com/img/icons/apple-touch-icon.png">
+
+<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+<link rel="icon" href="/technicalrex.com/img/icons/favicon.png">
+
+</head>
+
+<body>
+    <div id="landscape">
+        <header class="site-header">
+	<div class="branding flow-nav">
+		<h1 class="site-title">
+			<a href="/technicalrex.com/">Technical Rex</a>
+		</h1>
+	</div>
+	<nav class="site-nav flow-nav">
+		<ul class="flow-nav">
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/technicalrex.com/about.html">About</a>
+			</li>
+			
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/technicalrex.com/apps.html">Apps</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li class="flow-nav">
+				<a href="/technicalrex.com/feed.xml" title="">
+					<i class="fa fa-fw fa-rss"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+        <div id="page-container">
+            <div class="underlay">
+    <div class="content">
+        <article>
+            <header class="post-header">
+                <h1 class="title">Pegger as a Component-Based API</h1>
+                <p class="about">
+                    Posted  by Erik Gillespie
+                    on September 15, 2014
+                </p>
+            </header>
+            <section class="post-content"><p><a href="/technicalrex.com/2014/09/09/peggers-turn-based-api-in-java">Previously</a> I implemented Pegger as a <a href="/technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game">turn-based</a> API using Java. After I finished the API I felt as if there were a few things about the implementation and overall data model that were a little clunky.</p>
+
+<p>The <em>Board</em> seemed unnecessary. Accessing the pegs to validate and apply a turn required drilling down to the pegs by going through the board. This caused lots of object graph navigation. Since the board size can’t change it also seemed silly to create an entity to hold those unchanging board dimensions.</p>
+
+<p>Tracking the old and new positions of the last peg moved (i.e. the turn) ended up being unnecessary. After preventing a peg from moving back to its old location I realized that I only needed to store the ID and previous position of the last peg moved. This suggested that a turn in Pegger could be totally scrapped, which also meant my initial thought that a turn-based API would be ideal for Pegger might be wrong!</p>
+
+<p>Validation also seemed more complicated than should be necessary. I think much of that complication came from reinterpreting turns as pegs. I also didn’t have a separate repository for looking up pegs. This meant the code I wrote to find pegs could probably be moved into a common location.</p>
+
+<p>This week I’m taking the time to clean some of this up. Since the last turn doesn’t need to be tracked any more I am also going to refactor the whole API to use the component-based approach that I discussed previously.</p>
+
+<p>Let’s take a look at how well the code cleans up with these changes!</p>
+
+<h2 id="version-control-i-am-ready-for-you">Version Control, I Am Ready for You!</h2>
+
+<p>Before doing this big refactor it would be wise if I had a way to revert my changes in case I don’t like them. For that reason, I have created a <a href="https://github.com/egillespie/pegger">Pegger GitHub repository</a>.</p>
+
+<p>If you want to browse the turn-based API then click this <a href="https://github.com/egillespie/pegger/tree/2c68a679ccbc5c897f23adf51507d4c60405e984">shortcut</a>.</p>
+
+<h2 id="repackaging">Repackaging</h2>
+
+<p>Another change I’d like to make before refactoring the API is to repackage the project a little bit. One thing that bugged me by dumping basically all of the code in a single <code>games</code> package was that most of my classes started with <em>Game-</em> or <em>Turn-</em>. Normally I’m a fan of packaging by feature but I want to try moving the whole model into its own package to separate data holders from the game logic.</p>
+
+<p>The result of this is that I created the package <code>com.technicalrex.webapp.pegger.model</code> and moved the <code>Game</code>, <code>Peg</code>, and <code>Position</code> classes there. (Actually I moved <code>Board</code> and <code>Turn</code> there too but they’re going to be deleted soon so whatever.)</p>
+
+<p>I moved everything else in <code>com.technicalrex.webapp.pegger.games</code> into <code>com.technicalrex.webapp.pegger.api.games</code>. I did this in anticipation of additional resources being added that sit beside the <code>/games</code> resource.</p>
+
+<p>The last thing I did was to rename the <code>Status</code> class to <code>Reason</code> and nest it within <code>InvalidMoveException</code>, which itself was a rename of <code>InvalidTurnException</code>. I was never instantiating this class outside of the exception and was only passing strings to the constructor so it seemed to make sense to encapsulate everything in a single class.</p>
+
+<h2 id="cleaning-up-equals-hashcode-and-tostring">Cleaning Up <em>equals</em>, <em>hashCode</em>, and <em>toString</em></h2>
+
+<p>Till now I haven’t really mentioned that I’m using <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> to develop this project. IntelliJ will generate <code>equals</code>, <code>hashCode</code>, and <code>toString</code> for you but I like <a href="https://code.google.com/p/guava-libraries/">Guava</a>’s <code>Objects</code> and <code>MoreObjects</code> helper classes for filling in these methods. The Guava helpers have a much cleaner syntax and make adding new fields to <code>equals</code>/<code>hashCode</code>/<code>toString</code> very easy.</p>
+
+<p>I bring this up because I noticed that some of my validation could have been avoided or simplified if I only used the unique identifiers for <code>Game</code> and <code>Peg</code> in the <code>equals</code> and <code>hashCode</code> methods. One such validation is the assurance that no two pegs in the game share the same identifier. By switching the list of pegs to a map and updating the <code>equals</code>/<code>hashCode</code> methods I can know that this situation will never happen.</p>
+
+<p>Since I’m revisiting all of these methods I am going to use a hack that I discovered in IntelliJ to generate Guava versions of each of these methods for me using Velocity templates.</p>
+
+<p>I will explain the hack in a future post but if you are curious, you can look at the <a href="https://github.com/berrysa/computerscience/tree/master/src/org/computerscience/egillespie/intellij/tostring">IntelliJ toString Velocity templates</a> that I’ve written for this hack on GitHub.</p>
+
+<h2 id="refactoring-the-model">Refactoring the Model</h2>
+
+<p>Delete <code>Board</code> and <code>Turn</code>. Once that’s done we only have three classes in our model: <code>Game</code>, <code>Peg</code>, and <code>Position</code>. Besides the <code>toString</code> refactor I mentioned in the previous section, <code>Position</code> doesn’t change at all.</p>
+
+<p><code>Peg</code> doesn’t change that much either. It simply needs to be annotated so Jackson can properly serialize and deserialize the entities into and out of JSON for us. The important parts look like this:</p>
+
+<p><strong>Peg.java</strong></p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Peg</span> <span class="o">{</span>
+<span class="lineno"> 2</span>     <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">pegId</span><span class="o">;</span>
+<span class="lineno"> 3</span>     <span class="kd">private</span> <span class="kd">final</span> <span class="n">Type</span> <span class="n">type</span><span class="o">;</span>
+<span class="lineno"> 4</span>     <span class="kd">private</span> <span class="kd">final</span> <span class="n">Position</span> <span class="n">position</span><span class="o">;</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>     <span class="nd">@JsonCreator</span>
+<span class="lineno"> 7</span>     <span class="kd">public</span> <span class="nf">Peg</span><span class="o">(</span><span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&quot;pegId&quot;</span><span class="o">)</span> <span class="kt">int</span> <span class="n">pegId</span><span class="o">,</span>
+<span class="lineno"> 8</span>                <span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&quot;type&quot;</span><span class="o">)</span> <span class="n">Type</span> <span class="n">type</span><span class="o">,</span>
+<span class="lineno"> 9</span>                <span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&quot;position&quot;</span><span class="o">)</span> <span class="n">Position</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">10</span>         <span class="k">this</span><span class="o">.</span><span class="na">pegId</span> <span class="o">=</span> <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">pegId</span><span class="o">);</span>
+<span class="lineno">11</span>         <span class="k">this</span><span class="o">.</span><span class="na">type</span> <span class="o">=</span> <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
+<span class="lineno">12</span>         <span class="k">this</span><span class="o">.</span><span class="na">position</span> <span class="o">=</span> <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+<span class="lineno">13</span>     <span class="o">}</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span>     <span class="c1">// getters...</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span>     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">enum</span> <span class="n">Type</span> <span class="o">{</span>
+<span class="lineno">18</span>         <span class="c1">// static instances...</span>
+<span class="lineno">19</span> 
+<span class="lineno">20</span>         <span class="nd">@JsonCreator</span>
+<span class="lineno">21</span>         <span class="kd">public</span> <span class="kd">static</span> <span class="n">Type</span> <span class="nf">forName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">22</span>             <span class="k">if</span> <span class="o">(</span><span class="n">FOR_NAME</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">name</span><span class="o">))</span> <span class="o">{</span>
+<span class="lineno">23</span>                 <span class="k">return</span> <span class="n">FOR_NAME</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="lineno">24</span>             <span class="o">}</span>
+<span class="lineno">25</span>             <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Invalid peg name: %s&quot;</span><span class="o">,</span> <span class="n">name</span><span class="o">));</span>
+<span class="lineno">26</span>         <span class="o">}</span>
+<span class="lineno">27</span> 
+<span class="lineno">28</span>         <span class="c1">// fields and constructor...</span>
+<span class="lineno">29</span> 
+<span class="lineno">30</span>         <span class="nd">@JsonValue</span>
+<span class="lineno">31</span>         <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">32</span>             <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+<span class="lineno">33</span>         <span class="o">}</span>
+<span class="lineno">34</span> 
+<span class="lineno">35</span>         <span class="c1">// other getters...</span>
+<span class="lineno">36</span>     <span class="o">}</span>
+<span class="lineno">37</span> <span class="o">}</span></code></pre></div>
+
+<p>You’ll see that I threw a <code>@JsonCreator</code> annotation on <code>Peg</code> and <code>Peg.Type</code>. I also put a <code>@JsonValue</code> annotation on <code>Peg.Type.getName()</code>.</p>
+
+<p>There’s one small bug fix here too. I added a precondition on <code>Peg.pegId</code> to make sure a non-null value is supplied.</p>
+
+<p>The <code>Game</code> class had lots of changes though. It referenced both the <code>Board</code> and <code>Turn</code> classes so when they went away all of that code had to be updated. Here’s what it looks like now.</p>
+
+<p><strong>Game.java</strong></p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">  1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Game</span> <span class="o">{</span>
+<span class="lineno">  2</span>     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">ROWS</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+<span class="lineno">  3</span>     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">COLUMNS</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
+<span class="lineno">  4</span> 
+<span class="lineno">  5</span>     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ImmutableSet</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="n">START_PEGS</span> <span class="o">=</span> <span class="n">ImmutableSet</span><span class="o">.&lt;</span><span class="n">Peg</span><span class="o">&gt;</span><span class="n">builder</span><span class="o">()</span>
+<span class="lineno">  6</span>             <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nf">Peg</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">Peg</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">RED</span><span class="o">,</span> <span class="k">new</span> <span class="nf">Position</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">)))</span>
+<span class="lineno">  7</span>             <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nf">Peg</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">Peg</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">RED</span><span class="o">,</span> <span class="k">new</span> <span class="nf">Position</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)))</span>
+<span class="lineno">  8</span>             <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nf">Peg</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="n">Peg</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">GREEN</span><span class="o">,</span> <span class="k">new</span> <span class="nf">Position</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">)))</span>
+<span class="lineno">  9</span>             <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nf">Peg</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="n">Peg</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">GREEN</span><span class="o">,</span> <span class="k">new</span> <span class="nf">Position</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">)))</span>
+<span class="lineno"> 10</span>             <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nf">Peg</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="n">Peg</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">,</span> <span class="k">new</span> <span class="nf">Position</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">)))</span>
+<span class="lineno"> 11</span>             <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nf">Peg</span><span class="o">(</span><span class="mi">6</span><span class="o">,</span> <span class="n">Peg</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">,</span> <span class="k">new</span> <span class="nf">Position</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)))</span>
+<span class="lineno"> 12</span>             <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="lineno"> 13</span> 
+<span class="lineno"> 14</span>     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">PEG_INDEXER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
+<span class="lineno"> 15</span>         <span class="nd">@Override</span>
+<span class="lineno"> 16</span>         <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Peg</span> <span class="n">peg</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 17</span>             <span class="k">return</span> <span class="n">peg</span><span class="o">.</span><span class="na">getPegId</span><span class="o">();</span>
+<span class="lineno"> 18</span>         <span class="o">}</span>
+<span class="lineno"> 19</span>     <span class="o">};</span>
+<span class="lineno"> 20</span> 
+<span class="lineno"> 21</span>     <span class="kd">private</span> <span class="kd">final</span> <span class="n">UUID</span> <span class="n">gameId</span><span class="o">;</span>
+<span class="lineno"> 22</span>     <span class="kd">private</span> <span class="kd">final</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="n">lastPegMoved</span><span class="o">;</span>
+<span class="lineno"> 23</span>     <span class="kd">private</span> <span class="kd">final</span> <span class="n">ImmutableMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Peg</span><span class="o">&gt;</span> <span class="n">pegs</span><span class="o">;</span>
+<span class="lineno"> 24</span>     <span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">gameOver</span><span class="o">;</span>
+<span class="lineno"> 25</span> 
+<span class="lineno"> 26</span>     <span class="kd">private</span> <span class="nf">Game</span><span class="o">(</span><span class="n">UUID</span> <span class="n">gameId</span><span class="o">,</span> <span class="n">Peg</span> <span class="n">lastPegMoved</span><span class="o">,</span> <span class="n">ImmutableSet</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="n">pegs</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 27</span>         <span class="k">this</span><span class="o">.</span><span class="na">gameId</span> <span class="o">=</span> <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">gameId</span><span class="o">);</span>
+<span class="lineno"> 28</span>         <span class="k">this</span><span class="o">.</span><span class="na">lastPegMoved</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="n">lastPegMoved</span><span class="o">);</span>
+<span class="lineno"> 29</span>         <span class="k">this</span><span class="o">.</span><span class="na">pegs</span> <span class="o">=</span> <span class="n">Maps</span><span class="o">.</span><span class="na">uniqueIndex</span><span class="o">(</span><span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">pegs</span><span class="o">),</span> <span class="n">PEG_INDEXER</span><span class="o">);</span>
+<span class="lineno"> 30</span>         <span class="k">this</span><span class="o">.</span><span class="na">gameOver</span> <span class="o">=</span> <span class="n">calculateGameOver</span><span class="o">();</span>
+<span class="lineno"> 31</span>         <span class="n">validateGameState</span><span class="o">();</span>
+<span class="lineno"> 32</span>     <span class="o">}</span>
+<span class="lineno"> 33</span> 
+<span class="lineno"> 34</span>     <span class="kd">public</span> <span class="kd">static</span> <span class="n">Game</span> <span class="nf">start</span><span class="o">(</span><span class="n">UUID</span> <span class="n">gameId</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 35</span>         <span class="k">return</span> <span class="k">new</span> <span class="nf">Game</span><span class="o">(</span><span class="n">gameId</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">START_PEGS</span><span class="o">);</span>
+<span class="lineno"> 36</span>     <span class="o">}</span>
+<span class="lineno"> 37</span> 
+<span class="lineno"> 38</span>     <span class="kd">public</span> <span class="n">Game</span> <span class="nf">movePeg</span><span class="o">(</span><span class="n">Peg</span> <span class="n">pegWithNewPosition</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 39</span>         <span class="n">Peg</span> <span class="n">pegWithOldPosition</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="lineno"> 40</span>         <span class="n">ImmutableSet</span><span class="o">.</span><span class="na">Builder</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="n">pegBuilder</span> <span class="o">=</span> <span class="n">ImmutableSet</span><span class="o">.</span><span class="na">builder</span><span class="o">();</span>
+<span class="lineno"> 41</span>         <span class="k">for</span> <span class="o">(</span><span class="n">Peg</span> <span class="n">peg</span> <span class="o">:</span> <span class="n">getPegs</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno"> 42</span>             <span class="k">if</span> <span class="o">(</span><span class="n">peg</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()</span> <span class="o">==</span> <span class="n">pegWithNewPosition</span><span class="o">.</span><span class="na">getPegId</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno"> 43</span>                 <span class="n">pegBuilder</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">pegWithNewPosition</span><span class="o">);</span>
+<span class="lineno"> 44</span>                 <span class="n">pegWithOldPosition</span> <span class="o">=</span> <span class="n">peg</span><span class="o">;</span>
+<span class="lineno"> 45</span>             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+<span class="lineno"> 46</span>                 <span class="n">pegBuilder</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">peg</span><span class="o">);</span>
+<span class="lineno"> 47</span>             <span class="o">}</span>
+<span class="lineno"> 48</span>         <span class="o">}</span>
+<span class="lineno"> 49</span>         <span class="k">if</span> <span class="o">(</span><span class="n">pegWithOldPosition</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 50</span>             <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Peg %d does not exist.&quot;</span><span class="o">,</span> <span class="n">pegWithNewPosition</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()));</span>
+<span class="lineno"> 51</span>         <span class="o">}</span>
+<span class="lineno"> 52</span>         <span class="k">return</span> <span class="k">new</span> <span class="nf">Game</span><span class="o">(</span><span class="n">gameId</span><span class="o">,</span> <span class="n">pegWithOldPosition</span><span class="o">,</span> <span class="n">pegBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="lineno"> 53</span>     <span class="o">}</span>
+<span class="lineno"> 54</span> 
+<span class="lineno"> 55</span>     <span class="kd">public</span> <span class="n">UUID</span> <span class="nf">getGameId</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno"> 56</span>         <span class="k">return</span> <span class="n">gameId</span><span class="o">;</span>
+<span class="lineno"> 57</span>     <span class="o">}</span>
+<span class="lineno"> 58</span> 
+<span class="lineno"> 59</span>     <span class="kd">public</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="nf">getLastPegMoved</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno"> 60</span>         <span class="k">return</span> <span class="n">lastPegMoved</span><span class="o">;</span>
+<span class="lineno"> 61</span>     <span class="o">}</span>
+<span class="lineno"> 62</span> 
+<span class="lineno"> 63</span>     <span class="kd">public</span> <span class="n">ImmutableCollection</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="nf">getPegs</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno"> 64</span>         <span class="k">return</span> <span class="n">pegs</span><span class="o">.</span><span class="na">values</span><span class="o">();</span>
+<span class="lineno"> 65</span>     <span class="o">}</span>
+<span class="lineno"> 66</span> 
+<span class="lineno"> 67</span>     <span class="kd">public</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="nf">getPeg</span><span class="o">(</span><span class="kt">int</span> <span class="n">pegId</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 68</span>         <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">fromNullable</span><span class="o">(</span><span class="n">pegs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">pegId</span><span class="o">));</span>
+<span class="lineno"> 69</span>     <span class="o">}</span>
+<span class="lineno"> 70</span> 
+<span class="lineno"> 71</span>     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isGameOver</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno"> 72</span>         <span class="k">return</span> <span class="n">gameOver</span><span class="o">;</span>
+<span class="lineno"> 73</span>     <span class="o">}</span>
+<span class="lineno"> 74</span> 
+<span class="lineno"> 75</span>     <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">calculateGameOver</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno"> 76</span>         <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="n">allPegs</span> <span class="o">=</span> <span class="n">getPegs</span><span class="o">();</span>
+<span class="lineno"> 77</span>         <span class="k">for</span> <span class="o">(</span><span class="n">Peg</span> <span class="n">peg</span> <span class="o">:</span> <span class="n">allPegs</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 78</span>             <span class="k">if</span> <span class="o">(</span><span class="n">peg</span><span class="o">.</span><span class="na">getType</span><span class="o">().</span><span class="na">isNeutral</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno"> 79</span>                 <span class="k">continue</span><span class="o">;</span>
+<span class="lineno"> 80</span>             <span class="o">}</span>
+<span class="lineno"> 81</span>             <span class="k">for</span> <span class="o">(</span><span class="n">Peg</span> <span class="n">testPeg</span> <span class="o">:</span> <span class="n">allPegs</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 82</span>                 <span class="k">if</span> <span class="o">(</span><span class="n">peg</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()</span> <span class="o">!=</span> <span class="n">testPeg</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">peg</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">==</span> <span class="n">testPeg</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span>
+<span class="lineno"> 83</span>                         <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">peg</span><span class="o">.</span><span class="na">getPosition</span><span class="o">().</span><span class="na">isAdjacentTo</span><span class="o">(</span><span class="n">testPeg</span><span class="o">.</span><span class="na">getPosition</span><span class="o">())))</span> <span class="o">{</span>
+<span class="lineno"> 84</span>                     <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="lineno"> 85</span>                 <span class="o">}</span>
+<span class="lineno"> 86</span>             <span class="o">}</span>
+<span class="lineno"> 87</span>         <span class="o">}</span>
+<span class="lineno"> 88</span>         <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="lineno"> 89</span>     <span class="o">}</span>
+<span class="lineno"> 90</span> 
+<span class="lineno"> 91</span>     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">validateGameState</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno"> 92</span>         <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkArgument</span><span class="o">(</span><span class="n">pegs</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">6</span><span class="o">,</span> <span class="s">&quot;Exactly six pegs are required.&quot;</span><span class="o">);</span>
+<span class="lineno"> 93</span>         <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="n">allPegs</span> <span class="o">=</span> <span class="n">getPegs</span><span class="o">();</span>
+<span class="lineno"> 94</span>         <span class="k">for</span> <span class="o">(</span><span class="n">Peg</span> <span class="n">peg</span> <span class="o">:</span> <span class="n">allPegs</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 95</span>             <span class="n">Position</span> <span class="n">position</span> <span class="o">=</span> <span class="n">peg</span><span class="o">.</span><span class="na">getPosition</span><span class="o">();</span>
+<span class="lineno"> 96</span>             <span class="k">if</span> <span class="o">(</span><span class="n">position</span><span class="o">.</span><span class="na">getRow</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">position</span><span class="o">.</span><span class="na">getRow</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">ROWS</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 97</span>                 <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Peg %d is at an invalid row on the board.&quot;</span><span class="o">,</span> <span class="n">peg</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()));</span>
+<span class="lineno"> 98</span>             <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">position</span><span class="o">.</span><span class="na">getColumn</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">position</span><span class="o">.</span><span class="na">getColumn</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">COLUMNS</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 99</span>                 <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Peg %d is at an invalid column on the board.&quot;</span><span class="o">,</span> <span class="n">peg</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()));</span>
+<span class="lineno">100</span>             <span class="o">}</span>
+<span class="lineno">101</span> 
+<span class="lineno">102</span>             <span class="kt">int</span> <span class="n">positionCount</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="lineno">103</span>             <span class="k">for</span> <span class="o">(</span><span class="n">Peg</span> <span class="n">otherPeg</span> <span class="o">:</span> <span class="n">allPegs</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">104</span>                 <span class="k">if</span> <span class="o">(</span><span class="n">peg</span><span class="o">.</span><span class="na">getPosition</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">otherPeg</span><span class="o">.</span><span class="na">getPosition</span><span class="o">()))</span> <span class="o">{</span>
+<span class="lineno">105</span>                     <span class="n">positionCount</span><span class="o">++;</span>
+<span class="lineno">106</span>                 <span class="o">}</span>
+<span class="lineno">107</span>             <span class="o">}</span>
+<span class="lineno">108</span>             <span class="k">if</span> <span class="o">(</span><span class="n">positionCount</span> <span class="o">!=</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">109</span>                 <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">&quot;All pegs on a board must be at different positions.&quot;</span><span class="o">);</span>
+<span class="lineno">110</span>             <span class="o">}</span>
+<span class="lineno">111</span>         <span class="o">}</span>
+<span class="lineno">112</span>     <span class="o">}</span>
+<span class="lineno">113</span> 
+<span class="lineno">114</span>     <span class="nd">@Override</span>
+<span class="lineno">115</span>     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">116</span>         <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">117</span>             <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="lineno">118</span>         <span class="o">}</span>
+<span class="lineno">119</span>         <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">getClass</span><span class="o">()</span> <span class="o">!=</span> <span class="n">o</span><span class="o">.</span><span class="na">getClass</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno">120</span>             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="lineno">121</span>         <span class="o">}</span>
+<span class="lineno">122</span>         <span class="n">Game</span> <span class="n">that</span> <span class="o">=</span> <span class="o">(</span><span class="n">Game</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+<span class="lineno">123</span>         <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">gameId</span><span class="o">,</span> <span class="n">that</span><span class="o">.</span><span class="na">gameId</span><span class="o">);</span>
+<span class="lineno">124</span>     <span class="o">}</span>
+<span class="lineno">125</span> 
+<span class="lineno">126</span>     <span class="nd">@Override</span>
+<span class="lineno">127</span>     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">128</span>         <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">gameId</span><span class="o">);</span>
+<span class="lineno">129</span>     <span class="o">}</span>
+<span class="lineno">130</span> 
+<span class="lineno">131</span>     <span class="nd">@Override</span>
+<span class="lineno">132</span>     <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">133</span>         <span class="k">return</span> <span class="n">MoreObjects</span><span class="o">.</span><span class="na">toStringHelper</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+<span class="lineno">134</span>                 <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;gameId&quot;</span><span class="o">,</span> <span class="n">gameId</span><span class="o">)</span>
+<span class="lineno">135</span>                 <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;lastPegMoved&quot;</span><span class="o">,</span> <span class="n">lastPegMoved</span><span class="o">)</span>
+<span class="lineno">136</span>                 <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;gameOver&quot;</span><span class="o">,</span> <span class="n">gameOver</span><span class="o">)</span>
+<span class="lineno">137</span>                 <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;pegs&quot;</span><span class="o">,</span> <span class="n">pegs</span><span class="o">)</span>
+<span class="lineno">138</span>                 <span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+<span class="lineno">139</span>     <span class="o">}</span>
+<span class="lineno">140</span> <span class="o">}</span></code></pre></div>
+
+<p>I moved much of the board logic directly into the game and replaced <code>lastTurn</code> with <code>lastPegMoved</code>. I also calculate <code>gameOver</code> upon construction to reduce the CPU required if a game is retrieved many times in a row.</p>
+
+<h2 id="adding-the-peg-resource">Adding the Peg Resource</h2>
+
+<p>Eventually I’ll have to figure out the logic that needs to change in <code>GameOperator</code> to facilitate making Pegger a component-based API instead of a turn-based API. To get us to the point where those changes become clear, let’s stub out what the <code>PegResource</code> would would look like.</p>
+
+<p>Recall from my an earlier article that in a component-based Pegger game we would need only to support a <code>PUT /games/{gameId}/pegs/{pegId}</code> resource to manage turn-taking by moving components.</p>
+
+<p><strong>PegResource.java</strong></p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/games/{gameId}/pegs&quot;</span><span class="o">)</span>
+<span class="lineno"> 2</span> <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+<span class="lineno"> 3</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PegResource</span> <span class="o">{</span>
+<span class="lineno"> 4</span>     <span class="kd">private</span> <span class="kd">final</span> <span class="n">GameOperator</span> <span class="n">gameOperator</span><span class="o">;</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>     <span class="nd">@Inject</span>
+<span class="lineno"> 7</span>     <span class="kd">public</span> <span class="nf">PegResource</span><span class="o">(</span><span class="n">GameOperator</span> <span class="n">gameOperator</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 8</span>         <span class="k">this</span><span class="o">.</span><span class="na">gameOperator</span> <span class="o">=</span> <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">gameOperator</span><span class="o">);</span>
+<span class="lineno"> 9</span>     <span class="o">}</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span>     <span class="nd">@PUT</span>
+<span class="lineno">12</span>     <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/{pegId}&quot;</span><span class="o">)</span>
+<span class="lineno">13</span>     <span class="nd">@Consumes</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+<span class="lineno">14</span>     <span class="kd">public</span> <span class="n">Response</span> <span class="nf">updatePeg</span><span class="o">(</span><span class="nd">@Context</span> <span class="n">UriInfo</span> <span class="n">uriInfo</span><span class="o">,</span>
+<span class="lineno">15</span>                               <span class="nd">@PathParam</span><span class="o">(</span><span class="s">&quot;gameId&quot;</span><span class="o">)</span> <span class="n">UUID</span> <span class="n">gameId</span><span class="o">,</span>
+<span class="lineno">16</span>                               <span class="nd">@PathParam</span><span class="o">(</span><span class="s">&quot;pegId&quot;</span><span class="o">)</span> <span class="kt">int</span> <span class="n">pegId</span><span class="o">,</span>
+<span class="lineno">17</span>                               <span class="n">Peg</span> <span class="n">peg</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">18</span>         <span class="n">Game</span> <span class="n">game</span> <span class="o">=</span> <span class="n">gameOperator</span><span class="o">.</span><span class="na">lookForGame</span><span class="o">(</span><span class="n">gameId</span><span class="o">).</span><span class="na">orNull</span><span class="o">();</span>
+<span class="lineno">19</span>         <span class="k">if</span> <span class="o">(</span><span class="n">game</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">20</span>             <span class="k">return</span> <span class="n">Responses</span><span class="o">.</span><span class="na">NOT_FOUND</span><span class="o">;</span>
+<span class="lineno">21</span>         <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">peg</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">22</span>             <span class="k">return</span> <span class="n">Responses</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">;</span>
+<span class="lineno">23</span>         <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">pegId</span> <span class="o">!=</span> <span class="n">peg</span><span class="o">.</span><span class="na">getPegId</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno">24</span>             <span class="k">return</span> <span class="n">Responses</span><span class="o">.</span><span class="na">CONFLICT</span><span class="o">;</span>
+<span class="lineno">25</span>         <span class="o">}</span>
+<span class="lineno">26</span>         <span class="k">try</span> <span class="o">{</span>
+<span class="lineno">27</span>             <span class="n">gameOperator</span><span class="o">.</span><span class="na">movePeg</span><span class="o">(</span><span class="n">game</span><span class="o">,</span> <span class="n">peg</span><span class="o">);</span>
+<span class="lineno">28</span>             <span class="n">URI</span> <span class="n">location</span> <span class="o">=</span> <span class="n">uriInfo</span><span class="o">.</span><span class="na">getBaseUriBuilder</span><span class="o">()</span>
+<span class="lineno">29</span>                                <span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">&quot;games&quot;</span><span class="o">).</span><span class="na">path</span><span class="o">(</span><span class="s">&quot;{gameId}&quot;</span><span class="o">)</span>
+<span class="lineno">30</span>                                <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getGameId</span><span class="o">());</span>
+<span class="lineno">31</span>             <span class="k">return</span> <span class="n">Response</span>
+<span class="lineno">32</span>                    <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">Response</span><span class="o">.</span><span class="na">Status</span><span class="o">.</span><span class="na">SEE_OTHER</span><span class="o">)</span>
+<span class="lineno">33</span>                    <span class="o">.</span><span class="na">location</span><span class="o">(</span><span class="n">location</span><span class="o">)</span>
+<span class="lineno">34</span>                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="lineno">35</span>         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidMoveException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">36</span>             <span class="k">return</span> <span class="n">Response</span>
+<span class="lineno">37</span>                    <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">Response</span><span class="o">.</span><span class="na">Status</span><span class="o">.</span><span class="na">FORBIDDEN</span><span class="o">)</span>
+<span class="lineno">38</span>                    <span class="o">.</span><span class="na">entity</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getReason</span><span class="o">())</span>
+<span class="lineno">39</span>                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="lineno">40</span>         <span class="o">}</span>
+<span class="lineno">41</span>     <span class="o">}</span>
+<span class="lineno">42</span> <span class="o">}</span></code></pre></div>
+
+<p>The logic here is a bit more lengthy than anything in <code>GameResource</code> but overall it’s pretty straight forward. Besides a few sanity checks that need to be made up front it’s very similar to the <code>POST /turns</code> resource in the original API. So far it seems that the main difference is a semantic one: we’re restating “take a turn” as “move a peg”.</p>
+
+<p>Let’s go ahead and stub out the <code>GameOperator.movePeg</code> method to see what it might look like.</p>
+
+<p><strong>GameOperator.java</strong></p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">GameOperator</span>
+<span class="lineno"> 2</span>     <span class="c1">// other methods...</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span>     <span class="kd">public</span> <span class="n">Game</span> <span class="nf">movePeg</span><span class="o">(</span><span class="n">Game</span> <span class="n">game</span><span class="o">,</span> <span class="n">Peg</span> <span class="n">pegWithNewPosition</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 5</span>         <span class="n">validateMove</span><span class="o">(</span><span class="n">game</span><span class="o">,</span> <span class="n">pegWithNewPosition</span><span class="o">);</span>
+<span class="lineno"> 6</span>         <span class="n">Game</span> <span class="n">newGame</span> <span class="o">=</span> <span class="n">game</span><span class="o">.</span><span class="na">movePeg</span><span class="o">(</span><span class="n">pegWithNewPosition</span><span class="o">);</span>
+<span class="lineno"> 7</span>         <span class="n">gameRepository</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">newGame</span><span class="o">);</span>
+<span class="lineno"> 8</span>         <span class="k">return</span> <span class="n">newGame</span><span class="o">;</span>
+<span class="lineno"> 9</span>     <span class="o">}</span>
+<span class="lineno">10</span> <span class="o">}</span></code></pre></div>
+
+<p>The steps are almost methodical now:</p>
+
+<ol>
+  <li>Validate the move.</li>
+  <li>Move the peg.</li>
+  <li>Persist the new game state.</li>
+  <li>Return the new game state.</li>
+</ol>
+
+<p>All of the validation has been moved into its own method, moving the peg is facilitated by a method on the game itself (this method used to exist on the <code>Board</code> class), and everything else is the same.</p>
+
+<h2 id="simplifying-validation">Simplifying Validation</h2>
+
+<p>There are a handful of other small changes that have been made to Pegger but none have them have much substance to them besides the changes to validation. The previous section showed that all of the validation was consolidated down into a single method. That means we should be doing more validation now, right?</p>
+
+<p>Nope! Because of how we have reorganized the model there is actually <em>less</em> validation since we simply can’t get ourselves into certain sticky situations. Finding the peg that needs to be checked has also been simplified now that we’re thinking in terms of pegs instead of turns too through the introduction of <code>PegRepository</code>.</p>
+
+<p>Here’s what the validation looks like now:</p>
+
+<p><strong>GameOperator.java</strong></p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">GameOperator</span> <span class="o">{</span>
+<span class="lineno"> 2</span>     <span class="c1">// other methods...</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span>     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">validateMove</span><span class="o">(</span><span class="n">Game</span> <span class="n">game</span><span class="o">,</span> <span class="n">Peg</span> <span class="n">pegWithNewPosition</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 5</span>         <span class="k">if</span> <span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">isGameOver</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno"> 6</span>             <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidMoveException</span><span class="o">(</span><span class="s">&quot;The game is over. No additional pegs may be moved.&quot;</span><span class="o">);</span>
+<span class="lineno"> 7</span>         <span class="o">}</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>         <span class="n">Peg</span> <span class="n">pegWithOldPosition</span> <span class="o">=</span> <span class="n">pegRepository</span><span class="o">.</span><span class="na">getById</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getGameId</span><span class="o">(),</span> <span class="n">pegWithNewPosition</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()).</span><span class="na">orNull</span><span class="o">();</span>
+<span class="lineno">10</span>         <span class="k">if</span> <span class="o">(</span><span class="n">pegWithOldPosition</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">11</span>             <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidMoveException</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Peg %d does not exist.&quot;</span><span class="o">,</span> <span class="n">pegWithNewPosition</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()));</span>
+<span class="lineno">12</span>         <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">pegWithOldPosition</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">!=</span> <span class="n">pegWithNewPosition</span><span class="o">.</span><span class="na">getType</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno">13</span>             <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidMoveException</span><span class="o">(</span><span class="s">&quot;Peg type cannot be changed.&quot;</span><span class="o">);</span>
+<span class="lineno">14</span>         <span class="o">}</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span>         <span class="n">Position</span> <span class="n">toPosition</span> <span class="o">=</span> <span class="n">pegWithNewPosition</span><span class="o">.</span><span class="na">getPosition</span><span class="o">();</span>
+<span class="lineno">17</span>         <span class="k">if</span> <span class="o">(</span><span class="n">toPosition</span><span class="o">.</span><span class="na">getColumn</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">toPosition</span><span class="o">.</span><span class="na">getColumn</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">Game</span><span class="o">.</span><span class="na">COLUMNS</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">18</span>             <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidMoveException</span><span class="o">(</span><span class="s">&quot;Peg cannot be moved to that column.&quot;</span><span class="o">);</span>
+<span class="lineno">19</span>         <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">toPosition</span><span class="o">.</span><span class="na">getRow</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">toPosition</span><span class="o">.</span><span class="na">getRow</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">Game</span><span class="o">.</span><span class="na">ROWS</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">20</span>             <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidMoveException</span><span class="o">(</span><span class="s">&quot;Peg cannot be moved to that row.&quot;</span><span class="o">);</span>
+<span class="lineno">21</span>         <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">toPosition</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">pegWithOldPosition</span><span class="o">.</span><span class="na">getPosition</span><span class="o">()))</span> <span class="o">{</span>
+<span class="lineno">22</span>             <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidMoveException</span><span class="o">(</span><span class="s">&quot;The peg must be moved.&quot;</span><span class="o">);</span>
+<span class="lineno">23</span>         <span class="o">}</span>
+<span class="lineno">24</span> 
+<span class="lineno">25</span>         <span class="k">for</span> <span class="o">(</span><span class="n">Peg</span> <span class="n">peg</span> <span class="o">:</span> <span class="n">game</span><span class="o">.</span><span class="na">getPegs</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno">26</span>             <span class="k">if</span> <span class="o">(</span><span class="n">toPosition</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">peg</span><span class="o">.</span><span class="na">getPosition</span><span class="o">()))</span> <span class="o">{</span>
+<span class="lineno">27</span>                 <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidMoveException</span><span class="o">(</span><span class="s">&quot;Another peg is in that position.&quot;</span><span class="o">);</span>
+<span class="lineno">28</span>             <span class="o">}</span>
+<span class="lineno">29</span>         <span class="o">}</span>
+<span class="lineno">30</span> 
+<span class="lineno">31</span>         <span class="k">if</span> <span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getLastPegMoved</span><span class="o">().</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno">32</span>             <span class="n">Peg</span> <span class="n">lastPegMoved</span> <span class="o">=</span> <span class="n">game</span><span class="o">.</span><span class="na">getLastPegMoved</span><span class="o">().</span><span class="na">get</span><span class="o">();</span>
+<span class="lineno">33</span>             <span class="k">if</span> <span class="o">(</span><span class="n">lastPegMoved</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()</span> <span class="o">==</span> <span class="n">pegWithNewPosition</span><span class="o">.</span><span class="na">getPegId</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">lastPegMoved</span><span class="o">.</span><span class="na">getPosition</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">toPosition</span><span class="o">))</span> <span class="o">{</span>
+<span class="lineno">34</span>                 <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidMoveException</span><span class="o">(</span><span class="s">&quot;This peg cannot be returned to its previous location.&quot;</span><span class="o">);</span>
+<span class="lineno">35</span>             <span class="o">}</span>
+<span class="lineno">36</span>         <span class="o">}</span>
+<span class="lineno">37</span>     <span class="o">}</span>
+<span class="lineno">38</span> <span class="o">}</span></code></pre></div>
+
+<p>And here’s the handy in-memory <code>PegRepository</code>:</p>
+
+<p><strong>PegRepository.java</strong></p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="nd">@Repository</span>
+<span class="lineno"> 2</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PegRepository</span> <span class="o">{</span>
+<span class="lineno"> 3</span>     <span class="kd">private</span> <span class="kd">final</span> <span class="n">GameRepository</span> <span class="n">gameRepository</span><span class="o">;</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span>     <span class="nd">@Inject</span>
+<span class="lineno"> 6</span>     <span class="kd">public</span> <span class="nf">PegRepository</span><span class="o">(</span><span class="n">GameRepository</span> <span class="n">gameRepository</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 7</span>         <span class="k">this</span><span class="o">.</span><span class="na">gameRepository</span> <span class="o">=</span> <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">gameRepository</span><span class="o">);</span>
+<span class="lineno"> 8</span>     <span class="o">}</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span>     <span class="kd">public</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Peg</span><span class="o">&gt;</span> <span class="nf">getById</span><span class="o">(</span><span class="n">UUID</span> <span class="n">gameId</span><span class="o">,</span> <span class="kt">int</span> <span class="n">pegId</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">11</span>         <span class="n">Game</span> <span class="n">game</span> <span class="o">=</span> <span class="n">gameRepository</span><span class="o">.</span><span class="na">getById</span><span class="o">(</span><span class="n">gameId</span><span class="o">).</span><span class="na">orNull</span><span class="o">();</span>
+<span class="lineno">12</span>         <span class="k">return</span> <span class="n">game</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">Optional</span><span class="o">.&lt;</span><span class="n">Peg</span><span class="o">&gt;</span><span class="n">absent</span><span class="o">()</span> <span class="o">:</span> <span class="n">game</span><span class="o">.</span><span class="na">getPeg</span><span class="o">(</span><span class="n">pegId</span><span class="o">);</span>
+<span class="lineno">13</span>     <span class="o">}</span>
+<span class="lineno">14</span> <span class="o">}</span></code></pre></div>
+
+<p>By making the pegs on our game a map we not only eliminated the possibility of two pegs with the same ID from being used in a game, we also made it very quick and easy to look up individual pegs within a game.</p>
+
+<h2 id="final-thoughts">Final Thoughts</h2>
+
+<p>I’m pleasantly surprised to report that even in as simple of a game as Pegger, the component-based API has a couple of benefits over an equivalent turn-based API. We saw both the model for the game and the validation became even simpler. As I develop more games I am going to use a component-base API even if it seems that a turn-based API may fit the game better.</p>
+
+<p>We still have a lot to explore with Pegger’s implementation. I would like to swap out the hot-seat version of the game for something that allows two users on two different computers to go head-to-head. I need to persist the games in some sort of database. I also need to slap a UI on this game because sheesh, playing the game in Postman is pretty rough.</p>
+
+<p>I’ll leave it at that. You’ll just have to come back next week to see what’s next!</p>
+</section>
+            <p class="signature"> - Erik</p>
+        </article>
+    </div>
+</div>
+
+        </div>
+        <footer class="site-footer">
+	<p class="text">Copyright © 2015 Technical Rex, Inc. Re-use with attribution encouraged. All other rights reserved.</p>
+</footer>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62666024-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+    </div>
+    <img id="rex" src="/technicalrex.com/img/rex/rex-main.png"></img>
+</body>
+</html>
