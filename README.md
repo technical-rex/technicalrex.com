@@ -1,2 +1,2 @@
-# technical-rex.github.io
+# TechnicalRex.com
 Technical Rex web site hosted using GitHub Pages

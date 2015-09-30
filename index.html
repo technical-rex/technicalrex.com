@@ -1,0 +1,55 @@
+---
+layout: default
+---
+{% for post in paginator.posts %}
+<div class="underlay">
+    <div class="content">
+        <div class="teaser">
+            <header>
+                <h1>
+                    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                </h1>
+                <p class="meta">
+                    Posted on {{ post.date | date: "%B %-d, %Y" }}
+                    {% if post.author %} by {{ site.authors[post.author].name }}{% endif %}
+                </p>
+            </header>
+            <main>
+                {{ post.excerpt }}
+            </main>
+            <footer>
+                <a class="button" href="{{ post.url | prepend: site.baseurl }}">Read Moar...</a>
+            </footer>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% if paginator.total_pages > 1 %}
+<div class="underlay pagination">
+    <div class="content">
+        <span class="nav-button">
+            {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="button" >
+                <i class="fa fa-chevron-left"></i> BACK
+            </a>
+            {% else %}
+            <p class="no-nav" >
+                <i class="fa fa-chevron-left"></i> BACK
+            </p>
+            {% endif %}
+        </span>
+        <span class="nav-button">
+            {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="button" >
+                MOAR <i class="fa fa-chevron-right"></i>
+            </a>
+            {% else %}
+            <p class="no-nav" >
+                MOAR <i class="fa fa-chevron-right"></i>
+            </p>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endif %}

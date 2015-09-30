@@ -1,0 +1,4 @@
+@mixin link-hover($base-color) {
+  text-decoration: none;
+  color: darken($base-color, 10%);
+}

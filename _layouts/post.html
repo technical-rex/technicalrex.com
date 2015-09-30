@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<div class="underlay">
+    <div class="content">
+        <article>
+            <header class="post-header">
+                <h1 class="title">{{ page.title | replace: " - ", ":<br/>" }}</h1>
+                <p class="about">
+                    Posted {% if page.author %} by {{ site.authors[page.author].name }}{% endif %}
+                    on {{ page.date | date: "%B %-d, %Y" }}
+                </p>
+            </header>
+            <section class="post-content">{{ content }}</section>
+            <p class="signature">{% if page.author %} - {{ site.authors[page.author].signature }}{% endif %}</p>
+        </article>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{% if include.align == "left" %}
+{% assign divStyle = "image-left" %}
+{% elsif include.align == "right" %}
+{% assign divStyle = "image-right" %}
+{% else %}
+{% assign divStyle = "image-center" %}
+{% endif %}
+
+{% if include.shadow == "none" %}
+{% assign imgStyle = "no-shadow" %}
+{% else %}
+{% assign imgStyle = "shadow" %}
+{% endif %}
+
+<div class="{{ divStyle }}">
+    {% if include.link %}<a href="{{ include.link }}">{% endif %}
+    <img src="{{ include.src | prepend: site.baseurl }}" class="{{ imgStyle }}"/>
+    {% if include.link %}</a>{% endif %}
+    {{ include.caption }}
+</div>

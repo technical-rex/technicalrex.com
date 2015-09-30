@@ -1,0 +1,18 @@
+header {
+    .tag-title {
+        text-align: center;
+        margin-top: 0.2em;
+    }
+
+    .tag-description {
+        font-size: 0.9em;
+    }
+
+    .tag-sort {
+        text-align: center;
+        font-style: italic;
+        color: lighten($text-color, 20%);
+        margin-bottom: 0;
+        font-size: 0.7em;
+    }
+}
