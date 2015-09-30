@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Technical Rex</title>
-    <atom:link href="http://technical-rex.github.io/technicalrex.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <link>http://technical-rex.github.io/technicalrex.com/</link>
+    <atom:link href="http://technicalrex.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>http://technicalrex.com/</link>
     <description>A site about programming, business, and dinosaurs. ROAR!</description>
-    <pubDate>Wed, 30 Sep 2015 12:06:56 -0400</pubDate>
+    <pubDate>Wed, 30 Sep 2015 14:30:28 -0400</pubDate>
     
       <item>
         <title>Performance Playground - Jackson vs. Protocol Buffers, Part 3</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3</guid>
+        <link>http://technicalrex.com/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3</link>
+        <guid isPermaLink="true">http://technicalrex.com/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3</guid>
         <description>&lt;p&gt;Writing an apples-to-apples benchmark comparison of two very different serialization frameworks is apparently hard.&lt;/p&gt;
 
 &lt;p&gt;In my first attempt to compare serialization performance of Jackson JSON and Google Protocol Buffers, there wasn’t a huge difference. After some suggestions, I made some revisions and found Jackson to be much faster than Protocol Buffers.&lt;/p&gt;
@@ -27,7 +27,7 @@
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/performance-playground/convert-to-string-profiler-results.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/performance-playground/convert-to-string-profiler-results.png&quot; class=&quot;shadow&quot; /&gt;
     
     
 &lt;/div&gt;
@@ -46,7 +46,7 @@
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/performance-playground/convert-to-millis-profiler-results.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/performance-playground/convert-to-millis-profiler-results.png&quot; class=&quot;shadow&quot; /&gt;
     
     
 &lt;/div&gt;
@@ -103,8 +103,8 @@ Converting dates to strings: Bad.&lt;/p&gt;
     
       <item>
         <title>Making Paper Rockets</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2015/06/17/making-paper-rockets</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2015/06/17/making-paper-rockets</guid>
+        <link>http://technicalrex.com/2015/06/17/making-paper-rockets</link>
+        <guid isPermaLink="true">http://technicalrex.com/2015/06/17/making-paper-rockets</guid>
         <description>&lt;p&gt;Today I spent a few hours learning how to create a simple graphic that looks like it was made from little pieces of construction paper.&lt;/p&gt;
 
 &lt;p&gt;I’m happy enough with the results that I thought I should share.&lt;/p&gt;
@@ -127,7 +127,7 @@ Converting dates to strings: Bad.&lt;/p&gt;
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/rockets/gimp-pattern-folders.png&quot; class=&quot;no-shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/rockets/gimp-pattern-folders.png&quot; class=&quot;no-shadow&quot; /&gt;
     
     
 &lt;/div&gt;
@@ -142,7 +142,7 @@ Converting dates to strings: Bad.&lt;/p&gt;
 
 &lt;div class=&quot;image-right&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/rockets/svg-rocket.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/rockets/svg-rocket.png&quot; class=&quot;shadow&quot; /&gt;
     
     
 &lt;/div&gt;
@@ -163,7 +163,7 @@ Converting dates to strings: Bad.&lt;/p&gt;
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/rockets/gimpimportsvg.png&quot; class=&quot;no-shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/rockets/gimpimportsvg.png&quot; class=&quot;no-shadow&quot; /&gt;
     
     
 &lt;/div&gt;
@@ -174,7 +174,7 @@ Converting dates to strings: Bad.&lt;/p&gt;
 
 &lt;div class=&quot;image-right&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/rockets/gimppaperfilloptions.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/rockets/gimppaperfilloptions.png&quot; class=&quot;shadow&quot; /&gt;
     
     
 &lt;/div&gt;
@@ -198,7 +198,7 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/rockets/paper_rocket.png&quot; class=&quot;no-shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/rockets/paper_rocket.png&quot; class=&quot;no-shadow&quot; /&gt;
     
     
 &lt;/div&gt;
@@ -209,8 +209,8 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
     
       <item>
         <title>This Dino is Getting a Makeover!</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2015/06/10/this-dino-is-getting-a-makeover</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2015/06/10/this-dino-is-getting-a-makeover</guid>
+        <link>http://technicalrex.com/2015/06/10/this-dino-is-getting-a-makeover</link>
+        <guid isPermaLink="true">http://technicalrex.com/2015/06/10/this-dino-is-getting-a-makeover</guid>
         <description>&lt;p&gt;Just a quick heads-up, the site will be getting a facelift over the next few weeks!&lt;/p&gt;
 
 &lt;p&gt;As part of my effort to learn about &lt;a href=&quot;https://github.com&quot;&gt;GitHub&lt;/a&gt;, &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt;, &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;, &lt;a href=&quot;https://docs.shopify.com/themes/liquid-documentation/basics&quot;&gt;Liquid&lt;/a&gt;, and graphics/web design, I’ll be revamping the site while trying to make sure none of the links break.&lt;/p&gt;
@@ -228,8 +228,8 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
     
       <item>
         <title>Timecards Can Be Easy</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2015/06/04/timecards-can-be-easy</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2015/06/04/timecards-can-be-easy</guid>
+        <link>http://technicalrex.com/2015/06/04/timecards-can-be-easy</link>
+        <guid isPermaLink="true">http://technicalrex.com/2015/06/04/timecards-can-be-easy</guid>
         <description>&lt;p&gt;Today I submitted an extension to the Chrome web store. It helps employees who track time in ADP eTIME such as myself and my coworkers quickly find the projects they care about while avoiding the ones they don’t.&lt;/p&gt;
 
 &lt;p&gt;The extension works by letting an employee create a custom list of tracking codes that they typically use on their timecards. The codes in ADP are usually difficult to interpret so the extension also allows each code to be associated with a brief name.&lt;/p&gt;
@@ -244,7 +244,7 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/easyadp/normaladpinaction.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/easyadp/normaladpinaction.png&quot; class=&quot;shadow&quot; /&gt;
     
     Normal ADP Inaction
 &lt;/div&gt;
@@ -253,7 +253,7 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/easyadp/easyadpinaction.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/easyadp/easyadpinaction.png&quot; class=&quot;shadow&quot; /&gt;
     
     Easy ADP In Action
 &lt;/div&gt;
@@ -273,8 +273,8 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
     
       <item>
         <title>Giving Jar Unveiled at the Hatching</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2015/04/03/giving-jar-unveiled-at-the-hatching</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2015/04/03/giving-jar-unveiled-at-the-hatching</guid>
+        <link>http://technicalrex.com/2015/04/03/giving-jar-unveiled-at-the-hatching</link>
+        <guid isPermaLink="true">http://technicalrex.com/2015/04/03/giving-jar-unveiled-at-the-hatching</guid>
         <description>&lt;p&gt;Last week I pitched Giving Jar at &lt;a href=&quot;http://www.thehatching.org&quot;&gt;the Hatching&lt;/a&gt;, a local startup contest to encourage entrepreneurship in the Lansing area. I didn’t win the judge vote but I got a ton of applause and support from the audience.&lt;/p&gt;
 
 &lt;p&gt;I walked away feeling like Giving Jar needs to happen and I’m determined to give it my all to see that it does.&lt;/p&gt;
@@ -316,11 +316,11 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
     
       <item>
         <title>Performance Playground - Jackson vs. Protocol Buffers, Part 2</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2015/02/27/performance-playground-jackson-vs-protocol-buffers-part-2</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2015/02/27/performance-playground-jackson-vs-protocol-buffers-part-2</guid>
-        <description>&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; &lt;em&gt;&lt;a href=&quot;/technicalrex.com/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3&quot;&gt;Part 3&lt;/a&gt; is available and the tides have turned! Actually it turns out I had a bug in my benchmark that was skewing the Protocol Buffer results in a pretty major way.&lt;/em&gt;&lt;/p&gt;
+        <link>http://technicalrex.com/2015/02/27/performance-playground-jackson-vs-protocol-buffers-part-2</link>
+        <guid isPermaLink="true">http://technicalrex.com/2015/02/27/performance-playground-jackson-vs-protocol-buffers-part-2</guid>
+        <description>&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; &lt;em&gt;&lt;a href=&quot;/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3&quot;&gt;Part 3&lt;/a&gt; is available and the tides have turned! Actually it turns out I had a bug in my benchmark that was skewing the Protocol Buffer results in a pretty major way.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;In my &lt;a href=&quot;/technicalrex.com/2014/06/23/performance-playground-jackson-vs-protocol-buffers&quot;&gt;previous article&lt;/a&gt; comparing the performance of FasterXML’s Jackson JSON serializer and Google’s Protocol Buffers, I concluded that the difference in speed is very small.&lt;/p&gt;
+&lt;p&gt;In my &lt;a href=&quot;/2014/06/23/performance-playground-jackson-vs-protocol-buffers&quot;&gt;previous article&lt;/a&gt; comparing the performance of FasterXML’s Jackson JSON serializer and Google’s Protocol Buffers, I concluded that the difference in speed is very small.&lt;/p&gt;
 
 &lt;p&gt;Wow was I wrong!&lt;/p&gt;
 
@@ -344,7 +344,7 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
 
 &lt;div class=&quot;image-right&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/afterburner.jpg&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/afterburner.jpg&quot; class=&quot;shadow&quot; /&gt;
     
     
 &lt;/div&gt;
@@ -485,11 +485,11 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
     
       <item>
         <title>Stateless Authentication with Spring Security and JWT</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2015/02/20/stateless-authentication-with-spring-security-and-jwt</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2015/02/20/stateless-authentication-with-spring-security-and-jwt</guid>
+        <link>http://technicalrex.com/2015/02/20/stateless-authentication-with-spring-security-and-jwt</link>
+        <guid isPermaLink="true">http://technicalrex.com/2015/02/20/stateless-authentication-with-spring-security-and-jwt</guid>
         <description>&lt;p&gt;&lt;em&gt;Update:&lt;/em&gt; The code used for this tutorial is now &lt;a href=&quot;https://github.com/technical-rex/spring-security-jwt&quot;&gt;available on GitHub&lt;/a&gt;! Peruse, fork, and clone as you see fit.&lt;/p&gt;
 
-&lt;p&gt;As part of my lifelong study of REST APIs I have been learning more about &lt;a href=&quot;http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3&quot;&gt;avoiding shared state&lt;/a&gt; between the client and server. This week in particular I have been learning about stateless authentication and attempting to implement it in a skeleton Java app based on my &lt;a href=&quot;/technicalrex.com/2014/08/11/creating-a-jersey-app-on-google-app-engine&quot;&gt;Jersey on Google AppEngine tutorial&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As part of my lifelong study of REST APIs I have been learning more about &lt;a href=&quot;http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3&quot;&gt;avoiding shared state&lt;/a&gt; between the client and server. This week in particular I have been learning about stateless authentication and attempting to implement it in a skeleton Java app based on my &lt;a href=&quot;/2014/08/11/creating-a-jersey-app-on-google-app-engine&quot;&gt;Jersey on Google AppEngine tutorial&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 
@@ -503,7 +503,7 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/cookiemonster-nocookiesforyou.jpg&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/cookiemonster-nocookiesforyou.jpg&quot; class=&quot;shadow&quot; /&gt;
     
     No Cookies for You!
 &lt;/div&gt;
@@ -837,8 +837,8 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
     
       <item>
         <title>New Business Idea - Contribution Jars</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2015/02/11/new-business-idea-contribution-jars</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2015/02/11/new-business-idea-contribution-jars</guid>
+        <link>http://technicalrex.com/2015/02/11/new-business-idea-contribution-jars</link>
+        <guid isPermaLink="true">http://technicalrex.com/2015/02/11/new-business-idea-contribution-jars</guid>
         <description>&lt;p&gt;You have probably heard of a swear jar. If you’re a software developer then maybe you’ve worked somewhere that you put a buck in a box each time you break the nightly build. In either situation, when the jar or box is full you take that money and do something good with it like go on a vacation or buy your team donuts.&lt;/p&gt;
 
 &lt;p&gt;Now imagine a phone app that would allow you to create a jar and put money into it. With this app you have a swear jar that doesn’t take up any space and you can put money in it whenever and wherever you want.&lt;/p&gt;
@@ -882,7 +882,7 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/yourjarsprototype.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/yourjarsprototype.png&quot; class=&quot;shadow&quot; /&gt;
     
     Contribution Jar Mock-Up
 &lt;/div&gt;
@@ -898,13 +898,13 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
     
       <item>
         <title>The New Digs</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2015/01/20/the-new-digs</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2015/01/20/the-new-digs</guid>
+        <link>http://technicalrex.com/2015/01/20/the-new-digs</link>
+        <guid isPermaLink="true">http://technicalrex.com/2015/01/20/the-new-digs</guid>
         <description>&lt;p&gt;Last week I signed a coworking agreement at the &lt;a href=&quot;http://www.neocenter.org&quot;&gt;NEO Center&lt;/a&gt; in Lansing, Michigan!&lt;/p&gt;
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/neocentertopfloor.jpg&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/neocentertopfloor.jpg&quot; class=&quot;shadow&quot; /&gt;
     
     Here&#39;s to new room to grow.
 &lt;/div&gt;
@@ -920,8 +920,8 @@ e. Affected Area: Fill whole selection&lt;/li&gt;
     
       <item>
         <title>Recover Text Data from an iPhone Backup Without Restoring</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2014/10/31/recover-text-data-from-an-iphone-backup-without-restoring</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2014/10/31/recover-text-data-from-an-iphone-backup-without-restoring</guid>
+        <link>http://technicalrex.com/2014/10/31/recover-text-data-from-an-iphone-backup-without-restoring</link>
+        <guid isPermaLink="true">http://technicalrex.com/2014/10/31/recover-text-data-from-an-iphone-backup-without-restoring</guid>
         <description>&lt;p&gt;When I upgraded to the &lt;a href=&quot;http://www.apple.com/iphone-6/&quot;&gt;iPhone 6 Plus&lt;/a&gt; I had this brilliant idea to start from a blank slate on the phone and add apps one by one as I needed them instead of restoring from a backup. In theory this was a good idea but I have since discovered that practically all of my settings and data for the various third-party apps that I had installed would no longer be available to me!&lt;/p&gt;
 
 &lt;p&gt;In particular, I had used a list app to keep track of some To Dos, Books, Board Games, Home Improvements, and so on that would be nice to have access to once again. I wanted these lists pretty badly, but not so much that I would risk restoring an old backup onto my new phone. As it turns out, &lt;a href=&quot;http://stackoverflow.com/questions/5053675/iphone-simulator-is-it-possible-to-restore-a-real-iphone-backup-to-it&quot;&gt;restoring a backup to the iPhone simulator&lt;/a&gt; doesn’t really work either.&lt;/p&gt;
@@ -1000,7 +1000,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/iphone-recover/openanyway.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/iphone-recover/openanyway.png&quot; class=&quot;shadow&quot; /&gt;
     
     Open Anyway
 &lt;/div&gt;
@@ -1015,7 +1015,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/iphone-recover/dbstructure.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/iphone-recover/dbstructure.png&quot; class=&quot;shadow&quot; /&gt;
     
     DB Structure
 &lt;/div&gt;
@@ -1030,7 +1030,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/iphone-recover/listdata.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/iphone-recover/listdata.png&quot; class=&quot;shadow&quot; /&gt;
     
     List Data
 &lt;/div&gt;
@@ -1041,7 +1041,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/iphone-recover/filterdata.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/iphone-recover/filterdata.png&quot; class=&quot;shadow&quot; /&gt;
     
     Filter Data
 &lt;/div&gt;
@@ -1050,7 +1050,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/iphone-recover/founddata.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/iphone-recover/founddata.png&quot; class=&quot;shadow&quot; /&gt;
     
     Found Data
 &lt;/div&gt;
@@ -1063,7 +1063,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/iphone-recover/exporttable.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/iphone-recover/exporttable.png&quot; class=&quot;shadow&quot; /&gt;
     
     Export Table
 &lt;/div&gt;
@@ -1075,15 +1075,15 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
     
       <item>
         <title>Pegger is Live!</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2014/10/17/pegger-is-live</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2014/10/17/pegger-is-live</guid>
+        <link>http://technicalrex.com/2014/10/17/pegger-is-live</link>
+        <guid isPermaLink="true">http://technicalrex.com/2014/10/17/pegger-is-live</guid>
         <description>&lt;p&gt;The finishing touches have been made and I think it’s time to call Pegger &lt;a href=&quot;http://en.wikipedia.org/wiki/Principle_of_good_enough&quot;&gt;“good enough”&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;You can play Pegger at it’s permanent home: &lt;a href=&quot;http://pegger.technicalrex.com&quot;&gt;pegger.technicalrex.com&lt;/a&gt;. If you want to learn more about those finishing touches, read on!&lt;/p&gt;
 
 &lt;h2 id=&quot;user-experience-tweaks&quot;&gt;User Experience Tweaks&lt;/h2&gt;
 
-&lt;p&gt;After the &lt;a href=&quot;/technicalrex.com/2014/10/01/using-bootstrap-and-angularjs-for-a-simple-turn-based-game&quot;&gt;previous tutorial&lt;/a&gt; Pegger was still pretty rough around the edges. The game was playable but only if you could figure out the rules by guessing or were brave enough to check out the source code or README on &lt;a href=&quot;https://github.com/egillespie/pegger&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After the &lt;a href=&quot;/2014/10/01/using-bootstrap-and-angularjs-for-a-simple-turn-based-game&quot;&gt;previous tutorial&lt;/a&gt; Pegger was still pretty rough around the edges. The game was playable but only if you could figure out the rules by guessing or were brave enough to check out the source code or README on &lt;a href=&quot;https://github.com/egillespie/pegger&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Besides a lack of rules there were a few broken links and as a user on &lt;a href=&quot;http://www.reddit.com/r/programming/comments/2hzoml/a_simple_turnbased_game_client_using_bootstrap/&quot;&gt;Reddit&lt;/a&gt; pointed out, it was unclear that the white circles were holes and not interactive.&lt;/p&gt;
 
@@ -1347,7 +1347,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 &lt;ol&gt;
   &lt;li&gt;If you want to request a feature or change to Pegger, &lt;a href=&quot;https://github.com/egillespie/pegger/issues&quot;&gt;create an Issue on GitHub&lt;/a&gt;.&lt;/li&gt;
   &lt;li&gt;If you want to contact me privately, &lt;a href=&quot;mailto:erik.gillespie@technicalrex.com&quot;&gt;email me&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;If you want to ask general questions or provide feedback, comment on the most appropriate article in this &lt;a href=&quot;/technicalrex.com/tag/pegger/&quot;&gt;tutorial series&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;If you want to ask general questions or provide feedback, comment on the most appropriate article in this &lt;a href=&quot;/tag/pegger/&quot;&gt;tutorial series&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;I will still be writing articles here too, so please stop by from time to time! Who knows, maybe I will start up a second Pegger series and talk about some more advanced topics. :)&lt;/p&gt;
@@ -1357,8 +1357,8 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
     
       <item>
         <title>A Simple Turn-Based Game Client Using Bootstrap and AngularJS</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2014/10/01/using-bootstrap-and-angularjs-for-a-simple-turn-based-game</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2014/10/01/using-bootstrap-and-angularjs-for-a-simple-turn-based-game</guid>
+        <link>http://technicalrex.com/2014/10/01/using-bootstrap-and-angularjs-for-a-simple-turn-based-game</link>
+        <guid isPermaLink="true">http://technicalrex.com/2014/10/01/using-bootstrap-and-angularjs-for-a-simple-turn-based-game</guid>
         <description>&lt;p&gt;Having an HTTP API for a game is great but until players can visually interact with the game it really won’t be much fun to play. Below I will demonstrate how &lt;a href=&quot;http://getbootstrap.com&quot;&gt;Bootstrap&lt;/a&gt; and &lt;a href=&quot;https://angularjs.org&quot;&gt;AngularJS&lt;/a&gt; can be used to quickly make a simple (but pretty) interactive user interface for the game. To keep things simple, the game will be played in hot-seat style (both players will take turns in the game using the same computer and browser session).&lt;/p&gt;
 
 &lt;p&gt;If you haven’t been following this tutorial series, the name of the game is Pegger. If you would like to brush up on the rules and/or skip straight to the code, check the project out on &lt;a href=&quot;https://github.com/egillespie/pegger&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
@@ -1496,7 +1496,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;div class=&quot;image-center&quot;&gt;
     
-    &lt;img src=&quot;/technicalrex.com/img/posts/pegger/peggerfrontpage.png&quot; class=&quot;shadow&quot; /&gt;
+    &lt;img src=&quot;/img/posts/pegger/peggerfrontpage.png&quot; class=&quot;shadow&quot; /&gt;
     
     Pegger Home Page
 &lt;/div&gt;
@@ -1564,7 +1564,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;p&gt;The “/play” route that I have defined corresponds to the anchor tag in &lt;code&gt;home.html&lt;/code&gt; that links to “#/play”. When a user clicks the button the content of the jumbotron will be replaced with the content of &lt;code&gt;partials/board.html&lt;/code&gt; and the functionality for that view will be managed by the Pegger controller. I will show you the content of &lt;code&gt;board.html&lt;/code&gt; after the controller is defined, since it relies heavily on the attributes and functions made available in that controller’s scope.&lt;/p&gt;
 
-&lt;p&gt;The service is the next easiest piece to construct. This service parameterizes and calls the HTTP API that I created in an &lt;a href=&quot;/technicalrex.com/2014/09/15/pegger-as-a-component-based-api&quot;&gt;earlier article&lt;/a&gt; of this tutorial series. Besides the parameters to the API, the service also expects a caller to provide custom success and error handlers for the HTTP response.&lt;/p&gt;
+&lt;p&gt;The service is the next easiest piece to construct. This service parameterizes and calls the HTTP API that I created in an &lt;a href=&quot;/2014/09/15/pegger-as-a-component-based-api&quot;&gt;earlier article&lt;/a&gt; of this tutorial series. Besides the parameters to the API, the service also expects a caller to provide custom success and error handlers for the HTTP response.&lt;/p&gt;
 
 &lt;p&gt;I chose to use &lt;code&gt;$http&lt;/code&gt; instead of &lt;code&gt;$resource&lt;/code&gt; to demonstrate the hierarchical structure of the API. I will probably switch to &lt;code&gt;$resource&lt;/code&gt; at some point in the future since it is easier to read and offers some nice higher level conveniences such as parameterized URLs.&lt;/p&gt;
 
@@ -1810,9 +1810,9 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
     
       <item>
         <title>Pegger as a Component-Based API</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2014/09/15/pegger-as-a-component-based-api</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2014/09/15/pegger-as-a-component-based-api</guid>
-        <description>&lt;p&gt;&lt;a href=&quot;/technicalrex.com/2014/09/09/peggers-turn-based-api-in-java&quot;&gt;Previously&lt;/a&gt; I implemented Pegger as a &lt;a href=&quot;/technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game&quot;&gt;turn-based&lt;/a&gt; API using Java. After I finished the API I felt as if there were a few things about the implementation and overall data model that were a little clunky.&lt;/p&gt;
+        <link>http://technicalrex.com/2014/09/15/pegger-as-a-component-based-api</link>
+        <guid isPermaLink="true">http://technicalrex.com/2014/09/15/pegger-as-a-component-based-api</guid>
+        <description>&lt;p&gt;&lt;a href=&quot;/2014/09/09/peggers-turn-based-api-in-java&quot;&gt;Previously&lt;/a&gt; I implemented Pegger as a &lt;a href=&quot;/2014/09/02/designing-a-rest-api-for-a-turn-based-game&quot;&gt;turn-based&lt;/a&gt; API using Java. After I finished the API I felt as if there were a few things about the implementation and overall data model that were a little clunky.&lt;/p&gt;
 
 &lt;p&gt;The &lt;em&gt;Board&lt;/em&gt; seemed unnecessary. Accessing the pegs to validate and apply a turn required drilling down to the pegs by going through the board. This caused lots of object graph navigation. Since the board size can’t change it also seemed silly to create an entity to hold those unchanging board dimensions.&lt;/p&gt;
 
@@ -2209,9 +2209,9 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
     
       <item>
         <title>Pegger&#39;s Turn-Based API in Java</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2014/09/09/peggers-turn-based-api-in-java</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2014/09/09/peggers-turn-based-api-in-java</guid>
-        <description>&lt;p&gt;At the end of my &lt;a href=&quot;/technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game&quot;&gt;last article&lt;/a&gt; I came to the conclusion that a turn-based API would probably best suit the game Pegger. This week I decided to implement that API in Java to see how everything would unfold.&lt;/p&gt;
+        <link>http://technicalrex.com/2014/09/09/peggers-turn-based-api-in-java</link>
+        <guid isPermaLink="true">http://technicalrex.com/2014/09/09/peggers-turn-based-api-in-java</guid>
+        <description>&lt;p&gt;At the end of my &lt;a href=&quot;/2014/09/02/designing-a-rest-api-for-a-turn-based-game&quot;&gt;last article&lt;/a&gt; I came to the conclusion that a turn-based API would probably best suit the game Pegger. This week I decided to implement that API in Java to see how everything would unfold.&lt;/p&gt;
 
 &lt;h2 id=&quot;design-and-coding-conventions&quot;&gt;Design and Coding Conventions&lt;/h2&gt;
 
@@ -2228,7 +2228,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;h2 id=&quot;create-the-entities&quot;&gt;Create the Entities&lt;/h2&gt;
 
-&lt;p&gt;Now that I have some general coding guidelines it’s time to start implementing the entities that will reflect the &lt;a href=&quot;/technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json&quot;&gt;game model&lt;/a&gt; that I’m aiming for.&lt;/p&gt;
+&lt;p&gt;Now that I have some general coding guidelines it’s time to start implementing the entities that will reflect the &lt;a href=&quot;/2014/08/26/modeling-a-turn-based-game-with-json&quot;&gt;game model&lt;/a&gt; that I’m aiming for.&lt;/p&gt;
 
 &lt;p&gt;Pegger will require a &lt;em&gt;Game&lt;/em&gt; entity that contains a representation of the last &lt;em&gt;Turn&lt;/em&gt; and the state of the &lt;em&gt;Board&lt;/em&gt;. The Board will have a set of &lt;em&gt;Peg&lt;/em&gt;s which will each have a &lt;em&gt;Position&lt;/em&gt;. To satisfy the entities’ dependencies on other entities, I wrote these classes in reverse order.&lt;/p&gt;
 
@@ -2732,9 +2732,9 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
     
       <item>
         <title>Designing a REST API for a Turn-Based Game</title>
-        <link>http://technical-rex.github.io/technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game</link>
-        <guid isPermaLink="true">http://technical-rex.github.io/technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game</guid>
-        <description>&lt;p&gt;Previously, we created a &lt;a href=&quot;/technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json&quot;&gt;JSON model&lt;/a&gt; for Pegger. Now it’s time to come up with an API that HTTP clients can use to interact with our game.&lt;/p&gt;
+        <link>http://technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game</link>
+        <guid isPermaLink="true">http://technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game</guid>
+        <description>&lt;p&gt;Previously, we created a &lt;a href=&quot;/2014/08/26/modeling-a-turn-based-game-with-json&quot;&gt;JSON model&lt;/a&gt; for Pegger. Now it’s time to come up with an API that HTTP clients can use to interact with our game.&lt;/p&gt;
 
 &lt;p&gt;First, let’s consider two of the basic facets of turn-based games:&lt;/p&gt;
 
@@ -2753,7 +2753,7 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 
 &lt;p&gt;Thinking of these APIs as HTTP endpoints, both of these approaches share a common root: &lt;code&gt;/games/{gameId}&lt;/code&gt;. Beneath the game resource is where the two techniques diverge and their respective strengths and weaknesses become apparent.&lt;/p&gt;
 
-&lt;p&gt;Before we explore each approach in more depth, let’s review a snippet of the JSON model that was developed in the &lt;a href=&quot;/technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json&quot;&gt;previous article&lt;/a&gt;. We should be able to use this model regardless of which API technique is chosen.&lt;/p&gt;
+&lt;p&gt;Before we explore each approach in more depth, let’s review a snippet of the JSON model that was developed in the &lt;a href=&quot;/2014/08/26/modeling-a-turn-based-game-with-json&quot;&gt;previous article&lt;/a&gt;. We should be able to use this model regardless of which API technique is chosen.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;s2&quot;&gt;&amp;quot;gameId&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8623847623&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;

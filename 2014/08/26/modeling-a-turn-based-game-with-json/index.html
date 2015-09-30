@@ -7,20 +7,20 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	<meta http-equiv="X-Frame-Options" content="sameorigin">
 
-	<link rel="stylesheet" href="/technicalrex.com/css/main.css">
+	<link rel="stylesheet" href="/css/main.css">
 
-	<link rel="canonical" href="http://technical-rex.github.io/technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json">
+	<link rel="canonical" href="http://technicalrex.com/2014/08/26/modeling-a-turn-based-game-with-json">
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
 
 	<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-<!--[if IE]><link rel="shortcut icon" href="/technicalrex.com/img/icons/favicon.ico"><![endif]-->
+<!--[if IE]><link rel="shortcut icon" href="/img/icons/favicon.ico"><![endif]-->
 
 <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
-<link rel="apple-touch-icon" href="/technicalrex.com/img/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png">
 
 <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
-<link rel="icon" href="/technicalrex.com/img/icons/favicon.png">
+<link rel="icon" href="/img/icons/favicon.png">
 
 </head>
 
@@ -29,7 +29,7 @@
         <header class="site-header">
 	<div class="branding flow-nav">
 		<h1 class="site-title">
-			<a href="/technicalrex.com/">Technical Rex</a>
+			<a href="/">Technical Rex</a>
 		</h1>
 	</div>
 	<nav class="site-nav flow-nav">
@@ -37,13 +37,13 @@
 			
 			
 			<li class="flow-nav">
-				<a class="page-link" href="/technicalrex.com/about.html">About</a>
+				<a class="page-link" href="/about.html">About</a>
 			</li>
 			
 			
 			
 			<li class="flow-nav">
-				<a class="page-link" href="/technicalrex.com/apps.html">Apps</a>
+				<a class="page-link" href="/apps.html">Apps</a>
 			</li>
 			
 			
@@ -88,7 +88,7 @@
 			
 			
 			<li class="flow-nav">
-				<a href="/technicalrex.com/feed.xml" title="">
+				<a href="/feed.xml" title="">
 					<i class="fa fa-fw fa-rss"></i>
 				</a>
 			</li>
@@ -107,7 +107,7 @@
                     on August 26, 2014
                 </p>
             </header>
-            <section class="post-content"><p>Since my <a href="/technicalrex.com/2014/08/11/creating-a-jersey-app-on-google-app-engine">first tutorial</a> for building out my turn-based game, Pegger, I have been thinking a lot about how to design a REST API around it. But before I get too far into this article, let me first clear one thing up. When I say REST API I mean a Level 2 REST API according to the <a href="http://martinfowler.com/articles/richardsonMaturityModel.html#level2">Richardson Maturity Model</a>. My goal is to create an API that uses URIs as resources and HTTP verbs to interact with those resources. We will make use of other aspects of HTTP as well as use JSON to structure our payloads, but I have no intention to go full blown <a href="http://timelessrepo.com/haters-gonna-hateoas">HATEOAS</a> on this thing.</p>
+            <section class="post-content"><p>Since my <a href="/2014/08/11/creating-a-jersey-app-on-google-app-engine">first tutorial</a> for building out my turn-based game, Pegger, I have been thinking a lot about how to design a REST API around it. But before I get too far into this article, let me first clear one thing up. When I say REST API I mean a Level 2 REST API according to the <a href="http://martinfowler.com/articles/richardsonMaturityModel.html#level2">Richardson Maturity Model</a>. My goal is to create an API that uses URIs as resources and HTTP verbs to interact with those resources. We will make use of other aspects of HTTP as well as use JSON to structure our payloads, but I have no intention to go full blown <a href="http://timelessrepo.com/haters-gonna-hateoas">HATEOAS</a> on this thing.</p>
 
 <p>If you are unfamiliar with REST then I recommend you read up on some of the basics before getting to far into the rest of this tutorial series. REST (short for REpresentational State Transfer) is an <a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">architectural style</a> described by Roy Fielding in a dissertation that he wrote in 2000. If you don’t want to read a dissertation to learn about REST then I think Sam Berry’s <a href="https://docs.google.com/presentation/d/1xul-mmrOeilaFX733Dxgl6UYxB7X-bFy6JUqcEGipvM/edit#slide=id.p">Building a RESTish API</a> and Vinay Sahni’s <a href="http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api">Best Practices for a Pragmatic RESTful API</a> are good intros and practical takes on REST.</p>
 
@@ -121,7 +121,7 @@
 
 <div class="image-center">
     
-    <img src="/technicalrex.com/img/posts/pegger/peggerinitialstate.png" class="shadow" />
+    <img src="/img/posts/pegger/peggerinitialstate.png" class="shadow" />
     
     The starting peg arrangement.
 </div>
@@ -330,6 +330,6 @@ ga('send', 'pageview');
 
 
     </div>
-    <img id="rex" src="/technicalrex.com/img/rex/rex-main.png"></img>
+    <img id="rex" src="/img/rex/rex-main.png"></img>
 </body>
 </html>
