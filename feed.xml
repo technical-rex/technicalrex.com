@@ -5,7 +5,51 @@
     <atom:link href="http://technicalrex.com/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://technicalrex.com/</link>
     <description>A site about programming, business, and dinosaurs. ROAR!</description>
-    <pubDate>Wed, 30 Sep 2015 14:30:28 -0400</pubDate>
+    <pubDate>Wed, 30 Sep 2015 15:44:11 -0400</pubDate>
+    
+      <item>
+        <title>Meet the New Rex</title>
+        <link>http://technicalrex.com/meet-the-new-rex</link>
+        <guid isPermaLink="true">http://technicalrex.com/meet-the-new-rex</guid>
+        <description>&lt;p&gt;The big makeover of Technical Rex is finally here!&lt;/p&gt;
+
+&lt;p&gt;Visually, a lot has changed. I’m fairly bored with the “flat” look that every site has been going for lately so I came up with the idea of “paper flat”. It’s basically flat but all of the surfaces have a paper texture applied to them and there are slight shadows around all of the boxes.&lt;/p&gt;
+
+&lt;p&gt;Making the site look like it was crafted out of construction paper is my attempt to make Technical Rex stand out in appearance and also to feel more friendly.&lt;/p&gt;
+
+&lt;h2 id=&quot;making-rex&quot;&gt;Making Rex&lt;/h2&gt;
+
+&lt;p&gt;And speaking of friendly, how cute is Rex, my business’ new mascot? I started the site revamp by cutting Rex out of construction paper by hand.&lt;/p&gt;
+
+&lt;div class=&quot;image-center&quot;&gt;
+    
+    &lt;img src=&quot;/img/posts/paper-rex.png&quot; class=&quot;shadow&quot; /&gt;
+    
+    RAWR!
+&lt;/div&gt;
+
+&lt;p&gt;I then recreated all of his parts as SVGs and put him back together digitally. Let me just say that &lt;a href=&quot;https://inkscape.org&quot;&gt;Inkscape&lt;/a&gt; is an amazing free SVG tool.&lt;/p&gt;
+
+&lt;p&gt;When I finished, I was floored by how closely the resulting images resembled construction paper cutouts. I fist pumped for days.&lt;/p&gt;
+
+&lt;h2 id=&quot;behind-the-scenes&quot;&gt;Behind the Scenes&lt;/h2&gt;
+
+&lt;p&gt;The old site was hosted on &lt;a href=&quot;https://wordpress.com&quot;&gt;WordPress.com&lt;/a&gt;. WordPress made it easy to get a blog going for my business but that ease comes with a price. Two prices, actually. It costs money each year for the hosting and tools that come with WordPress. Not much money, but that’s where the other price comes in. Control. By paying the bare minimum, I didn’t have much creative control over how the site looked.&lt;/p&gt;
+
+&lt;p&gt;This summer I finally got to the point where I wanted more control. Luckily, I discovered &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt;. GitHub Pages is free static content hosting. It runs on a locked down version of &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; (another badass tool), which means that GitHub Pages can also be used as a free blogging platform.&lt;/p&gt;
+
+&lt;p&gt;I did a massive migration of all of my content to GitHub Pages, trying very carefully not to break any links. This was a very tedious process. Migrating the individual articles was the single-most time-consuming task for the new site.&lt;/p&gt;
+
+&lt;h2 id=&quot;whats-next&quot;&gt;What’s Next?&lt;/h2&gt;
+
+&lt;p&gt;For the new site I don’t have any new features coming soon. The site should look decent on a phone and I think the theme is complete enough that it should require much maintenance. I’ll just resume my usual blogging here and see how things go.&lt;/p&gt;
+
+&lt;p&gt;If you notice any broken links, please &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#101;&amp;#114;&amp;#105;&amp;#107;&amp;#046;&amp;#103;&amp;#105;&amp;#108;&amp;#108;&amp;#101;&amp;#115;&amp;#112;&amp;#105;&amp;#101;&amp;#064;&amp;#103;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&quot;&gt;email me&lt;/a&gt;. If there is something visually broken or there is a feature you would like to see on the site, &lt;a href=&quot;https://github.com/technical-rex/technicalrex.com/issues&quot;&gt;create an issue&lt;/a&gt; on GitHub and I’ll get to it as soon as my priorities allow.&lt;/p&gt;
+
+&lt;p&gt;Now that I’m done, I’m going to start working on Giving Jar again. I’ve solved some of the business model issues identified earlier in the year and am ready to start working on my new baby!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 30 Sep 2015 00:00:00 -0400</pubDate>
+      </item>
     
       <item>
         <title>Performance Playground - Jackson vs. Protocol Buffers, Part 3</title>
@@ -2728,171 +2772,6 @@ Binary file ./c079df01654bbab0b8ae4c0e757177d824981c09 matches&lt;/code&gt;&lt;/
 &lt;p&gt;Stay tuned!&lt;/p&gt;
 </description>
         <pubDate>Tue, 09 Sep 2014 00:00:00 -0400</pubDate>
-      </item>
-    
-      <item>
-        <title>Designing a REST API for a Turn-Based Game</title>
-        <link>http://technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game</link>
-        <guid isPermaLink="true">http://technicalrex.com/2014/09/02/designing-a-rest-api-for-a-turn-based-game</guid>
-        <description>&lt;p&gt;Previously, we created a &lt;a href=&quot;/2014/08/26/modeling-a-turn-based-game-with-json&quot;&gt;JSON model&lt;/a&gt; for Pegger. Now it’s time to come up with an API that HTTP clients can use to interact with our game.&lt;/p&gt;
-
-&lt;p&gt;First, let’s consider two of the basic facets of turn-based games:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;They are typically constructed from a set of components such as dice, cards, tokens, pegs, and so on.&lt;/li&gt;
-  &lt;li&gt;Gameplay is divided into turns that allow players to manipulate those components.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Behind this general game structure we can arrive at two possible ways to think about an API. The API can be built around turns that contain all of the actions a player has taken or we can think of the API as a means to manipulate the various components of the game and completing turns as we go.&lt;/p&gt;
-
-&lt;p&gt;In other words, we can try to create an API that is turn-based or we can craft an API that is component-based.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Edit:&lt;/strong&gt; I have received feedback about my use of the term “REST” and the broader REST community seems to agree that the term has become conflated. One of the fundamental aspects of REST that I have been overlooking is the use of hypermedia. Since I am not intending to use hypermedia (yet) for Pegger, I think it is better that I start referring to my API as HTTP instead of REST to avoid confusion and unrest. Within this article please assume that any time I use the term REST I effectively mean REST-sans-hypermedia (which isn’t REST at all!) or just plain HTTP.&lt;/p&gt;
-
-&lt;h2 id=&quot;game-state-revisited&quot;&gt;Game State Revisited&lt;/h2&gt;
-
-&lt;p&gt;Thinking of these APIs as HTTP endpoints, both of these approaches share a common root: &lt;code&gt;/games/{gameId}&lt;/code&gt;. Beneath the game resource is where the two techniques diverge and their respective strengths and weaknesses become apparent.&lt;/p&gt;
-
-&lt;p&gt;Before we explore each approach in more depth, let’s review a snippet of the JSON model that was developed in the &lt;a href=&quot;/2014/08/26/modeling-a-turn-based-game-with-json&quot;&gt;previous article&lt;/a&gt;. We should be able to use this model regardless of which API technique is chosen.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;gameId&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8623847623&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;player1&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12345&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;player2&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;67890&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;currentPlayer&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;player2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;lastTurn&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;takenByPlayer&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;player1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;pegId&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;fromPosition&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;s2&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;s2&quot;&gt;&amp;quot;column&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;toPosition&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;s2&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;s2&quot;&gt;&amp;quot;column&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;board&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;rows&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;columns&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;pegs&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;s2&quot;&gt;&amp;quot;pegId&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;s2&quot;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;red&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;s2&quot;&gt;&amp;quot;position&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;s2&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                    &lt;span class=&quot;s2&quot;&gt;&amp;quot;column&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;turn-based-api&quot;&gt;Turn-Based API&lt;/h2&gt;
-
-&lt;p&gt;A turn-based API would have an endpoint such as &lt;code&gt;/games/{gameId}/turns&lt;/code&gt; to which a player could POST a representation of their turn. For Pegger that representation would look like the &lt;code&gt;lastTurn&lt;/code&gt; attribute of our game model.&lt;/p&gt;
-
-&lt;p&gt;Using this approach, all of the information needed to complete a player’s turn is supplied in the request body. This is not unlike play-by-mail games of the not-too-distant past. In play-by-mail, both players start with a copy of the game being played. When a player finishes their turn they mail their opponent a letter containing just the details about their turn. When their opponent receives the letter that turn is applied to their own copy of the game. The opponent then takes their turn and the process repeats until the conditions for victory are met. This system allows the game to be kept in sync across players without each player needing a complete snapshot of the game after each turn is taken.&lt;/p&gt;
-
-&lt;p&gt;Play-by-mail works very well for two-player games with simple turn structures, no randomized components (such as dice), and no secret components (such as a hand of cards). The play-by-mail system becomes very cumbersome and problematic when any of these constraints are violated. The turn-based approach to designing an API shares many of these pros and cons.&lt;/p&gt;
-
-&lt;p&gt;Consider the card game &lt;a href=&quot;http://en.wikipedia.org/wiki/Uno_(card_game)&quot;&gt;UNO&lt;/a&gt;. Up to ten people may play the game but before the game begins a turn order must be established. The turn order can change over the course of a game and players may also be skipped. A player’s cards are kept hidden from all other players too, so certain information about a player’s turn (such as a recently drawn card) cannot be shared with the other players. That element of hidden game state between players introduces somewhat of a paradox though. How do you prevent cheating while keeping all players’ games in sync if players are not allowed to know certain details about their opponents and of the game in general?&lt;/p&gt;
-
-&lt;p&gt;Fortunately our API will reside on a central server so these play-by-mail issues are nothing but technical constraints to us but they do affect the API and its underlying implementation. Some sort of user/player verification needs to exist in order to keep information hidden from players. Rolling a die or retrieving a card from a shuffled deck may require multiple requests to the server since the result of such an action may affect the current turn. Also, turn-order changes need to be seen by all players, not just the next player in turn order, so the API must coordinate with each player about the common game information as well as details specific to each player.&lt;/p&gt;
-
-&lt;p&gt;Fortunately coordinating game state on a central server allows us to work around many of the play-by-mail limitations. However, there are some additional considerations that need to be kept in mind when using a turn-based API:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Turn structure needs to be well-defined. This becomes more difficult as game complexity increases.&lt;/li&gt;
-  &lt;li&gt;Multi-action turns may require more endpoints than just &lt;code&gt;/games/{gameId}/turns&lt;/code&gt;. For example, a turn may be broken up into actions and represented as &lt;code&gt;/games/{gameId}/turns/{turnId}/actions&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Client presentation of turns may be difficult since a turn happens all at once. The finer details of how components were affected by a turn may not be clear to other players who just see the entire game state change.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Furthermore, after a turn is taken it would be useful if the new game state appeared in the response. This is primarily a helpful efficiency to avoid a subsequent GET of the game state after performing a POST to &lt;code&gt;/games/{gameId}/turns&lt;/code&gt;. Responding with only the new game state seems awkward though. To get the best of both worlds, let’s embed the game state as a &lt;code&gt;parent&lt;/code&gt; attribute of the new turn. The example below is abbreviated to make it easier to read.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;takenByPlayer&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;player1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;pegId&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;fromPosition&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;column&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;toPosition&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;column&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;parent&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;gameId&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8623847623&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;player1&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12345&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;player2&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;67890&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;currentPlayer&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;player2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Using a turn-based API would work well for simple, strategic 2-player games. For Pegger it looks like at a minimum the following resources would be required:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code&gt;GET /games/{gameId}&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;POST /games/{gameId}/turns&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;If we wanted to show a history of the turns we could also implement &lt;code&gt;GET /games/{gameId}/turns&lt;/code&gt; and that certainly would be a useful feature in a strategy game.&lt;/p&gt;
-
-&lt;p&gt;But how does this compare to a component-based API? Let’s take a closer look at that approach.&lt;/p&gt;
-
-&lt;h2 id=&quot;component-based-api&quot;&gt;Component-Based API&lt;/h2&gt;
-
-&lt;p&gt;One of the fundamental differences between a turn-based API and a component-based API is that components are tangible whereas turns are not. REST, as an architectural style, does not concern itself with this distinction but as humans and as programmers it seems more natural from an object-oriented point of view to model the API after the components of the game.&lt;/p&gt;
-
-&lt;p&gt;Using components as the resources in our API means we would have resources beneath &lt;code&gt;/games/{gameId}&lt;/code&gt; for each type of component in the game. For Pegger our one and only type of component is the pegs, which could be reflected in the API as &lt;code&gt;/games/{gameId}/pegs/{pegId}&lt;/code&gt;, where &lt;code&gt;{pegId}&lt;/code&gt; is always a number between one and six.&lt;/p&gt;
-
-&lt;p&gt;Since the only action to be taken on a turn is to move a peg, we would expect the API to allow a peg to be updated with either a PUT or a PATCH containing the new location of the affected peg. The full request to move peg 1 would look something like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;PUT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;games&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pegs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;pegId&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;red&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;position&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;column&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;After the PUT is successful the software could conceptually know that the turn should then be advanced to the next player. However, if we consider more complicated games, how would the turn be advanced if the game permitted an indeterminate number of actions and the player could end their turn at any time? Using our existing model as an example, a PATCH on the game’s &lt;code&gt;currentPlayer&lt;/code&gt; attribute using the special value “next” would cover this situation:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;PATCH&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;games&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gameId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;currentPlayer&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;next&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I chose PATCH here because a PUT should be idempotent whereas a PATCH is not required to be idempotent according to &lt;a href=&quot;http://tools.ietf.org/html/rfc5789#page-3&quot;&gt;RFC5789&lt;/a&gt;. Aliases such as “next” or “previous” are also convenient for games that allow turns to be skipped or the turn order to be reversed.&lt;/p&gt;
-
-&lt;p&gt;The component-based approach addresses several of the issues with the turn-based approach:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Components that are only visible to some players can be implemented as resources that must be requested separately from the rest of the game state and require authentication and authorization.&lt;/li&gt;
-  &lt;li&gt;Randomized components can be requested with a PATCH to indicate rolling a die for a random result or drawing the next card in a shuffled deck.&lt;/li&gt;
-  &lt;li&gt;Turns are automatically broken up into the smallest unit of change that the game allows. This means that multi-action turns and complex turn structures are no longer a problem.&lt;/li&gt;
-  &lt;li&gt;Client presentation of a turn is less challenging since the series of component manipulations that comprise a turn can be rendered sequentially to give the effect of a turn happening over a period of time.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;There are some downsides to using the component-based approach. Modern games typically have a large number of components, which would result in a large API. Fortunately, this API will likely be very manageable if proper &lt;a href=&quot;http://javarevisited.blogspot.com/2012/03/10-object-oriented-design-principles.html&quot;&gt;object oriented principles&lt;/a&gt; are applied. A large REST API is also a very good candidate for &lt;a href=&quot;https://blog.apigee.com/detail/hateoas_101_introduction_to_a_rest_api_style_video_slides&quot;&gt;HATEOAS&lt;/a&gt; because of the improved explorability of the API.&lt;/p&gt;
-
-&lt;p&gt;The way that a turn is organized in a component-based API introduces two potential issues: request frequency for a single turn can be high and turns  are no longer easy to undo. In the turn-based API we would need only to delete a turn in order to reset the game back to a previous state. In the component-based API though we would need to delete many actions taken on many components in order to undo a turn. To get around the “undo” issue we could push each request onto a stack. Our undo would simply pop items from this stack until we reach the previous turn change and then rebuild the state of the game based on what is remaining in the stack.&lt;/p&gt;
-
-&lt;p&gt;Now that we have explored both techniques let’s finish up by recapping and picking which one would best suit Pegger.&lt;/p&gt;
-
-&lt;h2 id=&quot;choosing-a-technique&quot;&gt;Choosing a Technique&lt;/h2&gt;
-
-&lt;p&gt;Turn-based APIs work very well for any game that could be easily played by mail. Games such as &lt;a href=&quot;http://en.wikipedia.org/wiki/Chess&quot;&gt;Chess&lt;/a&gt;, &lt;a href=&quot;http://en.wikipedia.org/wiki/Go_(game)&quot;&gt;Go&lt;/a&gt;, and &lt;a href=&quot;http://en.wikipedia.org/wiki/Connect_Four&quot;&gt;Connect Four&lt;/a&gt; are probably all games for which I would consider using a turn-based API because they are two-player games with a very easy turn structure and no random or hidden components.&lt;/p&gt;
-
-&lt;p&gt;Component-based APIs, on the other hand, are useful when random or hidden components are needed. Manipulating individual components makes it easier to record a complicated turn structure but at the cost of requiring many separate requests in order to advance or undo turns in the game. Card games such as &lt;a href=&quot;http://en.wikipedia.org/wiki/Uno_(card_game)&quot;&gt;UNO&lt;/a&gt;, dice games such as &lt;a href=&quot;http://en.wikipedia.org/wiki/Yahtzee&quot;&gt;Yahtzee&lt;/a&gt;, and designer games such as &lt;a href=&quot;http://www.daysofwonder.com/tickettoride/&quot;&gt;Ticket to Ride&lt;/a&gt; would all be excellent candidates for a component-based API.&lt;/p&gt;
-
-&lt;p&gt;After comparing and contrasting the two techniques it seems pretty clear that Pegger fits into the same category of games that are best-suited for a turn-based API.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 02 Sep 2014 00:00:00 -0400</pubDate>
       </item>
     
   </channel>
