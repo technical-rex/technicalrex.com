@@ -1,5 +1,7 @@
-baseurl: /technicalrex.com
-url: http://technical-rex.github.io
+baseurl: ""
+url: http://technicalrex.com
+#baseurl: /technicalrex.com
+#url: http://technical-rex.github.io
 
 title: Technical Rex
 description: A site about programming, business, and dinosaurs. ROAR!
