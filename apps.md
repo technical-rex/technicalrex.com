@@ -6,7 +6,7 @@ permalink: /apps.html
 ---
 
 <a name="easy-adp" />
-{% include image.html src="/img/apps/easy-adp-banner.png" link="https://chrome.google.com/webstore/detail/easy-adp-timecards/obpjlfoampdbdnmpbhaclmldkeebhnfd" shadow="none" %}
+{% include image.html src="/img/apps/easy-adp-banner.png" link="https://chrome.google.com/webstore/detail/easy-adp-timecards/obpjlfoampdbdnmpbhaclmldkeebhnfd" %}
 
 [Easy ADP Timecards](https://chrome.google.com/webstore/detail/easy-adp-timecards/obpjlfoampdbdnmpbhaclmldkeebhnfd) is a Chrome extension that allows you to quickly log time in ADP's eTime tracking system. Create a personalized list of time codes along with descriptions and the extension adds an easy dropdown menu to any place you need to log time.
 
