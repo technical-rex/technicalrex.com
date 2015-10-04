@@ -5,6 +5,7 @@ author: erik
 category: programming
 tags: [java,jwt,jjwt,spring-security,tutorial]
 permalink: /2015/02/20/stateless-authentication-with-spring-security-and-jwt
+preview-image: /img/posts/cookiemonster-nocookiesforyou.jpg
 excerpt: >
     <p>As part of my lifelong study of REST APIs I have been learning more about avoiding shared state between the client and server. This week in particular I have been learning about stateless authentication and attempting to implement it in a skeleton Java app based on my Jersey on Google AppEngine tutorial.</p>I've decided to use Spring Security and JWT to pull it off.
 ---

@@ -1,0 +1,17 @@
+<meta property="article:published_time" content="{{ page.date | date: "%F" }}T00:00:00-04:00" />
+<meta property="article:modified_time" content="{{ page.date | date: "%F" }}T00:00:00-04:00" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{ page.title | truncate: 70 }}" />
+<meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
+<meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | escape | truncate: 200 }}" />
+<meta property="og:site_name" content="{{ site.title }}" />
+<meta property="og:locale" content="en_US" />
+{% if page.preview-image %}
+<meta property="og:image" content="{{ page.preview-image | prepend: site.baseurl | prepend: site.url }}" />
+<link rel="image_src" href="{{ page.preview-image | prepend: site.baseurl | prepend: site.url }}" />
+{% endif %}
+{% if site.authors[page.author].twitter %}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@{{ site.authors[page.author].twitter }}" />
+<meta name="twitter:creator" content="@{{ site.authors[page.author].twitter }}" />
+{% endif %}
