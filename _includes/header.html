@@ -1,7 +1,10 @@
 <header class="site-header">
 	<div class="branding flow-nav">
 		<h1 class="site-title">
-			<a href="{{ site.baseurl }}/">{{ site.title }}</a>
+			<a href="{{ site.baseurl }}/">
+				<img class="favicon" src="{{ "/img/icons/favicon.png" | prepend: site.baseurl }}"/>
+				{{ site.title }}
+			</a>
 		</h1>
 	</div>
 	<nav class="site-nav flow-nav">
