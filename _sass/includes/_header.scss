@@ -1,0 +1,8 @@
+.favicon {
+    display: none;
+    @media (max-width: 800px) {
+        display: inline;
+        max-height: 1.5em;
+        vertical-align: middle;
+    }
+}
