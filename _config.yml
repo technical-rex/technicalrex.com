@@ -8,6 +8,10 @@ description: A site about programming, business, and dinosaurs. ROAR!
 
 google_analytics: UA-62666024-3
 
+tag_permalink_style: pretty
+tag_page_layout: tag
+tag_page_dir: tag
+
 tag_descriptions:
     pegger: >
         Pegger is a turn-based peg jumping game. The following posts form a tutorial
