@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	
+	<title>Strip the Background from an Image | Technical Rex</title>
+	<meta name="description" content="Lots of product photos are taken with a white background. So what do you do if you want to promote that product, but the white background of the image clashe...">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<link rel="stylesheet" href="/css/main.css">
+
+	<link rel="canonical" href="http://technicalrex.com/strip-background-from-image/">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+
+	<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+<!--[if IE]><link rel="shortcut icon" href="/img/icons/favicon.ico"><![endif]-->
+
+<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png">
+
+<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+<link rel="icon" href="/img/icons/favicon.png">
+
+	
+<meta property="article:published_time" content="2016-01-14T00:00:00-04:00" />
+<meta property="article:modified_time" content="2016-01-14T00:00:00-04:00" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Strip the Background from an Image " />
+<meta property="og:url" content="http://technicalrex.com/strip-background-from-image/" />
+<meta property="og:description" content="Lots of product photos are taken with a white background. So what do you do if you want to promote that product, but the white background of the image clashes with the non-white background of your ..." />
+<meta property="og:site_name" content="Technical Rex" />
+<meta property="og:locale" content="en_US" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@eriklgillespie" />
+<meta name="twitter:creator" content="@eriklgillespie" />
+
+
+</head>
+
+<body>
+    <div id="landscape">
+        <header class="site-header">
+	<div class="branding flow-nav">
+		<h1 class="site-title">
+			<a href="/">
+				<img class="favicon" src="/img/icons/favicon.png"/>
+				Technical Rex
+			</a>
+		</h1>
+	</div>
+	<nav class="site-nav flow-nav">
+		<ul class="flow-nav">
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/about.html">About</a>
+			</li>
+			
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/apps.html">Apps</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li class="flow-nav">
+				<a href="/feed.xml" title="">
+					<i class="fa fa-fw fa-rss"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+        <div id="page-container">
+            <div class="underlay">
+    <div class="content">
+        <article>
+            <header class="post-header">
+                <h1 class="title">Strip the Background from an Image</h1>
+                <p class="about">
+                    Posted  by Erik Gillespie
+                    on January 14, 2016
+                </p>
+            </header>
+            <section class="post-content"><p>Lots of product photos are taken with a white background. So what do you do if you want to promote that product, but the white background of the image clashes with the non-white background of your website? In this tutorial I will show you some quick tricks to make the image background transparent so it looks more natural on your own site.</p>
+
+<h2 id="software">Software</h2>
+
+<p>Before we start, you need to know that this tutorial uses <a href="http://www.gimp.org/downloads/" title="Gimp Download Page">Gimp</a>, a completely free image editor. If you want to use Photoshop, you can follow the techniques outlined in this article, but the specific steps are written for a novice Gimp user.</p>
+
+<p>Install Gimp and you’re ready to rock.</p>
+
+<h2 id="lets-get-started">Let’s Get Started</h2>
+
+<p>Suppose you have an image saved to your computer named <code>product.jpg</code>. Its original dimensions are 1000x1000 pixels. It will looks something like this:</p>
+
+<div class="image-right">
+    
+    <img src="/img/posts/strip-background/product.jpg" class="shadow" />
+    
+    
+</div>
+
+<p>The first step is to open your file in Gimp. Follow these instructions, step by step.</p>
+
+<h4 id="open-file-in-gimp">Open File in Gimp</h4>
+
+<ol>
+  <li>Run Gimp.</li>
+  <li>Select <code>Open...</code> from the <code>File</code> menu.</li>
+  <li>A window titled “Open Image” will appear. Use this window to find the image on your computer.</li>
+  <li>Select the image and click Open.</li>
+</ol>
+
+<p>Now Gimp should show the image. It will look something like this:</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/gimp-open-file.png" class="no-shadow" />
+    
+    
+</div>
+
+<h4 id="enable-transparency">Enable Transparency</h4>
+
+<p>This step is critical if you want your background to be transparent. JPG files do not support transparency, and even if the image is a GIF or PNG, transparency may not be enabled.</p>
+
+<p><strong>Important Step:</strong> To enable transparency, choose <code>Layer &gt; Transparency &gt; Add Alpha Channel</code>. If the option is disabled or grayed out then transparency is already enabled.</p>
+
+<h2 id="time-to-play-with-fire">Time to Play with Fire</h2>
+
+<p>You are now ready to get rid of that pesky background! Depending on what the image looks like, there are several techniques you can use. Each technique below describes the situation when it may most effectively be used before stepping through the technique itself.</p>
+
+<p>Oh, make a backup copy of your image, just in case. Gimp also creates a long history of changes that you’ve made and you can choose <code>Edit &gt; Undo</code> numerous times if you make mistakes. Undo is your friend.</p>
+
+<p>After you apply any of the techniques below, take a close look at the region that was selected. If you’re not happy with the results, you can click on <code>Select &gt; None</code> and try again.</p>
+
+<p><strong>Cut the Selection:</strong> The final step in every one of the techniques below is to</p>
+
+<h3 id="technique-1-fuzzy-select">Technique 1: Fuzzy Select</h3>
+
+<p><strong>Use this technique</strong> where the background is one solid color. If there are shadows that you would like to get rid of, you can use the Fuzzy Select technique to remove most of the background and then use one of the other techniques to remove the shadows.</p>
+
+<p>The Fuzzy Select tool takes the color of the area where you clicked and selects as much of that color in one large, contiguous area as possible. You can also adjust the color Threshold for this tool to select more or fewer shades of a color.</p>
+
+<p>This seems like a good first technique to try on the white background of our image. Let’s give it a shot.</p>
+
+<h4 id="use-the-fuzzy-select-tool">Use the Fuzzy Select Tool</h4>
+
+<ol>
+  <li>In the tool panel on the left, click on the Fuzzy Select icon <img src="/img/posts/strip-background/fuzzy-select.jpg" alt="" title="Fuzzy Select Tool" />.</li>
+  <li>Click in the large white area in the upper left of the image.</li>
+  <li>Look closely at the selection and decided if it is good enough.</li>
+  <li>If the selection looks nice and tight, select <code>Edit &gt; Cut</code> to delete the selection.</li>
+</ol>
+
+<p>Here’s what the cleared selection looks like on our image using a Threshold of 15.0:</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/gimp-fuzzy-product-15.png" class="no-shadow" />
+    
+    
+</div>
+
+<h4 id="select-more-with-the-fuzzy-select-tool">Select More with the Fuzzy Select Tool</h4>
+
+<p>Fuzzy Select worked pretty well, but if you look closely around the robots’ shoulders, you can see there is a little bit of white between the selection boundary and the red/blue of the robots.</p>
+
+<p>Increase the Threshold to select more:</p>
+
+<ol>
+  <li>Choose <code>Select &gt; None</code> or <code>Edit &gt; Undo Fuzzy Select</code>.</li>
+  <li>Increase the Threshold value by 5.0 (to 20.0): <img src="/img/posts/strip-background/threshold-20.jpg" alt="" title="Threshold 20.0" /></li>
+  <li>Repeat the “Use the Fuzzy Select Tool” steps.</li>
+</ol>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/gimp-fuzzy-product-20.png" class="no-shadow" />
+    
+    
+</div>
+
+<p>The selection wraps most of the robot quite snuggly now. There’s still the matter of those shadows below the game, and there is a little bit of white still clinging to the outline of the robots, but we’ll take care of those soon.</p>
+
+<h4 id="select-less-with-the-fuzzy-select-tool">Select Less with the Fuzzy Select Tool</h4>
+
+<p>In certain situations the Fuzzy Select tool will select too much. For example, if you try to fuzzy select the background between the ropes on the right side of the game, you will see that some of the rope is selected, too. That’s because the ropes there are close enough in color to the background that the tool can’t differentiate the two.</p>
+
+<p>Try decreasing the Threshold to select less:</p>
+
+<ol>
+  <li>Choose <code>Select &gt; None</code> or <code>Edit &gt; Undo Fuzzy Select</code>.</li>
+  <li>Decrease the Threshold value by 5.0 (to 10.0): <img src="/img/posts/strip-background/threshold-10.jpg" alt="" title="Threshold 10.0" /></li>
+  <li>Repeat the “Use the Fuzzy Select Tool” steps.</li>
+</ol>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/fuzzy-select-threshold-comparison.png" class="no-shadow" />
+    
+    
+</div>
+
+<p>Decreasing the Threshold will help sometimes, but not always. In the image above, you can see that the rope does not get selected when the Threshold is lowered to 10.0, but you can see a shark tooth effect on the selection that was made, so it’s not always the perfect solution, either.</p>
+
+<p>Fortunately, the techniques below offer some better alternatives to removing the background when you have similarly-colored content that you want to keep.</p>
+
+<h3 id="technique-2-scissor-select">Technique 2: Scissor Select</h3>
+
+<p><strong>Use the Scissor Select technique</strong> if your subject has a lot of contrast with the background and long, gently-curved edges. Brightly-colored objects such as games, toys, and clothes on a light or dark background work well.</p>
+
+<p>The Scissor Select tool attempts to find edges near where you clicked and trace that border as you continue to click. When you use the tool, click on the edges anywhere that the object being selected has a sharp angle or change in color.</p>
+
+<p>While you are using the tool, you can also click and drag on any of the lines that have already been drawn and adjust them. Gimp will add an additional guide point where you clicked and try to detect the edges again from where you moved the line.</p>
+
+<p>Let’s use the Scissor Select tool on the shadows below the product that fuzzy select didn’t do so well on.</p>
+
+<h4 id="use-the-scissor-select-tool">Use the Scissor Select Tool</h4>
+
+<ol>
+  <li>In the tool panel on the left, click on the Scissor Select icon <img src="/img/posts/strip-background/scissor-select.jpg" alt="" title="Scissor Select Tool" />.</li>
+  <li>Click on an edge in the middle of where you want your selection to begin. In our image, the very lowest point of the yellow base is a good place to start.</li>
+  <li>Click on the next point along the edge that has a change in color or direction.</li>
+  <li>Continue clicking around the area that you want to remove. You can also click across the transparent, checkered areas and around the edge of the image.</li>
+  <li>When you are nearing the point where you started, click on the starting point to close your selection area.</li>
+  <li>Look closely at the selection points and lines. You can click and drag to adjust any of them at this point.</li>
+  <li>Click in the middle of the area you want to select to make the selection active.</li>
+  <li>Shrink the selection a little bit to leave some of the background in place.<br />
+a. Click on <code>Select &gt; Shrink...</code> in the menu.<br />
+b. In the window that appears, enter 1 or 2 px and click OK.</li>
+  <li>Select <code>Edit &gt; Cut</code> to delete the selection.</li>
+</ol>
+
+<p>Here’s what the pre-selection area looks like, just before Step 7:</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/gimp-scissor-preselect-product.png" class="no-shadow" />
+    
+    
+</div>
+
+<p>And here’s what the image looks like after shrinking and cutting the selection:</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/gimp-scissor-cut-product.png" class="no-shadow" />
+    
+    
+</div>
+
+<p>Not bad! The edges look even nicer than what the Fuzzy Select left us with, but imagine how much clicking you would have to do to use the Scissor Select tool on the whole image!</p>
+
+<h3 id="technique-3-polygon-select">Technique 3: Polygon Select</h3>
+
+<p><strong>Use the Polygon Select technique</strong> if the subject of your photo is rigid or has lots of straight edges. Boxes, cards, books and other polygonally-shaped objects are perfect for this technique.</p>
+
+<p>Look for regions of the background that have straight edges on all sides. In our example, several of the spaces between the ropes and the ring look like perfect triangles and diamonds. Let’s use the Polygon Select tool on those.</p>
+
+<ol>
+  <li>In the tool panel on the left, click on the Free Select icon <img src="/img/posts/strip-background/free-select.jpg" alt="" title="Free Select Tool" />.</li>
+  <li>Carefully click on all of the corners of the background region that you wish to delete.</li>
+  <li>When you want to close your selection, click on the point that started your selection.</li>
+  <li>Look closely at the selection and decided if it is good enough.</li>
+  <li>If the selection looks nice and tight, select <code>Edit &gt; Cut</code> to delete the selection.</li>
+</ol>
+
+<p>Here’s what our image looks like after deleting a few of the polygonal areas in the middle of the game:</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/gimp-polygon-cut-product.png" class="no-shadow" />
+    
+    
+</div>
+
+<h3 id="cut-the-rest">Cut the Rest</h3>
+
+<p>With these three techniques, we can finish removing the background from the image. For the regions below the bottom rope, I recommend using the Fuzzy Select so as not to accidentally remove pieces of the rope.</p>
+
+<p>For the remaining pieces of background, the Polygon Select will probably require the least amount of clicking and adjusting.</p>
+
+<p>Here’s what I ended up with. Keep reading to see how to clean up those edges.</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/gimp-totally-cut-product.png" class="no-shadow" />
+    
+    
+</div>
+
+<p>If you want to trim any of the white off of the edges, you can do so now. If you’re going for quick and dirty, just follow the steps below to smooth the edges.</p>
+
+<h2 id="smooth-the-edges">Smooth the Edges</h2>
+
+<p>The background has been removed, sure, but there are still little remnants of the white background around the edges of the product. Here’s a poor man’s trick for getting rid of the rest of the background and smoothing the edges of our product all at once.</p>
+
+<ol>
+  <li>Click on the Fuzzy Select icon <img src="/img/posts/strip-background/fuzzy-select.jpg" alt="" title="Fuzzy Select Tool" />.</li>
+  <li>Hold the Shift key and click on every transparent background region.</li>
+  <li>Click on <code>Select &gt; Grow..</code> in the menu.</li>
+  <li>In the window that appears, choose 2 px and click OK.</li>
+  <li>Click on <code>Filters &gt; Blur &gt; Gaussian Blur...</code> in the menu.</li>
+  <li>In the window that appears, enter 5.0 px for both the Horizontal and Vertical Blur Radius values and click OK.</li>
+</ol>
+
+<p>The resulting image still has hints of white, but overall it doesn’t look that bad.</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/gimp-smooth-product.png" class="no-shadow" />
+    
+    
+</div>
+
+<h2 id="resize-the-image">Resize the Image</h2>
+
+<p>The last step before saving the image is to resize it. Shrinking the image will get rid of the ghostly effect that smoothing the edges caused, and it will further eliminate artifacts of the original background color.</p>
+
+<ol>
+  <li>Click on <code>Image &gt; Scale Image...</code> in the menu.</li>
+  <li>In the window that appears, do the following:<br />
+a. Enter the Width that you would like your new image to be. The Height will automatically adjust proportionally to the Width you enter, so leave it alone.<br />
+b. Enter 72 as the X Resolution. The Y Resolution will automatically adjust to match the X Resolution, so leave it alone.<br />
+c. Click OK.</li>
+</ol>
+
+<p>For our example, I chose 300 px as the Width and got the following:</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/gimp-resized-product.png" class="no-shadow" />
+    
+    
+</div>
+
+<h2 id="export-the-file">Export the File</h2>
+
+<p>It’s tough to really know how well you did until you save your work and use the image somewhere. Use the following steps to save your work:</p>
+
+<ol>
+  <li>Click on <code>File &gt; Export As...</code> in the menu.</li>
+  <li>Navigate to the folder where you would like to save the image.</li>
+  <li>Enter “product.png” as the Name of the file and click Export. Using the file extension “.png” is <strong>important</strong>!</li>
+  <li>In the window that appears, just click Export.</li>
+</ol>
+
+<p>You can now use the image wherever you want and it will automatically inherit the background on which it is placed!</p>
+
+<p>Here’s the result of our work placed next to the original. It’s not perfect, but it’s pretty good and usually that’s all that matters!</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/product.png" class="no-shadow" />
+    
+    
+</div>
+
+<h2 id="bonus-shadows">Bonus: Shadows</h2>
+
+<p>Do you miss those shadows? Me too. Let’s add some back in!</p>
+
+<p>Those shadows make the images pop, give the page a sense of depth, and they can even cover up some of the flaws remaining from when we removed the solid background color.</p>
+
+<p>The steps to add a shadow are pretty straight forward:</p>
+
+<ol>
+  <li>Click on <code>Filters &gt; Light and Shadow &gt; Drop Shadow...</code> in the menu.</li>
+  <li>In the window that appears, do the following:<br />
+a. Enter 4 as the Offset X and Offset Y.<br />
+b. Enter 15 as the Blur Radius.<br />
+c. Use black as the Color.<br />
+d. Enter 60 as the Opacity.<br />
+e. Click OK.</li>
+</ol>
+
+<p>Adding a shadow may change the size of your image. Follow the steps in “Resize the Image” to get back to the image dimensions that you would like to use.</p>
+
+<p>Here’s what the image looks like with a shadow. Pretty sweet!</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/strip-background/product-shadowed.png" class="no-shadow" />
+    
+    
+</div>
+
+</section>
+            <p class="signature"> - Erik</p>
+        </article>
+    </div>
+</div>
+
+        </div>
+        <footer class="site-footer">
+	<p class="text">Copyright © 2015 Technical Rex, Inc. Re-use with attribution encouraged. All other rights reserved.</p>
+</footer>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62666024-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+    </div>
+    <img id="rex" src="/img/rex/rex-main.png"></img>
+    <script type="text/javascript" src="/js/retarget-links.js"></script>
+</body>
+</html>
