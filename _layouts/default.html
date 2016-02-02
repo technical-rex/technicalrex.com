@@ -2,14 +2,15 @@
 <html class="no-js">
 {% include head.html %}
 <body>
-    <div id="landscape">
-        {% include header.html %}
-        <div id="page-container">
-            {{ content }}
-        </div>
-        {% include footer.html %}
+  <div id="landscape">
+    {% include header.html %}
+    <div id="page-container">
+      {% include adsense.html %}
+      {{ content }}
     </div>
-    <img id="rex" src="{{ "/img/rex/rex-main.png" | prepend: site.baseurl }}"></img>
-    <script type="text/javascript" src="{{ "/js/retarget-links.js" | prepend: site.baseurl }}"></script>
+    {% include footer.html %}
+  </div>
+  <img id="rex" src="{{ "/img/rex/rex-main.png" | prepend: site.baseurl }}"></img>
+  <script type="text/javascript" src="{{ "/js/retarget-links.js" | prepend: site.baseurl }}"></script>
 </body>
 </html>
