@@ -1,3 +1,10 @@
 .adsbygoogle {
-  margin: 0 auto;
+  position: fixed;
+  top: 4em;
+  right: 0.5em;
+  
+  @media (max-width: 800px) {
+    position: inherit;
+    margin: 0 auto;
+  }
 }
