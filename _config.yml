@@ -51,3 +51,9 @@ kramdown:
 sass:
     sass_dir: _sass
     style: :compressed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
