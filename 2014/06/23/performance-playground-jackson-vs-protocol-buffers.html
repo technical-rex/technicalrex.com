@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	
+	<title>Performance Playground - Jackson vs. Protocol Buffers | Technical Rex</title>
+	<meta name="description" content="I've been benchmarking the Google Protocol Buffers and Jackson JSON serialization frameworks to compare data size and serialization/deserialization performan...">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<link rel="stylesheet" href="/css/main.css">
+
+	<link rel="canonical" href="http://technicalrex.com/2014/06/23/performance-playground-jackson-vs-protocol-buffers">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+
+	<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+<!--[if IE]><link rel="shortcut icon" href="/img/icons/favicon.ico"><![endif]-->
+
+<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png">
+
+<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+<link rel="icon" href="/img/icons/favicon.png">
+
+	
+<meta property="article:published_time" content="2014-06-23T00:00:00-04:00" />
+<meta property="article:modified_time" content="2014-06-23T00:00:00-04:00" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Performance Playground - Jackson vs. Protocol Buffers" />
+<meta property="og:url" content="http://technicalrex.com/2014/06/23/performance-playground-jackson-vs-protocol-buffers" />
+<meta property="og:description" content="I&#39;ve been benchmarking the Google Protocol Buffers and Jackson JSON serialization frameworks to compare data size and serialization/deserialization performance. The results are interesting, and..." />
+<meta property="og:site_name" content="Technical Rex" />
+<meta property="og:locale" content="en_US" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@eriklgillespie" />
+<meta name="twitter:creator" content="@eriklgillespie" />
+
+
+</head>
+
+<body>
+  <div id="landscape">
+    <header class="site-header">
+	<div class="branding flow-nav">
+		<h1 class="site-title">
+			<a href="/">
+				Technical Rex
+			</a>
+		</h1>
+	</div>
+	<nav class="site-nav flow-nav">
+		<ul class="flow-nav">
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/about.html">About</a>
+			</li>
+			
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/apps.html">Apps</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li class="flow-nav">
+				<a href="/feed.xml" title="">
+					<i class="fa fa-fw fa-rss"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="page-container">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block;width:320px;height:50px"
+     data-ad-client="ca-pub-5353438818816835"
+     data-ad-slot="2993999908"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      <div class="underlay">
+    <div class="content">
+        <article>
+            <header class="post-header">
+                <h1 class="title">Performance Playground:<br/>Jackson vs. Protocol Buffers</h1>
+                <p class="about">
+                    Posted  by Erik Gillespie
+                    on June 23, 2014
+                </p>
+            </header>
+            <section class="post-content"><p><strong>Update 2:</strong> <em><a href="/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3">Part 3</a> is available and the tides have turned! Actually it turns out I had a bug in my benchmark that was skewing the Protocol Buffer results in a pretty major way.</em></p>
+
+<p><strong>Update 1:</strong> <em>I have written a <a href="/2015/02/27/performance-playground-jackson-vs-protocol-buffers-part-2">Part 2</a> for the Jackson JSON and Protocol Buffers performance comparison. After reverting to Jackson’s default configuration, Jackson became the clear winner in serialization and deserialization performance.</em></p>
+
+<p>Vertafore has some pretty exciting initiatives going on right now. Part of that monumental effort has been researching technologies that will best fit our needs. My focus has revolved around a new means of app-to-app or service-to-service communication beyond our traditional <a href="http://goo.gl/BFDKcs">RESTish</a> web services. We have chosen a message bus approach and are doing lots and lots of research regarding which middleware software best fits our requirements. Fortunately, comparing the performance of different middleware solutions was pretty straight forward. There are lots of benchmarks available and the vendors make it easy to install their software for evaluation.</p>
+
+<p>Since message buses are concerned with routing data they don’t really care what your data looks like. We, on the other hand, definitely have to worry about the data format because it has to be adopted by all software interfacing with the message bus. Furthermore, we should be able to convert our messages to and from the appropriate format as quickly as possible. We chose a screaming fast message bus solution so it would be a shame to choose a serialization framework that becomes a bottleneck.</p>
+
+<p>We have been using <a href="http://json.org">JSON</a> and <a href="https://github.com/FasterXML/jackson">Jackson</a> in many of our products so they were our natural first choice. Jackson is also wickedly fast compared to <a href="http://www.cowtowncoder.com/blog/archives/2009/09/entry_326.html">other JSON mapping frameworks</a>.  What I didn’t know was how well Jackson would hold up to non-JSON message formats. Our Senior Software Architect suggested we consider Protocol Buffers for the comparison.</p>
+
+<p><a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> is a data format and serialization framework developed by Google and is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>. It is used by practically all of their developers. The claim is that Protocol Buffers are faster, smaller, and simpler than XML. But how does it compare to Jackson JSON serialization?</p>
+
+<p>Before diving into code and creating my own benchmarks I searched the net. I was surprised to only find <a href="http://ubikapps.net/?p=525">one article</a> that attempted to compare Jackson and Protocol Buffers. It covered deserialization but lacked a lot of other detail that I wanted:</p>
+
+<ul>
+  <li>Serialization <strong>and</strong> deserialization performance.</li>
+  <li>Compression metrics.</li>
+  <li>High volume averages for judging consistency.</li>
+  <li>Documentation or code to repeat the benchmarks.</li>
+</ul>
+
+<p>The article concluded that the deserialization performance between Jackson and Protocol Buffers was negligible. The results were interesting but I was left wanting more so I decided to write some of my own benchmarks.</p>
+
+<p>I first created a Java class to hold a large number of attributes using a variety of primitives, collections, strings, and third party data types. Then I wrote a factory that would construct one of these objects and seed it with random data and consistently large collections of 100 elements. For each performance benchmark I serialized or deserialized 1,000 of these objects and collected the minimum, maximum, and average time spent. I also wrote a benchmark to determine how well each of the message formats compresses using GZip. Lastly, I wrote unit tests to make sure that serialization and deserialization resulted in matching objects so I knew the mappings were working correctly.</p>
+
+<p>You can find <a href="https://github.com/egillespie/performance-playground">the source code</a> to reproduce these benchmarks on GitHub.</p>
+
+<h2 id="results">Results</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Benchmark</th>
+      <th style="text-align: right">Average Time (ms)</th>
+      <th style="text-align: right">Min. Time (ms)</th>
+      <th style="text-align: right">Max. Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Jackson JSON Serialization</td>
+      <td style="text-align: right">521</td>
+      <td style="text-align: right">506</td>
+      <td style="text-align: right">725</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Google Protocol Buffers Serialization</td>
+      <td style="text-align: right">535</td>
+      <td style="text-align: right">518</td>
+      <td style="text-align: right">724</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jackson JSON Deserialization</td>
+      <td style="text-align: right">912</td>
+      <td style="text-align: right">891</td>
+      <td style="text-align: right">1,144</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Google Protocol Buffers Deserialization</td>
+      <td style="text-align: right">880</td>
+      <td style="text-align: right">861</td>
+      <td style="text-align: right">993</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The table above shows the respective time spent serializing/deserializing with each framework. The results show that Jackson serializes into JSON marginally faster than Google’s framework serializes into protocol buffers, but Google’s deserialization is marginally faster than Jackson. The combined time spent serializing and deserializing by Jackson and Google Protocol Buffers is 1,433 milliseconds and 1,415 milliseconds respectively. Overall it appears that Protocol Buffers are only slightly faster than Jackson. And by “slightly” I mean 1% faster.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Benchmark</th>
+      <th style="text-align: right">Uncompressed Size (bytes)</th>
+      <th style="text-align: right">GZip Compressed Size (bytes)</th>
+      <th style="text-align: right">Compression Ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Jackson JSON Serialization</td>
+      <td style="text-align: right">28,064</td>
+      <td style="text-align: right">9,747</td>
+      <td style="text-align: right">2.88</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Google Protocol Buffer Serialization</td>
+      <td style="text-align: right">18,827</td>
+      <td style="text-align: right">9,252</td>
+      <td style="text-align: right">2.03</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Here we see that, when uncompressed, Protocol Buffers are smaller in size than JSON (in this case by nearly 10 kilobytes or 33%). The difference becomes less substantial after compression though. A compressed Protocol Buffer ends up being just 495 bytes (5%) smaller than compressed JSON. This isn’t too surprising though. Since JSON is a plain-text data format we would expect it to compresses well. Protocol Buffers, on the other hand, are a mix of binary and text and are designed to be small. They wouldn’t have the same opportunities for compression.</p>
+
+<p>There was one other observation I made while writing the code to gather these benchmarks: Jackson is much easier to configure and start developing with than Google Protocol Buffers.  Consider the steps I had to go through before I could start using these frameworks:</p>
+
+<h3 id="using-jackson-json-mapping"><strong>Using Jackson JSON Mapping</strong></h3>
+
+<ol>
+  <li>Add the appropriate Maven dependencies.</li>
+  <li>Disable unwanted features in Jackson’s <code class="highlighter-rouge">ObjectMapper</code>.</li>
+  <li>Register Guava and Joda Time modules.</li>
+  <li>Annotate the constructors in <code class="highlighter-rouge">TestObject</code>.</li>
+</ol>
+
+<p>Configuring and developing with Jackson is easy. The only time you really have to worry about Jackson is when you create a new object but even in that case you just throw some annotations on the constructor and its parameters. You barely break pace while writing the class.</p>
+
+<h3 id="using-google-protocol-buffer-mapping"><strong>Using Google Protocol Buffer Mapping</strong></h3>
+
+<ol>
+  <li>Add the appropriate Maven dependencies.</li>
+  <li>Install <code class="highlighter-rouge">protoc</code>, the protocol buffer compiler.</li>
+  <li>Define a <code class="highlighter-rouge">.proto</code> file that describes the protocol buffer format for <code class="highlighter-rouge">TestObject</code>.</li>
+  <li>Invoke <code class="highlighter-rouge">protoc</code> during the Maven build process to generate the protocol buffer wrapper classes.</li>
+  <li>Write translation code to convert <code class="highlighter-rouge">TestObject</code> to/from the protocol buffer wrapper classes.</li>
+</ol>
+
+<p>I didn’t really mind installing <code class="highlighter-rouge">protoc</code> or configuring it to be invoked by Maven. Those are chores you only do once and then are done with forever. Defining the <code class="highlighter-rouge">.proto</code> file was interesting but after I used it to generate a Protocol Buffer class it occurred to me that I would have to write one of those definition files for every class I wanted to serialize. When it dawned on me I also had to write a translator to go to and from my <code class="highlighter-rouge">TestObject</code> class, it really hit me: if we used Google Protocol Buffers we would have to write two extra files for every serializable class we create!</p>
+
+<p>Google doesn’t hide that fact but it’s still a lot of work to take on when you are used to sprinkling in some annotations here and there to get your mapping to work. I suppose you could use the generated Protocol Buffer classes as your domain objects but they’re cumbersome to work with, especially when you’re working with collections or arrays.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The performance differences between Jackson and Google Protocol Buffers is VERY small. Google only has a slight edge over Jackson in terms of deserialization speed. It’s difficult to imagine a scenario where that slight improvement in performance alone would justify choosing Google’s solution over Jackson.</p>
+
+<p>If the size of messages are important though, Protocol Buffers have a bigger advantage only when the messages are uncompressed. After compression though, Protocol Buffers are only slightly smaller in size than JSON. If you have size constraints either over the wire or because of storage and you are using JSON, you may want to consider compressing the data before taking on the large effort of switching to Protocol Buffers.</p>
+
+<p>Besides these two benchmarks, the development effort required to use Protocol Buffers should be considered. There is a noticeable amount of extra work involved in order to use them and that work will not be once-and-done, it will be there each time you need to create a new Protocol Buffer object.</p>
+
+<p>All in all we decided that the performance and size differences were not significant enough for our current and future needs to justify switching to Google Protocol Buffers. I didn’t even document the extra work that the switch would require because all things equal, our teams are more familiar with JSON and Jackson than with Google Protocol Buffers. It’s also not inconceivable that our messages may need to be presented in a browser. JSON is a more natural fit there as well.</p>
+</section>
+            <p class="signature"> - Erik</p>
+        </article>
+    </div>
+</div>
+
+    </div>
+    <footer class="site-footer">
+	<p class="text">Copyright © 2015 Technical Rex, Inc. Re-use with attribution encouraged. All other rights reserved.</p>
+</footer>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62666024-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </div>
+  <img id="rex" src="/img/rex/rex-main.png"></img>
+  <script type="text/javascript" src="/js/retarget-links.js"></script>
+</body>
+</html>

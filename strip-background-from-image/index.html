@@ -27,7 +27,7 @@
 <meta property="article:published_time" content="2016-01-14T00:00:00-04:00" />
 <meta property="article:modified_time" content="2016-01-14T00:00:00-04:00" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Strip the Background from an Image " />
+<meta property="og:title" content="Strip the Background from an Image" />
 <meta property="og:url" content="http://technicalrex.com/strip-background-from-image/" />
 <meta property="og:description" content="Lots of product photos are taken with a white background. So what do you do if you want to promote that product, but the white background of the image clashes with the non-white background of your ..." />
 <meta property="og:site_name" content="Technical Rex" />
@@ -151,7 +151,7 @@
 
 <h2 id="lets-get-started">Let’s Get Started</h2>
 
-<p>Suppose you have an image saved to your computer named <code>product.jpg</code>. Its original dimensions are 1000x1000 pixels. It will looks something like this:</p>
+<p>Suppose you have an image saved to your computer named <code class="highlighter-rouge">product.jpg</code>. Its original dimensions are 1000x1000 pixels. It will looks something like this:</p>
 
 <div class="image-right">
     
@@ -166,7 +166,7 @@
 
 <ol>
   <li>Run Gimp.</li>
-  <li>Select <code>Open...</code> from the <code>File</code> menu.</li>
+  <li>Select <code class="highlighter-rouge">Open...</code> from the <code class="highlighter-rouge">File</code> menu.</li>
   <li>A window titled “Open Image” will appear. Use this window to find the image on your computer.</li>
   <li>Select the image and click Open.</li>
 </ol>
@@ -184,15 +184,15 @@
 
 <p>This step is critical if you want your background to be transparent. JPG files do not support transparency, and even if the image is a GIF or PNG, transparency may not be enabled.</p>
 
-<p><strong>Important Step:</strong> To enable transparency, choose <code>Layer &gt; Transparency &gt; Add Alpha Channel</code>. If the option is disabled or grayed out then transparency is already enabled.</p>
+<p><strong>Important Step:</strong> To enable transparency, choose <code class="highlighter-rouge">Layer &gt; Transparency &gt; Add Alpha Channel</code>. If the option is disabled or grayed out then transparency is already enabled.</p>
 
 <h2 id="time-to-play-with-fire">Time to Play with Fire</h2>
 
 <p>You are now ready to get rid of that pesky background! Depending on what the image looks like, there are several techniques you can use. Each technique below describes the situation when it may most effectively be used before stepping through the technique itself.</p>
 
-<p>Oh, make a backup copy of your image, just in case. Gimp also creates a long history of changes that you’ve made and you can choose <code>Edit &gt; Undo</code> numerous times if you make mistakes. Undo is your friend.</p>
+<p>Oh, make a backup copy of your image, just in case. Gimp also creates a long history of changes that you’ve made and you can choose <code class="highlighter-rouge">Edit &gt; Undo</code> numerous times if you make mistakes. Undo is your friend.</p>
 
-<p>After you apply any of the techniques below, take a close look at the region that was selected. If you’re not happy with the results, you can click on <code>Select &gt; None</code> and try again.</p>
+<p>After you apply any of the techniques below, take a close look at the region that was selected. If you’re not happy with the results, you can click on <code class="highlighter-rouge">Select &gt; None</code> and try again.</p>
 
 <p><strong>Cut the Selection:</strong> The final step in every one of the techniques below is to</p>
 
@@ -210,7 +210,7 @@
   <li>In the tool panel on the left, click on the Fuzzy Select icon <img src="/img/posts/strip-background/fuzzy-select.jpg" alt="" title="Fuzzy Select Tool" />.</li>
   <li>Click in the large white area in the upper left of the image.</li>
   <li>Look closely at the selection and decided if it is good enough.</li>
-  <li>If the selection looks nice and tight, select <code>Edit &gt; Cut</code> to delete the selection.</li>
+  <li>If the selection looks nice and tight, select <code class="highlighter-rouge">Edit &gt; Cut</code> to delete the selection.</li>
 </ol>
 
 <p>Here’s what the cleared selection looks like on our image using a Threshold of 15.0:</p>
@@ -229,7 +229,7 @@
 <p>Increase the Threshold to select more:</p>
 
 <ol>
-  <li>Choose <code>Select &gt; None</code> or <code>Edit &gt; Undo Fuzzy Select</code>.</li>
+  <li>Choose <code class="highlighter-rouge">Select &gt; None</code> or <code class="highlighter-rouge">Edit &gt; Undo Fuzzy Select</code>.</li>
   <li>Increase the Threshold value by 5.0 (to 20.0): <img src="/img/posts/strip-background/threshold-20.jpg" alt="" title="Threshold 20.0" /></li>
   <li>Repeat the “Use the Fuzzy Select Tool” steps.</li>
 </ol>
@@ -250,7 +250,7 @@
 <p>Try decreasing the Threshold to select less:</p>
 
 <ol>
-  <li>Choose <code>Select &gt; None</code> or <code>Edit &gt; Undo Fuzzy Select</code>.</li>
+  <li>Choose <code class="highlighter-rouge">Select &gt; None</code> or <code class="highlighter-rouge">Edit &gt; Undo Fuzzy Select</code>.</li>
   <li>Decrease the Threshold value by 5.0 (to 10.0): <img src="/img/posts/strip-background/threshold-10.jpg" alt="" title="Threshold 10.0" /></li>
   <li>Repeat the “Use the Fuzzy Select Tool” steps.</li>
 </ol>
@@ -287,9 +287,9 @@
   <li>Look closely at the selection points and lines. You can click and drag to adjust any of them at this point.</li>
   <li>Click in the middle of the area you want to select to make the selection active.</li>
   <li>Shrink the selection a little bit to leave some of the background in place.<br />
-a. Click on <code>Select &gt; Shrink...</code> in the menu.<br />
+a. Click on <code class="highlighter-rouge">Select &gt; Shrink...</code> in the menu.<br />
 b. In the window that appears, enter 1 or 2 px and click OK.</li>
-  <li>Select <code>Edit &gt; Cut</code> to delete the selection.</li>
+  <li>Select <code class="highlighter-rouge">Edit &gt; Cut</code> to delete the selection.</li>
 </ol>
 
 <p>Here’s what the pre-selection area looks like, just before Step 7:</p>
@@ -323,7 +323,7 @@ b. In the window that appears, enter 1 or 2 px and click OK.</li>
   <li>Carefully click on all of the corners of the background region that you wish to delete.</li>
   <li>When you want to close your selection, click on the point that started your selection.</li>
   <li>Look closely at the selection and decided if it is good enough.</li>
-  <li>If the selection looks nice and tight, select <code>Edit &gt; Cut</code> to delete the selection.</li>
+  <li>If the selection looks nice and tight, select <code class="highlighter-rouge">Edit &gt; Cut</code> to delete the selection.</li>
 </ol>
 
 <p>Here’s what our image looks like after deleting a few of the polygonal areas in the middle of the game:</p>
@@ -359,9 +359,9 @@ b. In the window that appears, enter 1 or 2 px and click OK.</li>
 <ol>
   <li>Click on the Fuzzy Select icon <img src="/img/posts/strip-background/fuzzy-select.jpg" alt="" title="Fuzzy Select Tool" />.</li>
   <li>Hold the Shift key and click on every transparent background region.</li>
-  <li>Click on <code>Select &gt; Grow..</code> in the menu.</li>
+  <li>Click on <code class="highlighter-rouge">Select &gt; Grow..</code> in the menu.</li>
   <li>In the window that appears, choose 2 px and click OK.</li>
-  <li>Click on <code>Filters &gt; Blur &gt; Gaussian Blur...</code> in the menu.</li>
+  <li>Click on <code class="highlighter-rouge">Filters &gt; Blur &gt; Gaussian Blur...</code> in the menu.</li>
   <li>In the window that appears, enter 5.0 px for both the Horizontal and Vertical Blur Radius values and click OK.</li>
 </ol>
 
@@ -379,7 +379,7 @@ b. In the window that appears, enter 1 or 2 px and click OK.</li>
 <p>The last step before saving the image is to resize it. Shrinking the image will get rid of the ghostly effect that smoothing the edges caused, and it will further eliminate artifacts of the original background color.</p>
 
 <ol>
-  <li>Click on <code>Image &gt; Scale Image...</code> in the menu.</li>
+  <li>Click on <code class="highlighter-rouge">Image &gt; Scale Image...</code> in the menu.</li>
   <li>In the window that appears, do the following:<br />
 a. Enter the Width that you would like your new image to be. The Height will automatically adjust proportionally to the Width you enter, so leave it alone.<br />
 b. Enter 72 as the X Resolution. The Y Resolution will automatically adjust to match the X Resolution, so leave it alone.<br />
@@ -400,7 +400,7 @@ c. Click OK.</li>
 <p>It’s tough to really know how well you did until you save your work and use the image somewhere. Use the following steps to save your work:</p>
 
 <ol>
-  <li>Click on <code>File &gt; Export As...</code> in the menu.</li>
+  <li>Click on <code class="highlighter-rouge">File &gt; Export As...</code> in the menu.</li>
   <li>Navigate to the folder where you would like to save the image.</li>
   <li>Enter “product.png” as the Name of the file and click Export. Using the file extension “.png” is <strong>important</strong>!</li>
   <li>In the window that appears, just click Export.</li>
@@ -426,7 +426,7 @@ c. Click OK.</li>
 <p>The steps to add a shadow are pretty straight forward:</p>
 
 <ol>
-  <li>Click on <code>Filters &gt; Light and Shadow &gt; Drop Shadow...</code> in the menu.</li>
+  <li>Click on <code class="highlighter-rouge">Filters &gt; Light and Shadow &gt; Drop Shadow...</code> in the menu.</li>
   <li>In the window that appears, do the following:<br />
 a. Enter 4 as the Offset X and Offset Y.<br />
 b. Enter 15 as the Blur Radius.<br />

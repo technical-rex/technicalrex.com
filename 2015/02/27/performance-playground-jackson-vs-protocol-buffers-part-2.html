@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	
+	<title>Performance Playground - Jackson vs. Protocol Buffers, Part 2 | Technical Rex</title>
+	<meta name="description" content="In my previous article comparing the performance of FasterXML's Jackson JSON serializer and Google's Protocol Buffers, I concluded that the difference in spe...">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<link rel="stylesheet" href="/css/main.css">
+
+	<link rel="canonical" href="http://technicalrex.com/2015/02/27/performance-playground-jackson-vs-protocol-buffers-part-2">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+
+	<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+<!--[if IE]><link rel="shortcut icon" href="/img/icons/favicon.ico"><![endif]-->
+
+<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png">
+
+<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+<link rel="icon" href="/img/icons/favicon.png">
+
+	
+<meta property="article:published_time" content="2015-02-27T00:00:00-04:00" />
+<meta property="article:modified_time" content="2015-02-27T00:00:00-04:00" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Performance Playground - Jackson vs. Protocol Buffers, Part 2" />
+<meta property="og:url" content="http://technicalrex.com/2015/02/27/performance-playground-jackson-vs-protocol-buffers-part-2" />
+<meta property="og:description" content="In my previous article comparing the performance of FasterXML&#39;s Jackson JSON serializer and Google&#39;s Protocol Buffers, I concluded that the difference in speed is very small.Wow was I wrong!" />
+<meta property="og:site_name" content="Technical Rex" />
+<meta property="og:locale" content="en_US" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@eriklgillespie" />
+<meta name="twitter:creator" content="@eriklgillespie" />
+
+
+</head>
+
+<body>
+  <div id="landscape">
+    <header class="site-header">
+	<div class="branding flow-nav">
+		<h1 class="site-title">
+			<a href="/">
+				Technical Rex
+			</a>
+		</h1>
+	</div>
+	<nav class="site-nav flow-nav">
+		<ul class="flow-nav">
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/about.html">About</a>
+			</li>
+			
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/apps.html">Apps</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li class="flow-nav">
+				<a href="/feed.xml" title="">
+					<i class="fa fa-fw fa-rss"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="page-container">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block;width:320px;height:50px"
+     data-ad-client="ca-pub-5353438818816835"
+     data-ad-slot="2993999908"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      <div class="underlay">
+    <div class="content">
+        <article>
+            <header class="post-header">
+                <h1 class="title">Performance Playground:<br/>Jackson vs. Protocol Buffers, Part 2</h1>
+                <p class="about">
+                    Posted  by Erik Gillespie
+                    on February 27, 2015
+                </p>
+            </header>
+            <section class="post-content"><p><strong>Update:</strong> <em><a href="/2015/06/25/performance-playground-jackson-vs-protocol-buffers-part-3">Part 3</a> is available and the tides have turned! Actually it turns out I had a bug in my benchmark that was skewing the Protocol Buffer results in a pretty major way.</em></p>
+
+<p>In my <a href="/2014/06/23/performance-playground-jackson-vs-protocol-buffers">previous article</a> comparing the performance of FasterXML’s Jackson JSON serializer and Google’s Protocol Buffers, I concluded that the difference in speed is very small.</p>
+
+<p>Wow was I wrong!</p>
+
+<h2 id="giving-jackson-a-fair-treatment">Giving Jackson a Fair Treatment</h2>
+
+<p>I’m revisiting the performance analysis of these two frameworks because I got a <a href="https://github.com/egillespie/performance-playground/issues/1">suggestion</a> to add Jackson Afterburner as an additional benchmark from <a href="https://twitter.com/cowtowncoder">Tatu Saloranta</a> and I finally got around to it today.</p>
+
+<p>Adding the Afterburner tests was easy but there was little to no performance improvement. I commented as much on the GitHub issue and Tatu pretty quickly looked into it and <a href="http://www.cowtowncoder.com/blog/archives/2010/04/entry_396.html">pointed me</a> in the right direction.</p>
+
+<p>It turns out that I had disabled some of Jackson’s default configuration for what I thought were fairly harmless reasons and this had thrown off my benchmarks right from the start! I did not deviate from the default Protocol Buffers configuration either, so I wasn’t really doing an apples-to-apples comparison of these two frameworks.</p>
+
+<h2 id="rework">Rework</h2>
+
+<p>After re-enabling the default Jackson configuration (more specifically, I removed the code to disable creator auto-detection, time formatting, and overriding access modifiers) I ran the tests again and my eyes widened upon seeing the results: Jackson was consistently serializing data more than 2 times faster than Protocol Buffers and was just shy of 2 times faster for deserialization.</p>
+
+<p>What a difference using the default settings can make!</p>
+
+<h2 id="jackson--afterburn">Jackson + Afterburn</h2>
+
+<p>Unfortunately, re-enabling the default settings for Jackson did not yield any different results in the new Afterburner tests, it still ran at approximately the same speed as vanilla Jackson.</p>
+
+<div class="image-right">
+    
+    <img src="/img/posts/afterburner.jpg" class="shadow" />
+    
+    
+</div>
+
+<p>I was tipped off to the problem here as well: Afterburner uses bytecode generation to optimize access to getters and setters. Since I was using immutable objects for my benchmark and not supplying a builder for Afterburner to use, it was effectively not doing anything.</p>
+
+<p>And so I stripped out the references to <code class="highlighter-rouge">@JsonCreator</code> in my data objects and made them mutable. Alternatively, I could have kept them immutable and created builders for Jackson to use for deserialization.</p>
+
+<p>This led to an additional improvement in performance over vanilla Jackson: a 6-16% increase in serialization and a 20% improvement in deserialization.</p>
+
+<h2 id="results">Results</h2>
+
+<p>I ran the latest benchmarks on an old Windows laptop, but the relative performance differences are still apparent: Jackson JSON serializes and deserializes much faster than Protocol Buffers with only a small difference in compressed output size.</p>
+
+<h3 id="serialization">Serialization</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Framework</th>
+      <th style="text-align: right">Average Time (ms)</th>
+      <th style="text-align: right">Min. Time (ms)</th>
+      <th style="text-align: right">Max. Time (ms)</th>
+      <th style="text-align: left">Variance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Jackson JSON 2.5.1</td>
+      <td style="text-align: right">373</td>
+      <td style="text-align: right">321</td>
+      <td style="text-align: right">601</td>
+      <td style="text-align: left">-0.14% / +0.61%</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jackson Afterburner JSON 2.5.1</td>
+      <td style="text-align: right">357</td>
+      <td style="text-align: right">313</td>
+      <td style="text-align: right">587</td>
+      <td style="text-align: left">-0.12% / +0.64%</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Protocol Buffers 2.6.0</td>
+      <td style="text-align: right">891</td>
+      <td style="text-align: right">772</td>
+      <td style="text-align: right">1,402</td>
+      <td style="text-align: left">-0.13% / +0.57%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="deserialization">Deserialization</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Framework</th>
+      <th style="text-align: right">Average Time (ms)</th>
+      <th style="text-align: right">Min. Time (ms)</th>
+      <th style="text-align: right">Max. Time (ms)</th>
+      <th style="text-align: left">Variance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Jackson JSON 2.5.1</td>
+      <td style="text-align: right">704</td>
+      <td style="text-align: right">557</td>
+      <td style="text-align: right">1,421</td>
+      <td style="text-align: left">-0.21% / +1.02%</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jackson Afterburner JSON 2.5.1</td>
+      <td style="text-align: right">569</td>
+      <td style="text-align: right">523</td>
+      <td style="text-align: right">973</td>
+      <td style="text-align: left">-0.08% / +0.71%</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Protocol Buffers 2.6.0</td>
+      <td style="text-align: right">1,344</td>
+      <td style="text-align: right">1,173</td>
+      <td style="text-align: right">2,006</td>
+      <td style="text-align: left">-0.13% / +0.49%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="compression">Compression</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Framework</th>
+      <th style="text-align: right">Uncompressed Size (bytes)</th>
+      <th style="text-align: right">GZip Compressed Size (bytes)</th>
+      <th style="text-align: right">Compression Ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Jackson JSON 2.5.1</td>
+      <td style="text-align: right">27,018</td>
+      <td style="text-align: right">9,591</td>
+      <td style="text-align: right">2.82</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jackson Afterburner JSON 2.5.1</td>
+      <td style="text-align: right">26,910</td>
+      <td style="text-align: right">9,610</td>
+      <td style="text-align: right">2.80</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Protocol Buffers 2.6.0</td>
+      <td style="text-align: right">18,851</td>
+      <td style="text-align: right">9,199</td>
+      <td style="text-align: right">2.05</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="lessons-relearned">Lessons (Re)Learned</h2>
+
+<ol>
+  <li>Be fair when comparing frameworks.</li>
+  <li>Default settings are there for a reason.</li>
+  <li>Know what’s going on under the hood!</li>
+</ol>
+
+<h2 id="whats-next">What’s Next?</h2>
+
+<p>My incentive for including Afterburner today was that I heard Protocol Buffers version 3.0 should be released soon and I’m hopeful that there will be some performance improvements made. I will add the tests for Protocol Buffers 3 when it’s released.</p>
+
+<p>If you have suggestions for other frameworks, <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#101;&#114;&#105;&#107;&#046;&#103;&#105;&#108;&#108;&#101;&#115;&#112;&#105;&#101;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">let me know</a>!</p>
+</section>
+            <p class="signature"> - Erik</p>
+        </article>
+    </div>
+</div>
+
+    </div>
+    <footer class="site-footer">
+	<p class="text">Copyright © 2015 Technical Rex, Inc. Re-use with attribution encouraged. All other rights reserved.</p>
+</footer>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62666024-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </div>
+  <img id="rex" src="/img/rex/rex-main.png"></img>
+  <script type="text/javascript" src="/js/retarget-links.js"></script>
+</body>
+</html>
