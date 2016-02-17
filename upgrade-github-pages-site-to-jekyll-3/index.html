@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	
+	<title>Quickly Upgrade Your GitHub Pages Site to Jekyll 3 | Technical Rex</title>
+	<meta name="description" content="GitHub recently upgraded their GitHub Pages platform (a.k.a. free static  site hosting!) from Jekyll 2.4 to Jekyll 3.0. They published an article about the c...">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<link rel="stylesheet" href="/css/main.css">
+
+	<link rel="canonical" href="http://technicalrex.com/upgrade-github-pages-site-to-jekyll-3/">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+
+	<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+<!--[if IE]><link rel="shortcut icon" href="/img/icons/favicon.ico"><![endif]-->
+
+<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png">
+
+<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+<link rel="icon" href="/img/icons/favicon.png">
+
+	
+<meta property="article:published_time" content="2016-02-17T00:00:00-04:00" />
+<meta property="article:modified_time" content="2016-02-17T00:00:00-04:00" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Quickly Upgrade Your GitHub Pages Site to Jekyll 3" />
+<meta property="og:url" content="http://technicalrex.com/upgrade-github-pages-site-to-jekyll-3/" />
+<meta property="og:description" content="GitHub recently upgraded their GitHub Pages platform (a.k.a. free static  site hosting!) from Jekyll 2.4 to Jekyll 3.0. They published an article about the changes, but it didn&#39;t seem very comp..." />
+<meta property="og:site_name" content="Technical Rex" />
+<meta property="og:locale" content="en_US" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@eriklgillespie" />
+<meta name="twitter:creator" content="@eriklgillespie" />
+
+
+</head>
+
+<body>
+  <div id="landscape">
+    <header class="site-header">
+	<div class="branding flow-nav">
+		<h1 class="site-title">
+			<a href="/">
+				Technical Rex
+			</a>
+		</h1>
+	</div>
+	<nav class="site-nav flow-nav">
+		<ul class="flow-nav">
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/about.html">About</a>
+			</li>
+			
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/apps.html">Apps</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li class="flow-nav">
+				<a href="/feed.xml" title="">
+					<i class="fa fa-fw fa-rss"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="page-container">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block;width:320px;height:50px"
+     data-ad-client="ca-pub-5353438818816835"
+     data-ad-slot="2993999908"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      <div class="underlay">
+    <div class="content">
+        <article>
+            <header class="post-header">
+                <h1 class="title">Quickly Upgrade Your GitHub Pages Site to Jekyll 3</h1>
+                <p class="about">
+                    Posted  by Erik Gillespie
+                    on February 17, 2016
+                </p>
+            </header>
+            <section class="post-content"><p>GitHub recently upgraded their <a href="https://pages.github.com/">GitHub Pages</a> platform (a.k.a. free static site hosting!) from Jekyll 2.4 to Jekyll 3.0. They published an <a href="https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0">article about the changes</a>, but it didn’t seem very comprehensive. After reading it, I generally felt like things should just continue to work… but they didn’t.</p>
+
+<p>I’ve since gone through four static sites and upgraded them to Jekyll 3. Here’s the quick and dirty version of what I had to do to get those sites looking pretty and working the way I expected them to.</p>
+
+<h2 id="pagination">Pagination</h2>
+
+<p>Let me start with the item that wasn’t covered in GitHub’s migration notes. If you were using pagination (aren’t we all?), then you may have noticed that the styles on your page look goofy, random Markdown shows up in your HTML, and you may even be getting this message in your logs:</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/jekyll-paginate.jpg" class="shadow" />
+    
+    
+</div>
+
+<p>If all this rings true, then add the following lines to the end of your <code class="highlighter-rouge">Gemfile</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'jekyll-paginate'</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>If you want to use any other Jekyll plugins, put them in the <code class="highlighter-rouge">:jekyll_plugins</code> group too. Be careful though, only certain plugins are supported by GitHub Pages!</p>
+
+<h2 id="bundle">Bundle</h2>
+
+<p>Regardless of whether you had to fix the <code class="highlighter-rouge">jekyll-paginate</code> issue, make sure to run <code class="highlighter-rouge">bundle update</code>. This will make sure you are running the same version of the <code class="highlighter-rouge">github-pages</code> gem (and all of its dependencies) as GitHub Pages itself.</p>
+
+<h2 id="kramdown">Kramdown</h2>
+
+<p>GitHub Pages now <strong>only</strong> supports Kramdown as its Markdown processor. What does that mean to you?</p>
+
+<ol>
+  <li>Remove the <code class="highlighter-rouge">markdown:</code> property from your <code class="highlighter-rouge">_config.yml</code> file.</li>
+  <li>If your pages look funky and you were using something besides Kramdown, add these lines to <code class="highlighter-rouge">_config.yml</code>:</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">kramdown</span><span class="pi">:</span>
+  <span class="s">input</span><span class="pi">:</span> <span class="s">GFM</span>
+</code></pre>
+</div>
+
+<h2 id="syntax-highlighting">Syntax Highlighting</h2>
+
+<p>If you have code snippets on your blog, you should know that GitHub Pages now <strong>only</strong> supports Rouge for making your snippets look pretty. Since only one highlighter is supported now, remove the <code class="highlighter-rouge">highlighter:</code> property from your <code class="highlighter-rouge">_config.yml</code> file.</p>
+
+<h4 id="extra-credit">Extra Credit</h4>
+
+<p>If you were using <code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">highlight</span><span class="w"> </span><span class="err">lang</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code> to declare code snippets in your Markdown files, you can instead use backticks:</p>
+
+<p><strong>Before:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+  {% highlight html %}
+  <span class="nt">&lt;h1&gt;</span>Hello World!<span class="nt">&lt;/h1&gt;</span>
+  {% endhighlight %}
+
+</code></pre>
+</div>
+
+<p><strong>After:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+  <span class="p">```</span><span class="nl">html</span>
+  <span class="nt">&lt;h1&gt;</span>Hello World!<span class="nt">&lt;/h1&gt;</span>
+  <span class="p">```</span>
+
+</code></pre>
+</div>
+
+<h2 id="the-end">The End</h2>
+
+<p>I hope you found what you were looking for. Happy hosting!</p>
+
+</section>
+            <p class="signature"> - Erik</p>
+        </article>
+    </div>
+</div>
+
+    </div>
+    <footer class="site-footer">
+	<p class="text">Copyright © 2015 Technical Rex, Inc. Re-use with attribution encouraged. All other rights reserved.</p>
+</footer>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62666024-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </div>
+  <img id="rex" src="/img/rex/rex-main.png"></img>
+  <script type="text/javascript" src="/js/retarget-links.js"></script>
+</body>
+</html>
