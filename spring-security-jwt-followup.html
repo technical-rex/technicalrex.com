@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	
+	<title>Spring Security and JWT - Clearer, Safer, Verifiable | Technical Rex</title>
+	<meta name="description" content="If you are familiar with my Stateless Authentication with Spring Security and JWT tutorial, you may be pleased to know that I made the example a little safer...">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<link rel="stylesheet" href="/css/main.css">
+
+	<link rel="canonical" href="http://technicalrex.com/spring-security-jwt-followup">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+
+	<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+<!--[if IE]><link rel="shortcut icon" href="/img/icons/favicon.ico"><![endif]-->
+
+<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png">
+
+<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+<link rel="icon" href="/img/icons/favicon.png">
+
+	
+<meta property="article:published_time" content="2016-05-04T00:00:00-04:00" />
+<meta property="article:modified_time" content="2016-05-04T00:00:00-04:00" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Spring Security and JWT - Clearer, Safer, Verifiable" />
+<meta property="og:url" content="http://technicalrex.com/spring-security-jwt-followup" />
+<meta property="og:description" content="If you are familiar with my Stateless Authentication with Spring Security and JWT tutorial, you may be pleased to know that I made the example a little safer, fixed a bug that prevented tokens from..." />
+<meta property="og:site_name" content="Technical Rex" />
+<meta property="og:locale" content="en_US" />
+
+<meta property="og:image" content="http://technicalrex.com/img/posts/verifiable-jwt.jpg" />
+<link rel="image_src" href="http://technicalrex.com/img/posts/verifiable-jwt.jpg" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@eriklgillespie" />
+<meta name="twitter:creator" content="@eriklgillespie" />
+
+
+</head>
+
+<body>
+  <div id="landscape">
+    <header class="site-header">
+	<div class="branding flow-nav">
+		<h1 class="site-title">
+			<a href="/">
+				Technical Rex
+			</a>
+		</h1>
+	</div>
+	<nav class="site-nav flow-nav">
+		<ul class="flow-nav">
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/about.html">About</a>
+			</li>
+			
+			
+			
+			<li class="flow-nav">
+				<a class="page-link" href="/apps.html">Apps</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li class="flow-nav">
+				<a href="/feed.xml" title="">
+					<i class="fa fa-fw fa-rss"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="page-container">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block;width:320px;height:50px"
+     data-ad-client="ca-pub-5353438818816835"
+     data-ad-slot="2993999908"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      <div class="underlay">
+    <div class="content">
+        <article>
+            <header class="post-header">
+                <h1 class="title">Spring Security and JWT:<br/>Clearer, Safer, Verifiable</h1>
+                <p class="about">
+                    Posted  by Erik Gillespie
+                    on May 4, 2016
+                </p>
+            </header>
+            <section class="post-content"><p><strong><em>Note:</em></strong> This is a follow-up to the <a href="/2015/02/20/stateless-authentication-with-spring-security-and-jwt" title="Tutorial: Stateless Authentication with Spring Security and JWT">Stateless Authentication with Spring Security and JWT</a> tutorial. If you’re here to see what’s changed since then, read on! Otherwise, you may want to read the original tutorial first and then come back to this article to see what’s changed.</p>
+
+<p>If you want to skip the explanation and just look at the code changes, <a href="https://github.com/technical-rex/spring-security-jwt/compare/4e9dc4e6b8f53ce49dcf7dd527df8fc7fac927cd...a2d0b67c26e4e20f64e8d95ae827f7522218447b" title="Code review the changes to this tutorial">click here</a>.</p>
+
+<h2 id="stronger-tokens">Stronger Tokens</h2>
+
+<p>An observant fellow by the name of <a href="https://github.com/florianschmitt" title="Florian Schmitt's Public GitHub Profile">Florian Schmitt</a> noticed in my original tutorial that the same token is always generated for a given username. This is worrisome because it increases the risk that a user’s credentials or even the application’s secret key will be compromised!</p>
+
+<p>To reduce this risk, we can add <em>entropy</em> to the token — data that an attacker cannot predict that is different from our secret key — and we can minimize the time in which someone can use a token.</p>
+
+<p>Florian had some great suggestions that are really easy to implement using <a href="https://github.com/jwtk/jjwt" title="JJWT on GitHub">JJWT</a>. Here’s what the new token generator looks like:</p>
+
+<p><strong>TokenHandler.java</strong></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11</pre></td><td class="code"><pre><span class="kd">public</span> <span class="n">String</span> <span class="nf">createTokenForUser</span><span class="p">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Date</span> <span class="n">now</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
+    <span class="n">Date</span> <span class="n">expiration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="n">now</span><span class="o">.</span><span class="na">getTime</span><span class="o">()</span> <span class="o">+</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">HOURS</span><span class="o">.</span><span class="na">toMillis</span><span class="o">(</span><span class="mi">1</span><span class="n">l</span><span class="o">));</span>
+    <span class="k">return</span> <span class="n">Jwts</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getUsername</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">setIssuedAt</span><span class="o">(</span><span class="n">now</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setExpiration</span><span class="o">(</span><span class="n">expiration</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">signWith</span><span class="o">(</span><span class="n">SignatureAlgorithm</span><span class="o">.</span><span class="na">HS512</span><span class="o">,</span> <span class="n">secret</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">compact</span><span class="o">();</span>
+<span class="o">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<h2 id="less-buggy-tokens">Less Buggy Tokens</h2>
+
+<p>Florian also noticed I wasn’t Base64-encoding the secret key when signing the tokens. D’oh! This violation of <a href="https://tools.ietf.org/html/rfc7519" title="JSON Web Token RFC">the spec</a> might prevent alternative JWT frameworks within your application’s ecosystem from properly verifying tokens.</p>
+
+<p>Fortunately, this is a one-line fix to the token handler’s constructor:</p>
+
+<p><strong>TokenHandler.java</strong></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre><span class="kd">public</span> <span class="nf">TokenHandler</span><span class="p">(</span><span class="n">String</span> <span class="n">secret</span><span class="o">,</span> <span class="n">UserService</span> <span class="n">userService</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">secret</span> <span class="o">=</span> <span class="n">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">StringConditions</span><span class="o">.</span><span class="na">checkNotBlank</span><span class="o">(</span><span class="n">secret</span><span class="o">).</span><span class="na">getBytes</span><span class="o">());</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">userService</span> <span class="o">=</span> <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">userService</span><span class="o">);</span>
+<span class="o">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>The fix can be verified by pasting one of the tutorial’s generated tokens into <a href="https://jwt.io" title="JWT.IO - An Online JWT Debugger">JWT.io</a> and typing in the default secret key “tooManySecrets”. Notice the giant “Signature Verified” message in the image below.</p>
+
+<div class="image-center">
+    
+    <img src="/img/posts/verifiable-jwt.jpg" class="shadow" />
+    
+    Don't trust me, try it for yourself!
+</div>
+
+<h2 id="authenticating-with-google">Authenticating with Google</h2>
+
+<p>After going months without thinking about this tutorial, it was a struggle for me to figure out how to generate Google OAuth credentials to use in this example. To save myself and others the agony of figuring that out again,<br />
+I also added better instructions to the tutorial’s <a href="https://github.com/technical-rex/spring-security-jwt" title="Better setup instructions for spring-security-jwt on GitHub">README</a> in GitHub.</p>
+
+</section>
+            <p class="signature"> - Erik</p>
+        </article>
+    </div>
+</div>
+
+    </div>
+    <footer class="site-footer">
+	<p class="text">Copyright © 2015 Technical Rex, Inc. Re-use with attribution encouraged. All other rights reserved.</p>
+</footer>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62666024-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </div>
+  <img id="rex" src="/img/rex/rex-main.png"></img>
+  <script type="text/javascript" src="/js/retarget-links.js"></script>
+</body>
+</html>
