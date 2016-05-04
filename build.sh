@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd /Users/egillespie/Projects/technicalrex.com.master
-jekyll build
+bundle exec jekyll build
 
 cd ../technicalrex.com.gh-pages
 rm -rf ./*
