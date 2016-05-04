@@ -10,7 +10,9 @@ excerpt: >
     <p>As part of my lifelong study of REST APIs I have been learning more about avoiding shared state between the client and server. This week in particular I have been learning about stateless authentication and attempting to implement it in a skeleton Java app based on my Jersey on Google AppEngine tutorial.</p>I've decided to use Spring Security and JWT to pull it off.
 ---
 
-*Update:* The code used for this tutorial is now [available on GitHub](https://github.com/technical-rex/spring-security-jwt)! Peruse, fork, and clone as you see fit.
+***Update 2:*** Things have been fixed and better setup instructions have been written! [Read the follow-up article](/spring-security-jwt-followup).
+
+***Update 1:*** The code used for this tutorial is now [available on GitHub](https://github.com/technical-rex/spring-security-jwt)! Peruse, fork, and clone as you see fit.
 
 As part of my lifelong study of REST APIs I have been learning more about [avoiding shared state](http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3) between the client and server. This week in particular I have been learning about stateless authentication and attempting to implement it in a skeleton Java app based on my [Jersey on Google AppEngine tutorial]({{ site.baseurl }}{% post_url 2014-08-11-creating-a-jersey-app-on-google-app-engine %}).
 
@@ -20,7 +22,7 @@ The REST architectural style is interesting to me, but that alone is not why I w
 
 Another benefit of statelessness when building a RESTful web application that is important to me is testability. It is much easier to test endpoints without first having to go through a workflow to establish a session and then end that session after the test to ensure the tests are isolated. This will probably result in time savings during the development of the app as well.
 
-One of the downsides of statelessness is that it requires some form of token or credential to be supplied with **every** request to the server, which can be a performance penalty. [JWT](http://openid.net/specs/draft-jones-json-web-token-07.html) (JSON Web Tokens) are a means of offering stateless authentication in a compact and secure way. JSON Web Tokens can be used to thwart cross-site request forgery attempts and there are plenty of JWT libraries out there as well.
+One of the downsides of statelessness is that it requires some form of token or credential to be supplied with **every** request to the server, which can be a performance penalty. [JWT](https://tools.ietf.org/html/rfc7519) (JSON Web Tokens) are a means of offering stateless authentication in a compact and secure way. JSON Web Tokens can be used to thwart cross-site request forgery attempts and there are plenty of JWT libraries out there as well.
 
 While there may be a performance penalty to stateless authentication, I think the compactful, secure, easy-to-use JWT balances out that con quite nicely. Another benefit of JWT is that it does not require the use of cookies, which makes server-to-server authentication more convenient.
 
