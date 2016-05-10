@@ -104,7 +104,7 @@ The resulting `index.html` and styles (located in `css/app.css`) will look like 
   </div>
 
   <div class="footer">
-    <p>© Technical Rex, Inc. 2014</p>
+    <p>&copy; Erik Gillespie. 2014</p>
   </div>
 </div>
 </body>
