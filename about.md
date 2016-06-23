@@ -6,7 +6,7 @@ author: erik
 permalink: /about.html
 ---
 
-Technical Rex is a one-person tech company started in late 2007 by [Erik Gillespie](mailto:erik.gillespie@technicalrex.com). The business is operated in and around Lansing, Michigan and at various locations on the Internet. Technical Rex was created as a way to help local businesses develop software but is undergoing a little bit of evolution. Why help a few individuals and businesses when you can just as easily help many?
+Technical Rex is a tech company started by [Erik Gillespie](mailto:erik.gillespie@technicalrex.com). The business is operated in and around Lansing, Michigan and at various locations on the Internet. Technical Rex was created as a way to help local businesses develop software but also makes software of its own to help make life a little bit easier for others. Why help a few individuals and businesses when you can just as easily help many?
 
 Technical Rex has two goals:
 
