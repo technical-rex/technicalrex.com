@@ -34,7 +34,7 @@
 <meta property="og:locale" content="en_US" />
 
 
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@eriklgillespie" />
 <meta name="twitter:creator" content="@eriklgillespie" />
 
@@ -171,7 +171,7 @@
 
 <p>Right now, the manual process looks like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd</span> ~/my-site.com
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd</span> ~/my-site.com
 <span class="gp">$ </span>git fetch --all
 <span class="gp">$ </span>git reset --hard origin/master
 <span class="gp">$ </span>jekyll build
@@ -183,7 +183,7 @@
 
 <p>If you’re using Surge, you probably have NPM installed. As a refresher, installing NVM and NPM in Bash will look like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Install NVM</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Install NVM</span>
 <span class="gp">$ </span>touch ~/.bash_profile
 <span class="gp">$ </span>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 <span class="gp">$ </span>. ~/.bash_profile
@@ -196,7 +196,7 @@
 
 <p>Next, create a <code class="highlighter-rouge">package.json</code> file at the base of your static site and add the dependencies we’ll need:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Change to your project directory</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Change to your project directory</span>
 <span class="gp">$ </span><span class="nb">cd</span> ~/my-site.com
 
 <span class="c"># Create package.json</span>
@@ -215,7 +215,7 @@
 
 <p>You’ll have a <code class="highlighter-rouge">package.json</code> that looks something like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-site.com"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"homepage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://my-site.com"</span><span class="p">,</span><span class="w">
@@ -239,7 +239,7 @@
 
 <p>The last step is to create a <code class="highlighter-rouge">Gruntfile.js</code> in the same directory as your <code class="highlighter-rouge">package.json</code> and add all of the checkout, build, and deployment steps. Start with this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
     <span class="na">pkg</span><span class="p">:</span> <span class="nx">grunt</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">readJSON</span><span class="p">(</span><span class="s1">'package.json'</span><span class="p">),</span>
     
@@ -299,7 +299,7 @@
 
 <p>At this point the manual process has now been consolidated down to a single <code class="highlighter-rouge">grunt</code> command that will checkout, build, and deploy your site:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>grunt prod
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>grunt prod
 </code></pre>
 </div>
 
@@ -309,7 +309,7 @@
 
 <p>Here’s what your <code class="highlighter-rouge">deploy.sh</code> might look like:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 
 exit_usage<span class="o">()</span>
 <span class="o">{</span>
@@ -333,7 +333,7 @@ grunt prod
 
 <p>Add <code class="highlighter-rouge">deploy.sh</code> to a list of files excluded from your static site when it is built. In Jekyll, add an “exclude” list to the end of your <code class="highlighter-rouge">_config.yml</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># Exclude files from generated site</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1"># Exclude files from generated site</span>
 <span class="s">exclude</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">Gemfile</span>
   <span class="pi">-</span> <span class="s">Gemfile.lock</span>
@@ -348,7 +348,7 @@ grunt prod
 
 <p>Also, make sure you mark <code class="highlighter-rouge">deploy.sh</code> as executable.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Set execute permission on deploy.sh</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Set execute permission on deploy.sh</span>
 <span class="gp">$ </span>chmod 755 deploy.sh
 </code></pre>
 </div>
@@ -373,7 +373,7 @@ grunt prod
 
 <p>You should run the first set of commands as root to do things like install git, curl, libssl, and ntpdate.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Install git, curl, libssl, ntpdate, etc.</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Install git, curl, libssl, ntpdate, etc.</span>
 root@vm <span class="nv">$ </span>apt-get update
 root@vm <span class="nv">$ </span>apt-get install git curl build-essential libssl-dev ntpdate
 </code></pre>
@@ -381,7 +381,7 @@ root@vm <span class="nv">$ </span>apt-get install git curl build-essential libss
 
 <p>I also recommend creating a dedicated user for performing your deployments, so let’s take care of that.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Create a user named "myuser" and set its password</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Create a user named "myuser" and set its password</span>
 root@vm <span class="nv">$ </span>useradd -m myuser
 root@vm <span class="nv">$ </span>passwd myuser
 
@@ -392,7 +392,7 @@ root@vm <span class="nv">$ </span><span class="nb">echo</span> <span class="s2">
 
 <p>Since we’re going to be scheduling time-sensitive content, let’s also adjust the time zone and run <code class="highlighter-rouge">ntpdate</code> occasionally so the time on the VM doesn’t drift over a long period of time.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Choose a time zone</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Choose a time zone</span>
 root@vm <span class="nv">$ </span>dpkg-reconfigure tzdata
 
 <span class="c"># Run ntpdate daily</span>
@@ -402,14 +402,14 @@ root@vm <span class="nv">$ </span><span class="nb">printf</span> <span class="s1
 
 <p>All of the remaining commands should run as the user you created. If you are prompted for a password at any point, use the password you specified for “myuser”.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Switch to the user you created</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Switch to the user you created</span>
 root@vm <span class="nv">$ </span>su - myuser
 </code></pre>
 </div>
 
 <p>Now let’s install RVM, Ruby, and Bundler.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Install the public key needed to fetch RVM</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Install the public key needed to fetch RVM</span>
 myuser@vm <span class="nv">$ </span>gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
 <span class="c"># Download and install RVM</span>
@@ -429,7 +429,7 @@ myuser@vm <span class="nv">$ </span>gem install bundler
 
 <p>Next up: NVM and Node.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Download and install NVM</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Download and install NVM</span>
 myuser@vm <span class="nv">$ </span>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 myuser@vm <span class="nv">$ </span>. ~/.nvm/nvm.sh
 
@@ -445,7 +445,7 @@ myuser@vm <span class="nv">$ </span>nvm use 4.3.1
 
 <p>Use Git to clone your static site and install its dependencies:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Clone your static site from GitHub</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Clone your static site from GitHub</span>
 myuser@vm <span class="nv">$ </span>git clone https://github.com/my-user/my-site.com.git
 myuser@vm <span class="nv">$ </span><span class="nb">cd </span>my-site.com
 
@@ -461,14 +461,14 @@ myuser@vm <span class="nv">$ </span>npm install
 
 <p>While we’re here, let’s log into Surge. Make sure you know your username and password.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Login to Surge</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Login to Surge</span>
 myuser@vm <span class="nv">$ </span>surge login
 </code></pre>
 </div>
 
 <p>This would be a good time to test deployments from the VM. This should do the trick:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Manually deploy your site</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Manually deploy your site</span>
 myuser@vm <span class="nv">$ </span>/home/myuser/my-site.com/deploy.sh /home/myuser/my-site.com
 </code></pre>
 </div>
@@ -479,7 +479,7 @@ myuser@vm <span class="nv">$ </span>/home/myuser/my-site.com/deploy.sh /home/myu
 
 <p>Use cron to run <code class="highlighter-rouge">deploy.sh</code> on a schedule. First, edit your user’s crontab:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Edit your crontab</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Edit your crontab</span>
 myuser@vm <span class="nv">$ </span>crontab -e
 </code></pre>
 </div>
@@ -500,9 +500,9 @@ myuser@vm <span class="nv">$ </span>crontab -e
 <p>Before writing my own solution, I tried to find something that already existed. There were a couple, but neither quite fit my needs. I’ve put them here just in case you might find them useful.</p>
 
 <ol>
-  <li>If you are using <a href="https://pages.github.com/" title="GitHub Pages: Free Static Site Hosting on GitHub">GitHub Pages</a> as your static site host, here’s a pretty clever solution that uses <a href="https://zapier.com/" title="Zapier: Automate Tasks">Zapier</a> and calendar events to avoid using a server or VM to schedule deployments. <br />
+  <li>If you are using <a href="https://pages.github.com/" title="GitHub Pages: Free Static Site Hosting on GitHub">GitHub Pages</a> as your static site host, here’s a pretty clever solution that uses <a href="https://zapier.com/" title="Zapier: Automate Tasks">Zapier</a> and calendar events to avoid using a server or VM to schedule deployments. 
 <a href="http://blog.east5th.co/2014/12/29/scheduling-posts-with-jekyll-github-pages-and-zapier/" title="Use Zapier to schedule deployments to GitHub Pages">http://blog.east5th.co/2014/12/29/scheduling-posts-with-jekyll-github-pages-and-zapier/</a></li>
-  <li>This tutorial shows how to use <a href="http://rake.rubyforge.org/" title="Rake: A Build Program for Ruby Projects">Rake</a> to consolidate your deployments instead of Grunt. If I weren’t already using Grunt for my builds and manual deployments, I probably would have tried this.<br />
+  <li>This tutorial shows how to use <a href="http://rake.rubyforge.org/" title="Rake: A Build Program for Ruby Projects">Rake</a> to consolidate your deployments instead of Grunt. If I weren’t already using Grunt for my builds and manual deployments, I probably would have tried this.
 <a href="http://www.jaredwolff.com/blog/schedule-jekyll-posts/" title="Use Rake and Cron to schedule static site deployments">http://www.jaredwolff.com/blog/schedule-jekyll-posts/</a></li>
 </ol>
 
@@ -520,7 +520,7 @@ myuser@vm <span class="nv">$ </span>crontab -e
 
     </div>
     <footer class="site-footer">
-	<p class="text">Copyright &copy; 2016 Erik Gillespie. Re-use with attribution encouraged. All other rights reserved.</p>
+	<p class="text">Copyright &copy; 2016 Technical Rex, LLC. Re-use with attribution encouraged. All other rights reserved.</p>
 </footer>
 
 <script>

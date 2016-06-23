@@ -5,7 +5,7 @@
     <atom:link href="http://technicalrex.com/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://technicalrex.com/</link>
     <description>A site about programming, business, and dinosaurs. ROAR!</description>
-    <pubDate>Tue, 10 May 2016 10:01:59 -0400</pubDate>
+    <pubDate>Thu, 23 Jun 2016 10:21:33 -0400</pubDate>
     
       <item>
         <title>Spring Security and JWT - Clearer, Safer, Verifiable</title>
@@ -76,7 +76,7 @@
 
 &lt;h2 id=&quot;authenticating-with-google&quot;&gt;Authenticating with Google&lt;/h2&gt;
 
-&lt;p&gt;After going months without thinking about this tutorial, it was a struggle for me to figure out how to generate Google OAuth credentials to use in this example. To save myself and others the agony of figuring that out again,&lt;br /&gt;
+&lt;p&gt;After going months without thinking about this tutorial, it was a struggle for me to figure out how to generate Google OAuth credentials to use in this example. To save myself and others the agony of figuring that out again,
 I also added better instructions to the tutorial’s &lt;a href=&quot;https://github.com/technical-rex/spring-security-jwt&quot; title=&quot;Better setup instructions for spring-security-jwt on GitHub&quot;&gt;README&lt;/a&gt; in GitHub.&lt;/p&gt;
 
 </description>
@@ -117,7 +117,7 @@ I also added better instructions to the tutorial’s &lt;a href=&quot;https://gi
 
 &lt;p&gt;Right now, the manual process looks like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/my-site.com
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/my-site.com
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git fetch --all
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git reset --hard origin/master
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;jekyll build
@@ -129,7 +129,7 @@ I also added better instructions to the tutorial’s &lt;a href=&quot;https://gi
 
 &lt;p&gt;If you’re using Surge, you probably have NPM installed. As a refresher, installing NVM and NPM in Bash will look like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Install NVM&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Install NVM&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;touch ~/.bash_profile
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;. ~/.bash_profile
@@ -142,7 +142,7 @@ I also added better instructions to the tutorial’s &lt;a href=&quot;https://gi
 
 &lt;p&gt;Next, create a &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file at the base of your static site and add the dependencies we’ll need:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Change to your project directory&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Change to your project directory&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/my-site.com
 
 &lt;span class=&quot;c&quot;&gt;# Create package.json&lt;/span&gt;
@@ -161,7 +161,7 @@ I also added better instructions to the tutorial’s &lt;a href=&quot;https://gi
 
 &lt;p&gt;You’ll have a &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; that looks something like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my-site.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;homepage&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://my-site.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -185,7 +185,7 @@ I also added better instructions to the tutorial’s &lt;a href=&quot;https://gi
 
 &lt;p&gt;The last step is to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;Gruntfile.js&lt;/code&gt; in the same directory as your &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; and add all of the checkout, build, and deployment steps. Start with this:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;pkg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readJSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;package.json&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
     
@@ -245,7 +245,7 @@ I also added better instructions to the tutorial’s &lt;a href=&quot;https://gi
 
 &lt;p&gt;At this point the manual process has now been consolidated down to a single &lt;code class=&quot;highlighter-rouge&quot;&gt;grunt&lt;/code&gt; command that will checkout, build, and deploy your site:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;grunt prod
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;grunt prod
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -255,7 +255,7 @@ I also added better instructions to the tutorial’s &lt;a href=&quot;https://gi
 
 &lt;p&gt;Here’s what your &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy.sh&lt;/code&gt; might look like:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
 
 exit_usage&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -279,7 +279,7 @@ grunt prod
 
 &lt;p&gt;Add &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy.sh&lt;/code&gt; to a list of files excluded from your static site when it is built. In Jekyll, add an “exclude” list to the end of your &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Exclude files from generated site&lt;/span&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Exclude files from generated site&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;exclude&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Gemfile&lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Gemfile.lock&lt;/span&gt;
@@ -294,7 +294,7 @@ grunt prod
 
 &lt;p&gt;Also, make sure you mark &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy.sh&lt;/code&gt; as executable.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Set execute permission on deploy.sh&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Set execute permission on deploy.sh&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;chmod 755 deploy.sh
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -319,7 +319,7 @@ grunt prod
 
 &lt;p&gt;You should run the first set of commands as root to do things like install git, curl, libssl, and ntpdate.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Install git, curl, libssl, ntpdate, etc.&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Install git, curl, libssl, ntpdate, etc.&lt;/span&gt;
 root@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt-get update
 root@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt-get install git curl build-essential libssl-dev ntpdate
 &lt;/code&gt;&lt;/pre&gt;
@@ -327,7 +327,7 @@ root@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt-get install git curl
 
 &lt;p&gt;I also recommend creating a dedicated user for performing your deployments, so let’s take care of that.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Create a user named &quot;myuser&quot; and set its password&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Create a user named &quot;myuser&quot; and set its password&lt;/span&gt;
 root@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;useradd -m myuser
 root@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd myuser
 
@@ -338,7 +338,7 @@ root@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&
 
 &lt;p&gt;Since we’re going to be scheduling time-sensitive content, let’s also adjust the time zone and run &lt;code class=&quot;highlighter-rouge&quot;&gt;ntpdate&lt;/code&gt; occasionally so the time on the VM doesn’t drift over a long period of time.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Choose a time zone&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Choose a time zone&lt;/span&gt;
 root@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dpkg-reconfigure tzdata
 
 &lt;span class=&quot;c&quot;&gt;# Run ntpdate daily&lt;/span&gt;
@@ -348,14 +348,14 @@ root@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&
 
 &lt;p&gt;All of the remaining commands should run as the user you created. If you are prompted for a password at any point, use the password you specified for “myuser”.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Switch to the user you created&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Switch to the user you created&lt;/span&gt;
 root@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;su - myuser
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Now let’s install RVM, Ruby, and Bundler.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Install the public key needed to fetch RVM&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Install the public key needed to fetch RVM&lt;/span&gt;
 myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
 &lt;span class=&quot;c&quot;&gt;# Download and install RVM&lt;/span&gt;
@@ -375,7 +375,7 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install bundler
 
 &lt;p&gt;Next up: NVM and Node.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Download and install NVM&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Download and install NVM&lt;/span&gt;
 myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;. ~/.nvm/nvm.sh
 
@@ -391,7 +391,7 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nvm use 4.3.1
 
 &lt;p&gt;Use Git to clone your static site and install its dependencies:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Clone your static site from GitHub&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Clone your static site from GitHub&lt;/span&gt;
 myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/my-user/my-site.com.git
 myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;my-site.com
 
@@ -407,14 +407,14 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install
 
 &lt;p&gt;While we’re here, let’s log into Surge. Make sure you know your username and password.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Login to Surge&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Login to Surge&lt;/span&gt;
 myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;surge login
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;This would be a good time to test deployments from the VM. This should do the trick:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Manually deploy your site&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Manually deploy your site&lt;/span&gt;
 myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/home/myuser/my-site.com/deploy.sh /home/myuser/my-site.com
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -425,7 +425,7 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/home/myuser/my-site.c
 
 &lt;p&gt;Use cron to run &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy.sh&lt;/code&gt; on a schedule. First, edit your user’s crontab:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Edit your crontab&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Edit your crontab&lt;/span&gt;
 myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;crontab -e
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -446,9 +446,9 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;crontab -e
 &lt;p&gt;Before writing my own solution, I tried to find something that already existed. There were a couple, but neither quite fit my needs. I’ve put them here just in case you might find them useful.&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;If you are using &lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub Pages: Free Static Site Hosting on GitHub&quot;&gt;GitHub Pages&lt;/a&gt; as your static site host, here’s a pretty clever solution that uses &lt;a href=&quot;https://zapier.com/&quot; title=&quot;Zapier: Automate Tasks&quot;&gt;Zapier&lt;/a&gt; and calendar events to avoid using a server or VM to schedule deployments. &lt;br /&gt;
+  &lt;li&gt;If you are using &lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub Pages: Free Static Site Hosting on GitHub&quot;&gt;GitHub Pages&lt;/a&gt; as your static site host, here’s a pretty clever solution that uses &lt;a href=&quot;https://zapier.com/&quot; title=&quot;Zapier: Automate Tasks&quot;&gt;Zapier&lt;/a&gt; and calendar events to avoid using a server or VM to schedule deployments. 
 &lt;a href=&quot;http://blog.east5th.co/2014/12/29/scheduling-posts-with-jekyll-github-pages-and-zapier/&quot; title=&quot;Use Zapier to schedule deployments to GitHub Pages&quot;&gt;http://blog.east5th.co/2014/12/29/scheduling-posts-with-jekyll-github-pages-and-zapier/&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This tutorial shows how to use &lt;a href=&quot;http://rake.rubyforge.org/&quot; title=&quot;Rake: A Build Program for Ruby Projects&quot;&gt;Rake&lt;/a&gt; to consolidate your deployments instead of Grunt. If I weren’t already using Grunt for my builds and manual deployments, I probably would have tried this.&lt;br /&gt;
+  &lt;li&gt;This tutorial shows how to use &lt;a href=&quot;http://rake.rubyforge.org/&quot; title=&quot;Rake: A Build Program for Ruby Projects&quot;&gt;Rake&lt;/a&gt; to consolidate your deployments instead of Grunt. If I weren’t already using Grunt for my builds and manual deployments, I probably would have tried this.
 &lt;a href=&quot;http://www.jaredwolff.com/blog/schedule-jekyll-posts/&quot; title=&quot;Use Rake and Cron to schedule static site deployments&quot;&gt;http://www.jaredwolff.com/blog/schedule-jekyll-posts/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -483,7 +483,7 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;crontab -e
 
 &lt;p&gt;If all this rings true, then add the following lines to the end of your &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:jekyll_plugins&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:jekyll_plugins&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;jekyll-paginate&#39;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -504,7 +504,7 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;crontab -e
   &lt;li&gt;If your pages look funky and you were using something besides Kramdown, add these lines to &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;:&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;kramdown&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;kramdown&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;s&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GFM&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -519,7 +519,7 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;crontab -e
 
 &lt;p&gt;&lt;strong&gt;Before:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-md highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
   {% highlight html %}
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello World!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
   {% endhighlight %}
@@ -529,7 +529,7 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;crontab -e
 
 &lt;p&gt;&lt;strong&gt;After:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-md highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
   &lt;span class=&quot;p&quot;&gt;```&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;html&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello World!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;```&lt;/span&gt;
@@ -694,8 +694,8 @@ myuser@vm &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;crontab -e
   &lt;li&gt;When you are nearing the point where you started, click on the starting point to close your selection area.&lt;/li&gt;
   &lt;li&gt;Look closely at the selection points and lines. You can click and drag to adjust any of them at this point.&lt;/li&gt;
   &lt;li&gt;Click in the middle of the area you want to select to make the selection active.&lt;/li&gt;
-  &lt;li&gt;Shrink the selection a little bit to leave some of the background in place.&lt;br /&gt;
-a. Click on &lt;code class=&quot;highlighter-rouge&quot;&gt;Select &amp;gt; Shrink...&lt;/code&gt; in the menu.&lt;br /&gt;
+  &lt;li&gt;Shrink the selection a little bit to leave some of the background in place.
+a. Click on &lt;code class=&quot;highlighter-rouge&quot;&gt;Select &amp;gt; Shrink...&lt;/code&gt; in the menu.
 b. In the window that appears, enter 1 or 2 px and click OK.&lt;/li&gt;
   &lt;li&gt;Select &lt;code class=&quot;highlighter-rouge&quot;&gt;Edit &amp;gt; Cut&lt;/code&gt; to delete the selection.&lt;/li&gt;
 &lt;/ol&gt;
@@ -788,9 +788,9 @@ b. In the window that appears, enter 1 or 2 px and click OK.&lt;/li&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Click on &lt;code class=&quot;highlighter-rouge&quot;&gt;Image &amp;gt; Scale Image...&lt;/code&gt; in the menu.&lt;/li&gt;
-  &lt;li&gt;In the window that appears, do the following:&lt;br /&gt;
-a. Enter the Width that you would like your new image to be. The Height will automatically adjust proportionally to the Width you enter, so leave it alone.&lt;br /&gt;
-b. Enter 72 as the X Resolution. The Y Resolution will automatically adjust to match the X Resolution, so leave it alone.&lt;br /&gt;
+  &lt;li&gt;In the window that appears, do the following:
+a. Enter the Width that you would like your new image to be. The Height will automatically adjust proportionally to the Width you enter, so leave it alone.
+b. Enter 72 as the X Resolution. The Y Resolution will automatically adjust to match the X Resolution, so leave it alone.
 c. Click OK.&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -835,11 +835,11 @@ c. Click OK.&lt;/li&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Click on &lt;code class=&quot;highlighter-rouge&quot;&gt;Filters &amp;gt; Light and Shadow &amp;gt; Drop Shadow...&lt;/code&gt; in the menu.&lt;/li&gt;
-  &lt;li&gt;In the window that appears, do the following:&lt;br /&gt;
-a. Enter 4 as the Offset X and Offset Y.&lt;br /&gt;
-b. Enter 15 as the Blur Radius.&lt;br /&gt;
-c. Use black as the Color.&lt;br /&gt;
-d. Enter 60 as the Opacity.&lt;br /&gt;
+  &lt;li&gt;In the window that appears, do the following:
+a. Enter 4 as the Offset X and Offset Y.
+b. Enter 15 as the Blur Radius.
+c. Use black as the Color.
+d. Enter 60 as the Opacity.
 e. Click OK.&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1246,8 +1246,8 @@ e. Click OK.&lt;/li&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;Profiling: Good.&lt;br /&gt;
-Attention to detail: Good.&lt;br /&gt;
+&lt;p&gt;Profiling: Good.
+Attention to detail: Good.
 Converting dates to strings: Bad.&lt;/p&gt;
 
 &lt;p&gt;If you want to see the rest of the benchmark results, you can read them &lt;a href=&quot;https://github.com/egillespie/performance-playground&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -1339,11 +1339,11 @@ Converting dates to strings: Bad.&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Choose the Bucket Fill tool.&lt;/li&gt;
-  &lt;li&gt;In the Tool Options use the following values:&lt;br /&gt;
-a. Mode: Darken Only&lt;br /&gt;
-b. Opacity: 40%&lt;br /&gt;
-c. Fill Type: Pattern fill&lt;br /&gt;
-d. Pattern: ssfs_paper_texture_9.png (the green paper texture)&lt;br /&gt;
+  &lt;li&gt;In the Tool Options use the following values:
+a. Mode: Darken Only
+b. Opacity: 40%
+c. Fill Type: Pattern fill
+d. Pattern: ssfs_paper_texture_9.png (the green paper texture)
 e. Affected Area: Fill whole selection&lt;/li&gt;
   &lt;li&gt;Click in the image somewhere.&lt;/li&gt;
 &lt;/ol&gt;

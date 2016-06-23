@@ -34,7 +34,7 @@
 <meta property="og:locale" content="en_US" />
 
 
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@eriklgillespie" />
 <meta name="twitter:creator" content="@eriklgillespie" />
 
@@ -150,9 +150,9 @@
 <p>Before I dive into the code let me review what the API looks like. Pegger is a simple peg-jumping game that can be boiled down to the following HTTP operations:</p>
 
 <ol>
-  <li><code class="highlighter-rouge">POST /games</code><br />
+  <li><code class="highlighter-rouge">POST /games</code>
  With no request parameters to create a new game. The response will contain the starting layout of the game.</li>
-  <li><code class="highlighter-rouge">PUT /games/{gameId}/pegs/{pegId}</code><br />
+  <li><code class="highlighter-rouge">PUT /games/{gameId}/pegs/{pegId}</code>
  With JSON that represents the new location of a peg to move a peg to a new location. The response will either be an error explaining why the move was invalid or redirect you to the new state of the game.</li>
 </ol>
 
@@ -867,7 +867,7 @@
 
     </div>
     <footer class="site-footer">
-	<p class="text">Copyright &copy; 2016 Erik Gillespie. Re-use with attribution encouraged. All other rights reserved.</p>
+	<p class="text">Copyright &copy; 2016 Technical Rex, LLC. Re-use with attribution encouraged. All other rights reserved.</p>
 </footer>
 
 <script>
